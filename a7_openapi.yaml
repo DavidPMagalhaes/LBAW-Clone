@@ -1,14 +1,13 @@
 openapi: 3.0.0
  
 info:
- version: ‘1.0’
- title: ‘Redwood Web API’
- description: ‘Web Resources Specification (A7) for Redwood
+ version: '1.0'
+ title: 'Redwood Web API'
+ description: 'Web Resources Specification (A7) for Redwood'
  
 servers:
 - url: http://lbaw.fe.up.pt
 - description: Production server
- 
  
 tags:
  - name: 'M01: Authentication'
@@ -25,6 +24,7 @@ tags:
  
  
 paths:
+
  /login:
    get:
      operationId: R101
@@ -143,87 +143,96 @@ paths:
                302Failure:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
-/users/{id}:
-   get:
-     operationId: R106
-     summary: 'R106: View user profile'
-     description: 'Show the individual user profile. Access: USR'
-     tags:
-       - 'M02: Individual Profile'
- 
-     parameters:
-       - in: path
-         name: id
-         schema:
-           type: integer
-         required: true
- 
-     responses:
-       '200':
-         description: 'Ok. Show User Profile UI'
 
+ /listBooks:
+  get:
+    operationId: R701
+    summary: 'R701: View user wishlist'
+    description: 'Show the individual user wishlist. Access: USR'
+    tags:
+      - 'M07: Wishlist'
+    responses:
+      '200':
+        description: 'Ok. Show Wishtlist UI'
 
+ /addBook:
+  post:
+    operationId: R702
+    summary: 'R702: Add to Wishtlist Action'
+    description: 'Provide add to wishlist form submission. Access: USR'
+    tags:
+      - 'M07: Wishlist'
 
-/api/books:
-   get:
-     operationId: R202
-     summary: 'R202: Search books API'
-     description: 'Searches for books and returns the results as JSON. Access: PUB.'
- 
-     tags:
-       - 'M04: Book'
- 
-     parameters:
-       - in: query
-         name: query
-         description: String to use for full-text search
-         schema:
-           type: string
-         required: false
-       - in: query
-         name: item
-         description: Category of the books
-         schema:
-           type: string
-         required: false
-       - in: query
-         name: classification
-         description: Integer corresponding to the book review score
-         schema:
-           type: integer
-         required: false
-responses:
-       '200':
-         description: Success
-         content:
-           application/json:
-             schema:
-               type: array
-               items:
-                 type: object
-                 properties:
-                   id:
-                     type: string
-                   title:
-                     type: string
-                   category:
-                     type: string
-                   year:
-                     type: string
-                   type:
-                     type: string
-                   price:
-                     type: float
-                   author:
-                     type: string
-               example:
-                 - id: 1
-                   title: Rihanna - Unapologetic
-                   category: Good pop music album.
-                   year: 2012
-                   type: MP3
-                 - id: 15
-                   title: Mr. Bean
-                   obs: The best comedy movie.
-                   year: 1995
-                   type: DVD
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              book name:
+                type: string
+              author:
+                type: string
+              year:
+                type: integer
+            required:
+                            - book name
+
+    responses:
+      '302':
+        description: 'Redirect after processing wishlist form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful add to wishlist. Redirect to user profile.'
+                value: '/users/{id}'
+              302Failure:
+                description: 'Failed add to wishlist. Redirect to user profile.'
+                value: '/users/{id}'
+  
+ /removeBook:  
+  post:
+    operationId: R702
+    summary: 'R702: Remove from Wishtlist Action'
+    description: 'Provide remove from wishlist form submission. Access: USR'
+    tags:
+      - 'M07: Wishlist'
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              book name:
+                type: string
+              author:
+                type: string
+              year:
+                type: integer
+            required:
+                            - book name
+
+    responses:
+      '302':
+        description: 'Redirect after processing wishlist form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful removal from wishlist. Redirect to user profile.'
+                value: '/users/{id}'
+              302Failure:
+                description: 'Failed removal from wishlist. Redirect to user profile.'
+                value: '/users/{id}'
+
+# <!--- 8 
+
+# view past order and buy current cart
