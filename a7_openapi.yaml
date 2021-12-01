@@ -233,6 +233,24 @@ paths:
                 description: 'Failed removal from wishlist. Redirect to user profile.'
                 value: '/users/{id}'
 
-# <!--- 8 
+ /viewOrders:
+  get:
+    operationId: R801
+    summary: 'R801: View user order'
+    description: 'Show the individual user orders. Access: USR'
+    tags:
+      - 'M08: Order'
+    responses:
+      '200':
+        description: 'Ok. Show Order UI'
 
-# view past order and buy current cart
+ /buyCurrentCart:
+  get:
+    operationId: R802
+    summary: 'R802: Buy Current Cart Action'
+    description: 'Buys current cart from the authenticated user. Access: USR'
+    tags:
+      - 'M08: Cart'
+    responses:
+      '200':
+        description: 'Ok. Show Current Order UI'
