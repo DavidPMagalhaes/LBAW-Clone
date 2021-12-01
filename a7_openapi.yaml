@@ -250,7 +250,7 @@ paths:
     summary: 'R802: Buy Current Cart Action'
     description: 'Buys current cart from the authenticated user. Access: USR'
     tags:
-      - 'M08: Cart'
+      - 'M08: Order'
     responses:
       '200':
         description: 'Ok. Show Current Order UI'
