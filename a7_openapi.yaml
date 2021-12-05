@@ -269,8 +269,8 @@ paths:
  /addReport:
   post:
     operationId: R902
-    summary: 'R902: create report'
-    description: 'R902: Provide create report form submission. Access: USR'
+    summary: 'R902: Create report'
+    description: 'R902: Create report form submission. Access: USR'
     tags:
       - 'M09: Report'
     requestBody:
@@ -282,6 +282,8 @@ paths:
             properties:
               description:
                 type: string
+              isHandled:
+                type: boolean
             required:
                             - description
 
@@ -300,4 +302,63 @@ paths:
                 description: 'Failed to create report. Redirect to user profile.'
                 value: '/users/{id}'
 
+ /updateReport:
+  post:
+    operationId: R903
+    summary: 'R903: Update report'
+    description: 'R903: Update report. Access: USR'
+    tags:
+      - 'M09: Report'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+              isHandled:
+                type: boolean
+            required:
+                            - description
+
+    responses:
+      '302':
+        description: 'Redirect after processing report form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful update of report. Redirect to user profile.'
+                value: '/users/{id}'
+              302Failure:
+                description: 'Failed to update report. Redirect to user profile.'
+                value: '/users/{id}'
+
+
+
+ /viewPage:
+  get:
+    operationId: R1001
+    summary: 'R1001: Show static page' 
+    description: 'Shows the static page to the user'
+    tags:
+      - 'M10: Static Pages'
+    responses:
+      '200':
+       description: 'Ok. Show static page UI'
+  
+ /viewNotification:
+  get:
+    operationId: R1101
+    summary: 'R1101: Show notification' 
+    description: 'Shows the notification to the user'
+    tags:
+      - 'M11: Notification'
+    responses:
+      '200':
+       description: 'Ok. Show notification UI'
   
