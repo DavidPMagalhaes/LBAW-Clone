@@ -254,3 +254,50 @@ paths:
     responses:
       '200':
         description: 'Ok. Show Current Order UI'
+
+ /viewReport:
+  get:
+    operationId: R901
+    summary: 'R901: Show report' 
+    description: 'Shows the report to the user'
+    tags:
+      - 'M09: Report'
+    responses:
+      '200':
+       description: 'Ok. Show report UI'
+
+ /addReport:
+  post:
+    operationId: R902
+    summary: 'R902: create report'
+    description: 'R902: Provide create report form submission. Access: USR'
+    tags:
+      - 'M09: Report'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+            required:
+                            - description
+
+    responses:
+      '302':
+        description: 'Redirect after processing report form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful creation of report. Redirect to user profile.'
+                value: '/users/{id}'
+              302Failure:
+                description: 'Failed to create report. Redirect to user profile.'
+                value: '/users/{id}'
+
+  
