@@ -239,7 +239,7 @@ paths:
   post:
     operationId: R504
     summary: 'R504: Update book quantity'
-    description: 'R904: Update book quantity in cart. Access: USR'
+    description: 'R504: Update book quantity in cart. Access: USR'
     tags:
       - 'M05: Cart'
     requestBody:
