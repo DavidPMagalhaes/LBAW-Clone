@@ -299,7 +299,7 @@ paths:
       '200':
         description: 'Ok. Show Item review UI34'
 
-  /users/{id}/DeleteWrittenReview:
+ /users/{id}/DeleteWrittenReview:
     post:
     operationId: R603
     summary: 'R603: Remove review Action'
@@ -335,7 +335,7 @@ paths:
                 value: '/users/{id}/WrittenReviews'
               
  /users/{id}/EditWrittenReview:
-    post:
+  post:
     operationId: R604
     summary: 'R604: Edit review Action'
     description: 'Provide remove review. Access: USR'
