@@ -275,6 +275,150 @@ paths:
               302Failure:
                 description: 'Failed to update cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
+
+ /item/{id}/ViewReviews:
+  get:
+    operation: R601
+    summary: 'R501: View item reviews'
+    description: 'Show the Item reviews. Access: PUB'
+    tags:
+      - 'M06: Review'
+    responses:
+      '200':
+        description: 'Ok. Show Item review UI52'
+
+
+ /users/{id}/ViewWrittenReviews:
+  get:
+    operation: R602
+    summary: 'R501: View item written review'
+    description: 'Show the written reviews. Access: USR'
+    tags:
+      - 'M06: Review'
+    responses:
+      '200':
+        description: 'Ok. Show Item review UI34'
+
+  /users/{id}/DeleteWrittenReview:
+    post:
+    operationId: R603
+    summary: 'R603: Remove review Action'
+    description: 'Provide remove review. Access: USR'
+    tags:
+      - 'M07: Review'
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              review id:
+                type: integer
+            required:
+                            - review id
+
+    responses:
+      '302':
+        description: 'Redirect after processing remove review form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful removal from item reviews. Redirect to written reviews.'
+                value: '/users/{id}/WrittenReviews'
+              302Failure:
+                description: 'Failed removal from item reviews. Redirect to written reviews.'
+                value: '/users/{id}/WrittenReviews'
+              
+ /users/{id}/EditWrittenReview:
+    post:
+    operationId: R604
+    summary: 'R604: Edit review Action'
+    description: 'Provide remove review. Access: USR'
+    tags:
+      - 'M07: Review'
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              review id:
+                type: integer
+              new comment:
+                type: String
+              new rating:
+                type: integer
+            required:
+                            - review id
+
+    responses:
+      '302':
+        description: 'Redirect after processing edit review form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful review change. Redirect to written reviews.'
+                value: '/users/{id}/WrittenReviews'
+              302Failure:
+                description: 'Failed review change. Redirect to written reviews.'
+                value: '/users/{id}/WrittenReviews'
+ 
+ /item/{id}/AddReview:
+  get:
+    operation: R605
+    summary: 'R605: View item reviews'
+    description: 'Show the create review form. Access: USR'
+    tags:
+      - 'M06: Review'
+    responses:
+      '200':
+        description: 'Ok. Show Item create review form UI52'
+  post:
+    operationId: R606
+    summary: 'R606: Edit review Action'
+    description: 'Provide remove review. Access: USR'
+    tags:
+      - 'M07: Review'
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              comment:
+                type: String
+              rating:
+                type: integer
+            required:
+                            - rating
+
+    responses:
+      '302':
+        description: 'Redirect after processing add review form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful review . Redirect to written reviews.'
+                value: '/users/{id}/WrittenReviews'
+              302Failure:
+                description: 'Failed review. Redirect to written reviews.'
+                value: '/users/{id}/WrittenReviews'
+
  
  /listBooks:
   get:
