@@ -305,7 +305,7 @@ paths:
     summary: 'R603: Remove review Action'
     description: 'Provide remove review. Access: USR'
     tags:
-      - 'M07: Review'
+      - 'M06: Review'
 
     requestBody:
       required: true
@@ -340,7 +340,7 @@ paths:
     summary: 'R604: Edit review Action'
     description: 'Provide remove review. Access: USR'
     tags:
-      - 'M07: Review'
+      - 'M06: Review'
 
     requestBody:
       required: true
@@ -388,7 +388,7 @@ paths:
     summary: 'R606: Edit review Action'
     description: 'Provide remove review. Access: USR'
     tags:
-      - 'M07: Review'
+      - 'M06: Review'
 
     requestBody:
       required: true
