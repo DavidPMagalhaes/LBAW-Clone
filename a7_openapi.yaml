@@ -196,7 +196,7 @@ paths:
                 description: 'Failed add to cart. Redirect to user profile.'
                 value: '/users/{id}'
   
-/removeBook:  
+ /removeBook:  
   post:
     operationId: R503
     summary: 'R503: Remove from Cart Action'
@@ -235,7 +235,7 @@ paths:
                 description: 'Failed removal from cart. Redirect to user profile.'
                 value: '/users/{id}'
 
- /updateBookQuantity:
+/updateBookQuantity:
   post:
     operationId: R504
     summary: 'R504: Update book quantity'
@@ -277,7 +277,7 @@ paths:
                 value: '/users/{id}'
 
 
- /listBooks:
+/listBooks:
   get:
     operationId: R701
     summary: 'R701: View user wishlist'
@@ -288,7 +288,7 @@ paths:
       '200':
         description: 'Ok. Show Wishtlist UI'
 
- /addBook:
+/addBook:
   post:
     operationId: R702
     summary: 'R702: Add to Wishtlist Action'
@@ -327,7 +327,7 @@ paths:
                 description: 'Failed add to wishlist. Redirect to user profile.'
                 value: '/users/{id}'
   
- /removeBook:  
+/removeBook:  
   post:
     operationId: R702
     summary: 'R702: Remove from Wishtlist Action'
