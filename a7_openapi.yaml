@@ -235,7 +235,7 @@ paths:
                 description: 'Failed removal from cart. Redirect to user profile.'
                 value: '/users/{id}'
 
-  /updateBookQuantity:
+ /updateBookQuantity:
   post:
     operationId: R504
     summary: 'R504: Update book quantity'
