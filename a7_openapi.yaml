@@ -144,7 +144,7 @@ paths:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
 
- /ViewCart:
+ /users/{id}/ViewCart:
   get:
     operation: R501
     summary: 'R501: View user cart'
@@ -153,8 +153,8 @@ paths:
       - 'M05: Cart'
     responses:
       '200':
-        description: 'Ok. Show Cart UI'
- /addBookToCart:
+        description: 'Ok. Show Cart UI31'
+ /users/{id}/addBookToCart:
   post:
     operationId: R502
     summary: 'R502: Add to Cart Action'
@@ -190,13 +190,13 @@ paths:
               type: string
             examples:
               302Success:
-                description: 'Successful add to cart. Redirect to user profile.'
-                value: '/users/{id}'
+                description: 'Successful add to cart. Redirect to user cart.'
+                value: '/users/{id}/ViewCart'
               302Failure:
-                description: 'Failed add to cart. Redirect to user profile.'
-                value: '/users/{id}'
+                description: 'Failed add to cart. Redirect to user cart.'
+                value: '/users/{id}/ViewCart'
   
- /removeBookCart:  
+ users/{id}/removeBookCart:  
   post:
     operationId: R503
     summary: 'R503: Remove from Cart Action'
@@ -229,13 +229,13 @@ paths:
               type: string
             examples:
               302Success:
-                description: 'Successful removal from cart. Redirect to user profile.'
-                value: '/users/{id}'
+                description: 'Successful removal from cart. Redirect to user cart.'
+                value: '/users/{id}/ViewCart'
               302Failure:
                 description: 'Failed removal from cart. Redirect to user profile.'
-                value: '/users/{id}'
+                value: '/users/{id}/ViewCart'
 
- /updateBookQuantity:
+ /users/{id}/updateBookQuantity:
   post:
     operationId: R504
     summary: 'R504: Update book quantity'
@@ -270,13 +270,12 @@ paths:
               type: string
             examples:
               302Success:
-                description: 'Successful update of cart. Redirect to user profile.'
-                value: '/users/{id}'
+                description: 'Successful update of cart. Redirect to user cart.'
+                value: '/users/{id}/ViewCart'
               302Failure:
-                description: 'Failed to update cart. Redirect to user profile.'
-                value: '/users/{id}'
-
-
+                description: 'Failed to update cart. Redirect to user cart.'
+                value: '/users/{id}/ViewCart'
+ 
  /listBooks:
   get:
     operationId: R701
