@@ -196,7 +196,7 @@ paths:
                 description: 'Failed add to cart. Redirect to user profile.'
                 value: '/users/{id}'
   
- /removeBook:  
+/removeBook:  
   post:
     operationId: R503
     summary: 'R503: Remove from Cart Action'
