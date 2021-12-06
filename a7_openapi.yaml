@@ -199,7 +199,7 @@ paths:
   /removeBook:  
   post:
     operationId: R503
-    summary: 'R702: Remove from Cart Action'
+    summary: 'R503: Remove from Cart Action'
     description: 'Provide remove from cart form submission. Access: USR'
     tags:
       - 'M05: Cart'
