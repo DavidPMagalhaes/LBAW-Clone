@@ -204,14 +204,14 @@ paths:
               examples:
                 302Success:
                   description: 'Successful changed user profile'
-                  value: '/users/{id}/ViewCart'
+                  value: '/users/{id}/changeUserInfo'
                 302Failure:
                   description: 'Failed to change user profile.'
-                  value: '/users/{id}/ViewCart'
+                  value: '/users/{id}/changeUserInfo'
                 
 
 
- /api/books:
+ /api/books/searchBook:
    get:
      operationId: R401
      summary: 'R401: Search books API'
@@ -265,10 +265,21 @@ paths:
                    author:
                      type: string
 
+ /api/books/viewBook:
+  get:
+    operationId: R402
+    summary: 'R402: View book'
+    description: 'Show an individual book. Access: USR'
+    tags:
+      - 'M04: Book'
+    responses:
+      '200':
+        description: 'Ok. Show Book'
+
  /api/books/addBook:
   post:
-    operationId: R402
-    summary: 'R402: Add Book Action'
+    operationId: R403
+    summary: 'R403: Add Book Action'
     description: 'Provide add book form submission. Access: ADM'
     tags:
       - 'M04: Book'
@@ -312,6 +323,101 @@ paths:
                 description: 'Failed add book. Redirect to bookpage.'
                 value: '/api/books'
 
+ /api/books/editBook:
+  post:
+    operationId: R404
+    summary: 'R404: Edit Book Action'
+    description: 'Edit book form submission. Access: ADM'
+    tags:
+      - 'M04: Book'
+
+    requestBody:
+      required: true
+      content:
+          application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: string
+                   title:
+                     type: string
+                   category:
+                     type: string
+                   year:
+                     type: string
+                   type:
+                     type: string
+                   price:
+                     type: number
+                   author:
+                     type: string
+
+    responses:
+      '302':
+        description: 'Redirect after editing book.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successfuly edited book. Redirect to bookpage.'
+                value: '/api/books'
+              302Failure:
+                description: 'Failed to edit book. Redirect to bookpage.'
+                value: '/api/books'
+
+ /api/books/removeBook:
+  post:
+    operationId: R405
+    summary: 'R405: Remove Book Action'
+    description: 'Delete book form submission. Access: ADM'
+    tags:
+      - 'M04: Book'
+
+    requestBody:
+      required: true
+      content:
+          application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: string
+                   title:
+                     type: string
+                   category:
+                     type: string
+                   year:
+                     type: string
+                   type:
+                     type: string
+                   price:
+                     type: number
+                   author:
+                     type: string
+
+    responses:
+      '302':
+        description: 'Redirect after deleting book.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successfully remove book. Redirect to homepage.'
+                value: '/api/books'
+              302Failure:
+                description: 'Failed remove book. Redirect to bookpage.'
+                value: '/api/books'
+
+
  /users/{id}/cart:
   get:
     operationId: R501
@@ -322,6 +428,7 @@ paths:
     responses:
       '200':
         description: 'Ok. Show Cart UI31'
+
  /users/{id}/cart/add:
   post:
     operationId: R502
