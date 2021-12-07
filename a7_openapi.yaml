@@ -267,7 +267,7 @@ paths:
  /api/books/viewBook:
   get:
     operationId: R402
-    summary: 'R501: View book'
+    summary: 'R402: View book'
     description: 'Show an individual book. Access: USR'
     tags:
       - 'M04: Book'
@@ -278,7 +278,7 @@ paths:
  /api/books/addBook:
   post:
     operationId: R403
-    summary: 'R402: Add Book Action'
+    summary: 'R403: Add Book Action'
     description: 'Provide add book form submission. Access: ADM'
     tags:
       - 'M04: Book'
@@ -325,7 +325,7 @@ paths:
  /api/books/editBook:
   post:
     operationId: R404
-    summary: 'R402: Edit Book Action'
+    summary: 'R404: Edit Book Action'
     description: 'Edit book form submission. Access: ADM'
     tags:
       - 'M04: Book'
@@ -372,7 +372,7 @@ paths:
  /api/books/removeBook:
   post:
     operationId: R405
-    summary: 'R402: Remove Book Action'
+    summary: 'R405: Remove Book Action'
     description: 'Delete book form submission. Access: ADM'
     tags:
       - 'M04: Book'
