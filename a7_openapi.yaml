@@ -164,36 +164,53 @@ paths:
        '200':
          description: 'Ok. Show User Profile UI'
  
- post:
-     operationId: R202
-     summary: 'R202: Change user information'
-     description: 'Processes the new user information. Access: PUB'
-     tags:
-       - 'M02: Individual Profile'
- 
-     requestBody:
-       required: true
-       content:
-         application/x-www-form-urlencoded:
-           schema:
-             type: object
-             properties:
-               name:
-                 type: string
-               email:
-                 type: string
-               password:
-                 type: string
-               cardNumber:
-                 type: int
-               securityNumber:
-                 type: int
- 
-             required:
-                                    - email
-                                    - password
+ /changeUserInfo:
+  post:
+    operationId: R202
+    summary: 'R202: Change user information'
+    description: 'Processes the new user information. Access: PUB'
+    tags:
+      - 'M02: Individual Profile'
 
-/api/books:
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              cardNumber:
+                type: integer
+              securityNumber:
+                type: integer
+
+            required:
+                                  - email
+                                  - password
+    responses:
+        '302':
+          description: 'Change the information in user profile'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful changed user profile'
+                  value: '/users/{id}/ViewCart'
+                302Failure:
+                  description: 'Failed to change user profile.'
+                  value: '/users/{id}/ViewCart'
+                
+
+
+ /api/books:
    get:
      operationId: R401
      summary: 'R401: Search books API'
@@ -243,11 +260,9 @@ paths:
                    type:
                      type: string
                    price:
-                     type: float
+                     type: number
                    author:
                      type: string
- 
-
 
  /users/{id}/ViewCart:
   get:
@@ -405,12 +420,12 @@ paths:
         description: 'Ok. Show Item review UI34'
 
  /users/{id}/DeleteWrittenReview:
-    post:
-      operationId: R603
-      summary: 'R603: Remove review Action'
-      description: 'Provide remove review. Access: USR'
-      tags:
-        - 'M06: Review'
+  post:
+    operationId: R603
+    summary: 'R603: Remove review Action'
+    description: 'Provide remove review. Access: USR'
+    tags:
+      - 'M06: Review'
 
     requestBody:
       required: true
