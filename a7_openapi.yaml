@@ -146,7 +146,7 @@ paths:
 
  /users/{id}/ViewCart:
   get:
-    operation: R501
+    operationId: R501
     summary: 'R501: View user cart'
     description: 'Show the individual user cart. Access: USR'
     tags:
@@ -196,7 +196,7 @@ paths:
                 description: 'Failed add to cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
   
- users/{id}/removeBookCart:  
+ /users/{id}/removeBookCart:  
   post:
     operationId: R503
     summary: 'R503: Remove from Cart Action'
@@ -278,7 +278,7 @@ paths:
 
  /item/{id}/ViewReviews:
   get:
-    operation: R601
+    operationId: R601
     summary: 'R601: View item reviews'
     description: 'Show the Item reviews. Access: PUB'
     tags:
@@ -290,7 +290,7 @@ paths:
 
  /users/{id}/ViewWrittenReviews:
   get:
-    operation: R602
+    operationId: R602
     summary: 'R602: View item written review'
     description: 'Show the written reviews. Access: USR'
     tags:
@@ -301,11 +301,11 @@ paths:
 
  /users/{id}/DeleteWrittenReview:
     post:
-    operationId: R603
-    summary: 'R603: Remove review Action'
-    description: 'Provide remove review. Access: USR'
-    tags:
-      - 'M06: Review'
+      operationId: R603
+      summary: 'R603: Remove review Action'
+      description: 'Provide remove review. Access: USR'
+      tags:
+        - 'M06: Review'
 
     requestBody:
       required: true
@@ -318,7 +318,6 @@ paths:
                 type: integer
             required:
                             - review id
-
     responses:
       '302':
         description: 'Redirect after processing remove review form.'
@@ -352,7 +351,7 @@ paths:
               review id:
                 type: integer
               new comment:
-                type: String
+                type: string
               new rating:
                 type: integer
             required:
@@ -375,7 +374,7 @@ paths:
  
  /item/{id}/AddReview:
   get:
-    operation: R605
+    operationId: R605
     summary: 'R605: View item reviews'
     description: 'Show the create review form. Access: USR'
     tags:
@@ -398,7 +397,7 @@ paths:
             type: object
             properties:
               comment:
-                type: String
+                type: string
               rating:
                 type: integer
             required:
