@@ -265,6 +265,53 @@ paths:
                    author:
                      type: string
 
+ /api/books/addBook:
+  post:
+    operationId: R402
+    summary: 'R402: Add Book Action'
+    description: 'Provide add book form submission. Access: ADM'
+    tags:
+      - 'M04: Book'
+
+    requestBody:
+      required: true
+      content:
+          application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: string
+                   title:
+                     type: string
+                   category:
+                     type: string
+                   year:
+                     type: string
+                   type:
+                     type: string
+                   price:
+                     type: number
+                   author:
+                     type: string
+
+    responses:
+      '302':
+        description: 'Redirect after adding book.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful add book. Redirect to bookpage.'
+                value: '/api/books'
+              302Failure:
+                description: 'Failed add book. Redirect to bookpage.'
+                value: '/api/books'
+
  /users/{id}/ViewCart:
   get:
     operationId: R501
