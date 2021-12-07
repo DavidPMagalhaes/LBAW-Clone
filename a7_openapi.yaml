@@ -266,7 +266,7 @@ paths:
 
  /api/books/viewBook:
   get:
-    operationId: R501
+    operationId: R402
     summary: 'R501: View book'
     description: 'Show an individual book. Access: USR'
     tags:
@@ -277,7 +277,7 @@ paths:
 
  /api/books/addBook:
   post:
-    operationId: R402
+    operationId: R403
     summary: 'R402: Add Book Action'
     description: 'Provide add book form submission. Access: ADM'
     tags:
@@ -324,7 +324,7 @@ paths:
 
  /api/books/editBook:
   post:
-    operationId: R402
+    operationId: R404
     summary: 'R402: Edit Book Action'
     description: 'Edit book form submission. Access: ADM'
     tags:
@@ -368,6 +368,54 @@ paths:
               302Failure:
                 description: 'Failed to edit book. Redirect to bookpage.'
                 value: '/api/books'
+
+ /api/books/removeBook:
+  post:
+    operationId: R405
+    summary: 'R402: Remove Book Action'
+    description: 'Delete book form submission. Access: ADM'
+    tags:
+      - 'M04: Book'
+
+    requestBody:
+      required: true
+      content:
+          application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: string
+                   title:
+                     type: string
+                   category:
+                     type: string
+                   year:
+                     type: string
+                   type:
+                     type: string
+                   price:
+                     type: number
+                   author:
+                     type: string
+
+    responses:
+      '302':
+        description: 'Redirect after deleting book.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successfully remove book. Redirect to homepage.'
+                value: '/api/books'
+              302Failure:
+                description: 'Failed remove book. Redirect to bookpage.'
+                value: '/api/books'
+
 
  /users/{id}/ViewCart:
   get:
