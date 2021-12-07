@@ -144,6 +144,111 @@ paths:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
 
+ 
+ /user/{id}:
+   get:
+     operationId: R201
+     summary: 'R201: View user profile'
+     description: 'Show the individual user profile. Access: USR'
+     tags:
+       - 'M02: Individual Profile'
+ 
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+ 
+     responses:
+       '200':
+         description: 'Ok. Show User Profile UI'
+ 
+ post:
+     operationId: R202
+     summary: 'R202: Change user information'
+     description: 'Processes the new user information. Access: PUB'
+     tags:
+       - 'M02: Individual Profile'
+ 
+     requestBody:
+       required: true
+       content:
+         application/x-www-form-urlencoded:
+           schema:
+             type: object
+             properties:
+               name:
+                 type: string
+               email:
+                 type: string
+               password:
+                 type: string
+               cardNumber:
+                 type: int
+               securityNumber:
+                 type: int
+ 
+             required:
+                                    - email
+                                    - password
+
+/api/books:
+   get:
+     operationId: R401
+     summary: 'R401: Search books API'
+     description: 'Searches for books and returns the results as JSON. Access: PUB.'
+ 
+     tags:
+       - 'M04: Book'
+ 
+     parameters:
+       - in: query
+         name: query
+         description: String to use for full-text search
+         schema:
+           type: string
+         required: false
+       - in: query
+         name: item
+         description: Category of the books
+         schema:
+           type: string
+         required: false
+       - in: query
+         name: classification
+         description: Integer corresponding to the book review score
+         schema:
+           type: integer
+         required: false
+ 
+     responses:
+       '200':
+         description: Success
+         content:
+           application/json:
+             schema:
+               type: array
+               items:
+                 type: object
+                 properties:
+                   id:
+                     type: string
+                   title:
+                     type: string
+                   category:
+                     type: string
+                   year:
+                     type: string
+                   type:
+                     type: string
+                   price:
+                     type: float
+                   author:
+                     type: string
+ 
+
+
  /users/{id}/ViewCart:
   get:
     operationId: R501
