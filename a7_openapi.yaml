@@ -165,11 +165,11 @@ paths:
        '200':
          description: 'Ok. Show User Profile UI'
  
- /changeUserInfo:
+ /user/{id}/changeinfo:
   post:
     operationId: R202
     summary: 'R202: Change user information'
-    description: 'Processes the new user information. Access: PUB'
+    description: 'Processes the new user information. Access: USR'
     tags:
       - 'M02: Individual Profile'
 
@@ -312,7 +312,7 @@ paths:
                 description: 'Failed add book. Redirect to bookpage.'
                 value: '/api/books'
 
- /users/{id}/ViewCart:
+ /users/{id}/cart:
   get:
     operationId: R501
     summary: 'R501: View user cart'
@@ -322,7 +322,7 @@ paths:
     responses:
       '200':
         description: 'Ok. Show Cart UI31'
- /users/{id}/addBookToCart:
+ /users/{id}/cart/add:
   post:
     operationId: R502
     summary: 'R502: Add to Cart Action'
@@ -364,7 +364,7 @@ paths:
                 description: 'Failed add to cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
   
- /users/{id}/removeBookCart:  
+ /users/{id}/cart/remove:  
   post:
     operationId: R503
     summary: 'R503: Remove from Cart Action'
@@ -403,7 +403,7 @@ paths:
                 description: 'Failed removal from cart. Redirect to user profile.'
                 value: '/users/{id}/ViewCart'
 
- /users/{id}/updateBookQuantity:
+ /users/{id}/cart/update:
   post:
     operationId: R504
     summary: 'R504: Update book quantity'
@@ -444,7 +444,7 @@ paths:
                 description: 'Failed to update cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
 
- /item/{id}/ViewReviews:
+ /item/{id}/view-reviews:
   get:
     operationId: R601
     summary: 'R601: View item reviews'
@@ -456,7 +456,7 @@ paths:
         description: 'Ok. Show Item review UI52'
 
 
- /users/{id}/ViewWrittenReviews:
+ /users/{id}/view-writtenReviews:
   get:
     operationId: R602
     summary: 'R602: View item written review'
@@ -587,7 +587,7 @@ paths:
                 value: '/users/{id}/WrittenReviews'
 
  
- /listBooks:
+ /users/{id}/wishlist:
   get:
     operationId: R701
     summary: 'R701: View user wishlist'
@@ -598,7 +598,7 @@ paths:
       '200':
         description: 'Ok. Show Wishtlist UI'
 
- /addBook:
+ /users/{id}/wishlist/add:
   post:
     operationId: R702
     summary: 'R702: Add to Wishtlist Action'
@@ -637,11 +637,11 @@ paths:
                 description: 'Failed add to wishlist. Redirect to user profile.'
                 value: '/users/{id}'
   
- /removeBook:  
+ /users/{id}/wishlist/remove:  
   post:
     operationId: R702
     summary: 'R702: Remove from Wishtlist Action'
-    description: 'Provide remove from wishlist form submission. Access: USR'
+    description: 'Provide remove from wishlist form submission. Access: OWN'
     tags:
       - 'M07: Wishlist'
 
@@ -676,32 +676,80 @@ paths:
                 description: 'Failed removal from wishlist. Redirect to user profile.'
                 value: '/users/{id}'
 
- /viewOrders:
+ /users/{id}/order:
   get:
     operationId: R801
     summary: 'R801: View user order'
-    description: 'Show the individual user orders. Access: USR'
+    description: 'Show the individual user orders. Access: OWN'
     tags:
       - 'M08: Order'
     responses:
       '200':
         description: 'Ok. Show Order UI'
 
- /buyCurrentCart:
+ /users/{id}/order/buycart:
   get:
     operationId: R802
-    summary: 'R802: Buy Current Cart Action'
-    description: 'Buys current cart from the authenticated user. Access: USR'
+    summary: 'R802: Show Current Cart buying form'
+    description: 'Shows the page to add order details. Access: OWN'
     tags:
       - 'M08: Order'
     responses:
       '200':
         description: 'Ok. Show Current Order UI'
 
- /viewReport:
+ /users/{id}/order/buycart-buy:
+  post:
+    operationId: R803
+    summary: 'R803: Buy Current Cart Action'
+    description: 'Fills the details and buys item(s). Access: OWN'
+    tags:
+      - 'M08: Order'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              credit card:
+                type: integer
+            required:
+                            - credit card
+
+    responses:
+      '302':
+        description: 'Redirect after processing order to user profile.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful purchased your items. Redirect to user profile.'
+                value: '/users/{id}'
+              302Failure:
+                description: 'Failed purchase your items. Redirect to user profile.'
+                value: '/users/{id}'
+  
+
+
+ /reports:
   get:
     operationId: R901
-    summary: 'R901: Show report' 
+    summary: 'R901: Show list of reports' 
+    description: 'Shows the list of reports to the admin. Access: ADMIN'
+    tags:
+      - 'M09: Report'
+    responses:
+      '200':
+       description: 'Ok. Show report UI'
+
+
+ /reports/{id}:
+  get:
+    operationId: R902
+    summary: 'R902: Show report' 
     description: 'Shows the report to the user'
     tags:
       - 'M09: Report'
@@ -709,11 +757,11 @@ paths:
       '200':
        description: 'Ok. Show report UI'
 
- /addReport:
+ /reports/add:
   post:
-    operationId: R902
-    summary: 'R902: Create report'
-    description: 'R902: Create report form submission. Access: USR'
+    operationId: R903
+    summary: 'R903: Create report'
+    description: 'R903: Create report form submission. Access: USR'
     tags:
       - 'M09: Report'
     requestBody:
@@ -745,11 +793,11 @@ paths:
                 description: 'Failed to create report. Redirect to user profile.'
                 value: '/users/{id}'
 
- /updateReport:
+ /reports/{id}/update:
   post:
-    operationId: R903
-    summary: 'R903: Update report'
-    description: 'R903: Update report. Access: USR'
+    operationId: R904
+    summary: 'R904: Update report'
+    description: 'R904: Update report. Access: USR'
     tags:
       - 'M09: Report'
     requestBody:
@@ -794,7 +842,7 @@ paths:
       '200':
        description: 'Ok. Show static page UI'
   
- /viewNotification:
+ /notification/{id}:
   get:
     operationId: R1101
     summary: 'R1101: Show notification' 
@@ -804,6 +852,35 @@ paths:
     responses:
       '200':
        description: 'Ok. Show notification UI'
+  
+ /notification/{id}/update:
+  post:
+    operationId: R1102
+    summary: 'R1102: Read notification' 
+    description: 'Marks the notification as read'
+    tags:
+      - 'M11: Notification'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              isRead:
+                type: boolean
+            required:
+                            - description
+
+    responses:
+      '200':
+        description: 'Notification mark as read.'
+      '400':
+        description: 'Error to mark notification as read'
+
+
   
  /:
   get:
