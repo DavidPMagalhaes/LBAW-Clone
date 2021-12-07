@@ -21,6 +21,7 @@ tags:
  - name: 'M09: Report'
  - name: 'M10: Static Pages'
  - name: 'M11: Notification'
+ - name: 'M12: Home'
  
  
 paths:
@@ -756,4 +757,15 @@ paths:
     responses:
       '200':
        description: 'Ok. Show notification UI'
+  
+ /:
+  get:
+    operationId: R1201
+    summary: 'R1201: Show Home page' 
+    description: 'Shows the the home page to the user'
+    tags:
+      - 'M12: Home'
+    responses:
+      '200':
+       description: 'Ok. Show home page UI'
   
