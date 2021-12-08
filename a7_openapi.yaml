@@ -123,9 +123,6 @@ paths:
                  type: string
                email:
                  type: string
-               picture:
-                 type: string
-                 format: binary
              required:
                             - email
                              - password
@@ -209,7 +206,93 @@ paths:
                   description: 'Failed to change user profile.'
                   value: '/users/{id}/changeUserInfo'
                 
+ /user/{id}/deleteUser:
+  post:
+    operationId: R301
+    summary: 'R301: Delete user information'
+    description: 'Processes the new user information. Access: ADM'
+    tags:
+      - 'M03: User Administration'
 
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+              cardNumber:
+                type: integer
+              securityNumber:
+                type: integer
+              isBlocked:
+                type: Bool
+              isAdmin:
+                type: Bool
+
+            required:
+                                  - email
+                                  - password
+    responses:
+        '302':
+          description: 'Change the information in user profile'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successfuly deleted user profile'
+                  value: '/users/{id}/changeUserInfo'
+                302Failure:
+                  description: 'Failed to delete user profile.'
+                  value: '/users/{id}/changeUserInfo'
+          
+ /user/{id}/BanUser:
+  post:
+    operationId: R302
+    summary: 'R302: Ban user'
+    description: 'Bans user. Access: ADM'
+    tags:
+      - 'M03: User Administration'
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              isBlocked:
+                type: Bool
+
+            required:
+                                  - email
+                                  - password
+    responses:
+        '302':
+          description: 'Change isBlocked value'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successfuly banned user profile'
+                  value: '/users/{id}/changeUserInfo'
+                302Failure:
+                  description: 'Failed to ban user profile.'
+                  value: '/users/{id}/changeUserInfo'
 
  /api/books/searchBook:
    get:
