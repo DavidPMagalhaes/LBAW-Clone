@@ -1,14 +1,14 @@
 openapi: 3.0.0
- 
+
 info:
  version: '1.0'
  title: 'Redwood Web API'
  description: 'Web Resources Specification (A7) for Redwood'
- 
+
 servers:
 - url: http://lbaw.fe.up.pt
 - description: Production server
- 
+
 tags:
  - name: 'M01: Authentication'
  - name: 'M02: Individual Profile'
@@ -22,8 +22,8 @@ tags:
  - name: 'M10: Static Pages'
  - name: 'M11: Notification'
  - name: 'M12: Home'
- 
- 
+
+
 paths:
 
  /login:
@@ -42,7 +42,7 @@ paths:
      description: 'Processes the login form submission. Access: PUB'
      tags:
        - 'M01: Authentication'
- 
+
      requestBody:
        required: true
        content:
@@ -57,7 +57,7 @@ paths:
              required:
                   - email
                   - password
- 
+
      responses:
        '302':
          description: 'Redirect after processing the login credentials.'
@@ -72,9 +72,9 @@ paths:
                302Error:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
- 
+
  /logout:
- 
+
    post:
      operationId: R103
      summary: 'R103: Logout Action'
@@ -92,7 +92,7 @@ paths:
                302Success:
                  description: 'Successful logout. Redirect to login form.'
                  value: '/login'
- 
+
  /register:
 
    get:
@@ -104,14 +104,14 @@ paths:
     responses:
        '200':
          description: 'Ok. Show Sign-Up UI'
- 
+
    post:
      operationId: R105
      summary: 'R105: Register Action'
      description: 'Processes the new user registration form submission. Access: PUB'
      tags:
        - 'M01: Authentication'
- 
+
      requestBody:
        required: true
        content:
@@ -126,7 +126,7 @@ paths:
              required:
                             - email
                              - password
- 
+
      responses:
        '302':
          description: 'Redirect after processing the new user information.'
@@ -142,7 +142,7 @@ paths:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
 
- 
+
  /user/{id}:
    get:
      operationId: R201
@@ -150,18 +150,18 @@ paths:
      description: 'Show the individual user profile. Access: USR'
      tags:
        - 'M02: Individual Profile'
- 
+
      parameters:
        - in: path
          name: id
          schema:
            type: integer
          required: true
- 
+
      responses:
        '200':
          description: 'Ok. Show User Profile UI'
- 
+
  /user/{id}/changeinfo:
   post:
     operationId: R202
@@ -205,7 +205,7 @@ paths:
                 302Failure:
                   description: 'Failed to change user profile.'
                   value: '/users/{id}/changeUserInfo'
-                
+
  /user/{id}/deleteUser:
   post:
     operationId: R301
@@ -253,7 +253,7 @@ paths:
                 302Failure:
                   description: 'Failed to delete user profile.'
                   value: '/users/{id}/changeUserInfo'
-          
+
  /user/{id}/BanUser:
   post:
     operationId: R302
@@ -299,10 +299,10 @@ paths:
      operationId: R401
      summary: 'R401: Search books API'
      description: 'Searches for books and returns the results as JSON. Access: PUB.'
- 
+
      tags:
        - 'M04: Book'
- 
+
      parameters:
        - in: query
          name: query
@@ -322,7 +322,7 @@ paths:
          schema:
            type: integer
          required: false
- 
+
      responses:
        '200':
          description: Success
@@ -534,7 +534,7 @@ paths:
               year:
                 type: integer
               quantity:
-                type: integer 
+                type: integer
             required:
                             - book name
                             - quantity
@@ -553,8 +553,8 @@ paths:
               302Failure:
                 description: 'Failed add to cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
-  
- /users/{id}/cart/remove:  
+
+ /users/{id}/cart/remove:
   post:
     operationId: R503
     summary: 'R503: Remove from Cart Action'
@@ -690,7 +690,7 @@ paths:
               302Failure:
                 description: 'Failed removal from item reviews. Redirect to written reviews.'
                 value: '/users/{id}/WrittenReviews'
-              
+
  /users/{id}/EditWrittenReview:
   post:
     operationId: R604
@@ -729,7 +729,7 @@ paths:
               302Failure:
                 description: 'Failed review change. Redirect to written reviews.'
                 value: '/users/{id}/WrittenReviews'
- 
+
  /item/{id}/AddReview:
   get:
     operationId: R605
@@ -776,7 +776,7 @@ paths:
                 description: 'Failed review. Redirect to written reviews.'
                 value: '/users/{id}/WrittenReviews'
 
- 
+
  /users/{id}/wishlist:
   get:
     operationId: R701
@@ -786,7 +786,7 @@ paths:
       - 'M07: Wishlist'
     responses:
       '200':
-        description: 'Ok. Show Wishtlist UI'
+        description: 'Ok. Show Wishtlist UI33'
 
  /users/{id}/wishlist/add:
   post:
@@ -826,8 +826,8 @@ paths:
               302Failure:
                 description: 'Failed add to wishlist. Redirect to user profile.'
                 value: '/users/{id}'
-  
- /users/{id}/wishlist/remove:  
+
+ /users/{id}/wishlist/remove:
   post:
     operationId: R702
     summary: 'R702: Remove from Wishtlist Action'
@@ -921,13 +921,13 @@ paths:
               302Failure:
                 description: 'Failed purchase your items. Redirect to user profile.'
                 value: '/users/{id}'
-  
+
 
 
  /reports:
   get:
     operationId: R901
-    summary: 'R901: Show list of reports' 
+    summary: 'R901: Show list of reports'
     description: 'Shows the list of reports to the admin. Access: ADMIN'
     tags:
       - 'M09: Report'
@@ -939,7 +939,7 @@ paths:
  /reports/{id}:
   get:
     operationId: R902
-    summary: 'R902: Show report' 
+    summary: 'R902: Show report'
     description: 'Shows the report to the user'
     tags:
       - 'M09: Report'
@@ -1024,29 +1024,29 @@ paths:
  /viewPage:
   get:
     operationId: R1001
-    summary: 'R1001: Show static page' 
+    summary: 'R1001: Show static page'
     description: 'Shows the static page to the user'
     tags:
       - 'M10: Static Pages'
     responses:
       '200':
        description: 'Ok. Show static page UI'
-  
+
  /notification/{id}:
   get:
     operationId: R1101
-    summary: 'R1101: Show notification' 
+    summary: 'R1101: Show notification'
     description: 'Shows the notification to the user'
     tags:
       - 'M11: Notification'
     responses:
       '200':
        description: 'Ok. Show notification UI'
-  
+
  /notification/{id}/update:
   post:
     operationId: R1102
-    summary: 'R1102: Read notification' 
+    summary: 'R1102: Read notification'
     description: 'Marks the notification as read'
     tags:
       - 'M11: Notification'
@@ -1071,15 +1071,15 @@ paths:
         description: 'Error to mark notification as read'
 
 
-  
+
  /:
   get:
     operationId: R1201
-    summary: 'R1201: Show Home page' 
+    summary: 'R1201: Show Home page'
     description: 'Shows the the home page to the user'
     tags:
       - 'M12: Home'
     responses:
       '200':
        description: 'Ok. Show home page UI'
-  
+
