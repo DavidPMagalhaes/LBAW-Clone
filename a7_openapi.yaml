@@ -232,9 +232,9 @@ paths:
               securityNumber:
                 type: integer
               isBlocked:
-                type: Bool
+                type: boolean
               isAdmin:
-                type: Bool
+                type: boolean
 
             required:
                                   - email
@@ -274,7 +274,7 @@ paths:
               email:
                 type: string
               isBlocked:
-                type: Bool
+                type: boolean
 
             required:
                                   - email
