@@ -1,25 +1,22 @@
 body {
   background-color: #ffffff;
-  color: #9b4dca;
+  color: #161418;
 }
 main > header {
-  display: grid;
   grid-template-columns: 1fr auto auto;
-  align-items: center;
-  background-color: #d2afe7;
   padding: 1em;
   margin: 1em;
 }
 main > header h1 {
+  float: inline-start;
   margin: 0;
+  width: 300px;
 }
-main > header a.button {
-  margin: 1em;
-  justify-self: center;
+main > header div1 {
+  margin-inline-start: 55%;
 }
 main > header span {
   margin: 1em;
-  justify-self: center;
 }
 #cards {
   display: grid;
@@ -141,17 +138,17 @@ button {
   border-color: #9b4dca;
 }
 a.button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+  background-color: #d6291c;
+  border-color: #d6291c;
 }
 a.button.button-outline {
-  color: #9b4dca;
+  color: #3d0501;
 }
-a {
-  color: #9b4dca;
+a { 
+  color: #d6291c;
 }
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  border-color: #9b4dca;
+  border-color: #fdfdfd;
 }

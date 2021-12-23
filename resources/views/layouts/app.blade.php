@@ -23,9 +23,18 @@
   <body>
     <main>
       <header>
-        <h1><a href="{{ url('/cards') }}">Thingy!</a></h1>
+        <h1><a href="{{ url('/home') }}">RedWood</a>         
+        <img src= "https://www.clipartmax.com/png/small/92-929330_red-evergreen-tree-clip-art-at-clker-pine-tree-silhouette-vector.png" width="30" height="50"> 
+        </h1>
+        <div1>
         @if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
+        <a class="button" href="{{ url('/logout') }}"> WishList </a> 
+          <a class="button" href="{{ url('/logout') }}"> Cart </a> 
+          <a class="button" href="{{ url('/logout') }}"> Account </a> <span>{{ Auth::user()->name }}</span>
+        @else 
+          <a class="button" href="{{ url('/logout') }}"> Log in </a> 
+          <a class="button" href="{{ url('/logout') }}"> Sign Up</a> 
+        </div1>
         @endif
       </header>
       <section id="content">
