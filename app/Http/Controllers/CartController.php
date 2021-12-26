@@ -24,6 +24,19 @@ class CartController extends Controller
      */
     public function create()
     {
+        $card = new Card();
+
+        $this->authorize('create', $card);
+
+        $card->name = $request->input('name');
+        $card->user_id = Auth::user()->id;
+        $card->save();
+
+        return $card;
+    }
+
+    public function delete(Request $request, $id)
+    {
         //
     }
 
@@ -46,7 +59,17 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        //
+        $cart = Cart::find($id);
+        $this->authorize('show', $cart);
+        return view('pages.cart', ['cart' => $cart]); 
+    }
+
+    public function list()
+    {
+      if (!Auth::check()) return redirect('/login');
+      $this->authorize('list', Cart::class);
+      $carts = Auth::registered_user()->carts()->orderBy('id')->get();
+      return view('pages.carts', ['carts' => $carts]);
     }
 
     /**

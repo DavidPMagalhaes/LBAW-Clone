@@ -24,7 +24,24 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category = new Category();
+
+        $this->authorize('create', $category);
+
+        $category->label = $request->input('label');
+        $category->save();
+
+        return $category;
+    }
+
+    public function delete(Request $request, $id)
+    {
+      $category = Category::find($id);
+
+      $this->authorize('delete', $category);
+      $category->delete();
+
+      return $category;
     }
 
     /**
@@ -46,7 +63,16 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $category = Category::find($id);
+        $this->authorize('show', $category);
+        return view('pages.category', ['category' => $category]);
+    }
+
+    public function list()
+    {
+      $this->authorize('list', Category::class);
+      $category = Auth::category()->books();
+      return view('pages.category', ['category' => $category]);
     }
 
     /**

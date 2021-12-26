@@ -29,11 +29,22 @@ class WishlistController extends Controller
         $this->authorize('create', $wishlist);
 
         $wishlist->bookid = $request->input('bookid');
-        $wishlist->userid = $request->input('userid');
+        $wishlist->userid = Auth::registered_user()->userid;
         $wishlist->save();
 
         return $wishlist;
     }
+
+    public function delete(Request $request, $id)
+    {
+        $wishlist = Wishlist::find($id);
+
+        $this->authorize('delete', $wishlist);
+        $wishlist->delete();
+
+        return $wishlist;
+    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -54,18 +65,16 @@ class WishlistController extends Controller
      */
     public function show(Wishlist $wishlist)
     {
-        //
+        $this->authorize('show', $wishlist);
+        return view('pages.wishlist', ['wishlist' => $wishlist]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Wishlist  $wishlist
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Wishlist $wishlist)
+    public function list()
     {
-        //
+      if (!Auth::check()) return redirect('/login');
+      $this->authorize('list', Wishlist::class);
+      $books = Auth::registered_user()->wishlist();
+      return view('pages.books', ['books' => $books]);
     }
 
     /**

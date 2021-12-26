@@ -24,7 +24,25 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        $report = new Report();
+
+        $this->authorize('create', $report);
+
+        $report->description = $request->input('description');
+        $report->user_id = Auth::registered_user()->userid;
+        $report->save();
+
+        return $report;
+    }
+
+    public function delete(Request $request, $id)
+    {
+      $report = Report::find($id);
+
+      $this->authorize('delete', $report);
+      $report->delete();
+
+      return $report;
     }
 
     /**
@@ -46,7 +64,16 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        $this->authorize('show', $report);
+        return view('pages.report', ['report' => $report]);
+    }
+
+    public function list()
+    {
+        if (!Auth::check()) return redirect('/login');
+        $this->authorize('list', Report::class);
+        $reports = Auth::registered_user()->reports()->orderBy('id');
+        return view('pages.reports', ['reports' => $reports]);
     }
 
     /**

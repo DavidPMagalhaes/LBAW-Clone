@@ -24,7 +24,26 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        $review = new Review();
+
+        $this->authorize('create', $review);
+
+        $review->rating = $request->input('rating');
+        $review->reviewcomment = $request->input('comment');
+        $review->userid = Auth::registered_user()->userid;
+        $review->save();
+
+        return $review;
+    }
+
+    public function delete(Request $request, $id)
+    {
+      $review = Review::find($id);
+
+      $this->authorize('delete', $review);
+      $review->delete();
+
+      return $review;
     }
 
     /**
@@ -46,7 +65,15 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
+        $this->authorize('show', $review);
+        return view('pages.review', ['review' => $review]);
+    }
+
+    public function list()
+    {
+      $this->authorize('list', Card::class);
+      $reviews = Auth::bookProduct()->reviews()->orderBy('reviewid');
+      return view('pages.reviews', ['reviews' => $reviews]);
     }
 
     /**

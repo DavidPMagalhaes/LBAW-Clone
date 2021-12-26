@@ -24,7 +24,26 @@ class BookProductController extends Controller
      */
     public function create()
     {
-        //
+        $bookProduct = new BookProduct();
+
+        $this->authorize('create', $bookProduct);
+
+        $bookProduct->price = $request->input('price');
+        $bookProduct->stock = $request->input('stock');
+        $bookProduct->bookcontentid = Auth::bookcontentid()->bookid;
+        $bookProduct->save();
+
+        return $bookProduct;
+    }
+
+    public function delete(Request $request, $id)
+    {
+      $bookProduct = BookProduct::find($id);
+
+      $this->authorize('delete', $bookProduct);
+      $bookProduct->delete();
+
+      return $bookProduct;
     }
 
     /**
@@ -46,7 +65,15 @@ class BookProductController extends Controller
      */
     public function show(BookProduct $bookProduct)
     {
-        //
+        $this->authorize('show', $bookProduct);
+        return view('pages.book', ['bookProduct' => $bookProduct]);
+    }
+
+    public function list()
+    {
+        $this->authorize('list', BookProduct::class);
+        $bookProduct = Auth::books()->orderBy('id')->get();
+        return view('pages.books', ['books' => $books]);
     }
 
     /**

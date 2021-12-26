@@ -24,7 +24,28 @@ class CreditCardController extends Controller
      */
     public function create()
     {
-        //
+        $creditCard = new CreditCard();
+
+        $this->authorize('create', $creditCard);
+
+        $creditCard->ownername = $request->input('name');
+        $creditCard->cardnumber = $request->input('cardnumber');
+        $creditCard->securitycode = $request->input('securitycode');
+
+        $creditCard->userid = Auth::registered_user()->userid;
+        $creditCard->save();
+
+        return $creditCard;
+    }
+
+    public function delete(Request $request, $id)
+    {
+      $creditCard = credit_card::find($id);
+
+      $this->authorize('delete', $creditCard);
+      $creditCard->delete();
+
+      return $creditCard;
     }
 
     /**
@@ -46,7 +67,16 @@ class CreditCardController extends Controller
      */
     public function show(CreditCard $creditCard)
     {
-        //
+        $this->authorize('show', $creditCard);
+        return view('pages.creditCard', ['creditCard' => $creditCard]);
+    }
+
+    public function list()
+    {
+      if (!Auth::check()) return redirect('/login');
+      $this->authorize('list', CreditCard::class);
+      $creditCard = Auth::registered_user()->creditCards();
+      return view('pages.creditCards', ['creditCards' => $creditCards]);
     }
 
     /**
