@@ -12,7 +12,7 @@ class RegisteredUser extends Model
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
-    protected $table = 'registered-user';
+    protected $table = 'registered_user';
     protected $primaryKey = 'userid';
 
 }
