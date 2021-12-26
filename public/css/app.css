@@ -6,17 +6,24 @@ main > header {
   grid-template-columns: 1fr auto auto;
   padding: 1em;
   margin: 1em;
+  display: flex;
+  justify-content: space-between;
 }
 main > header h1 {
-  float: inline-start;
+  float: left;
   margin: 0;
   width: 300px;
 }
 main > header div1 {
-  margin-inline-start: 55%;
+  float: right;
 }
 main > header span {
   margin: 1em;
+}
+main > div2 {
+  display: right;
+  width: 100%;
+
 }
 #cards {
   display: grid;
@@ -147,8 +154,14 @@ a.button.button-outline {
 a { 
   color: #d6291c;
 }
+b.button {
+  color:#333030;
+  background-color:#ffffff;
+  border-color: #f7f2f2;
+}
+
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  border-color: #fdfdfd;
+  border-color: #080808;
 }

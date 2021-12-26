@@ -24,7 +24,7 @@
     <main>
       <header>
         <h1><a href="{{ url('/home') }}">RedWood</a>         
-        <img src= "https://www.clipartmax.com/png/small/92-929330_red-evergreen-tree-clip-art-at-clker-pine-tree-silhouette-vector.png" width="30" height="50"> 
+        <img src= "https://www.nicepng.com/png/full/41-412236_red-evergreen-tree-clip-art-pine-tree-silhouette.png" width="30" height="50"> 
         </h1>
         <div1>
         @if (Auth::check())
@@ -34,12 +34,21 @@
         @else 
           <a class="button" href="{{ url('/logout') }}"> Log in </a> 
           <a class="button" href="{{ url('/logout') }}"> Sign Up</a> 
-        </div1>
         @endif
+        </div1>
       </header>
+      <div2>
+        <b class="button" href="{{ url('/logout') }}"> About</b> 
+        <b class="button" href="{{ url('/logout') }}"> Contact us</b> 
+        <b class="button" href="{{ url('/logout') }}"> FAQ</b> 
+
+       <input type="text" placeholder="Search..">
+      </div2>
       <section id="content">
+    
         @yield('content')
       </section>
     </main>
+    
   </body>
 </html>

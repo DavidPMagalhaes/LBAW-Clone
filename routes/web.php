@@ -12,6 +12,7 @@
 */
 // Home
 Route::get('/', 'Auth\LoginController@home');
+Route::get('/home', 'BookProductController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');
