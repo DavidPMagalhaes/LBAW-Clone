@@ -37,13 +37,22 @@
         @endif
         </div1>
       </header>
-      <div2>
-        <b class="button" href="{{ url('/logout') }}"> About</b> 
-        <b class="button" href="{{ url('/logout') }}"> Contact us</b> 
-        <b class="button" href="{{ url('/logout') }}"> FAQ</b> 
+      <div class="topnav">
+        <div1>
+        <b class="button" href="{{ url('/home') }}">Home</b>
+        <b class="button" href="{{ url('/home') }}">About</b>
+        <b class="button" href="#contact">Contact</b>
+        <b class="button" href="#contact">Contact</b>
+        </div1>
 
-       <input type="text" placeholder="Search..">
-      </div2>
+        <div class="search-container">
+          <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit">Submit<i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div> 
+    
       <section id="content">
     
         @yield('content')
