@@ -16,6 +16,16 @@ class BookContentController extends Controller
     {
         //
     }
+    /**
+     * Shows all cards.
+     *
+     * @return Response
+     */
+    public function list()
+    {
+      $bookContent = Auth::user()->cards()->orderBy('id')->get();
+      return view('pages.cards', ['cards' => $cards]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -44,6 +54,7 @@ class BookContentController extends Controller
 
       return $bookContent;
     }
+
 
     /**
      * Store a newly created resource in storage.

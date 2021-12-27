@@ -5,19 +5,63 @@ body {
 main > header {
   grid-template-columns: 1fr auto auto;
   padding: 1em;
-  margin: 1em;
+  display: flex;
+  justify-content: space-between;
 }
 main > header h1 {
-  float: inline-start;
+  float: left;
   margin: 0;
   width: 300px;
 }
 main > header div1 {
-  margin-inline-start: 55%;
+  float: right;
 }
 main > header span {
   margin: 1em;
 }
+main > div2 {
+  display: right;
+  width: 100%;
+
+}
+
+.topnav {
+  display: flex;
+  overflow: hidden;
+
+}
+.topnav form{
+  display: block ruby;
+}
+
+.topnav b:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav b.active {
+  background-color: #d6291c;
+  color: white;
+}
+
+
+.topnav input[type=text] {
+  background-color: #f7f2f2;
+  margin-left: 320%;
+
+}
+.topnav .search-container button{
+  background-color: #c4aeae;
+  color: #333030;
+  border-color: #c4aeae;
+
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+
 #cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -134,8 +178,8 @@ main > header span {
  * Some styles might be missing
  **/
 button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+  background-color: #d6291c;
+  border-color: #d6291c;
 }
 a.button {
   background-color: #d6291c;
@@ -147,8 +191,14 @@ a.button.button-outline {
 a { 
   color: #d6291c;
 }
+b.button {
+  color:#333030;
+  background-color:#ffffff;
+  border-color: #f7f2f2;
+}
+
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  border-color: #fdfdfd;
+  border-color: #080808;
 }
