@@ -15,4 +15,8 @@ class Category extends Model
     protected $table = 'registered-user';
     protected $primaryKey = 'categoryid';
 
+    public function belongToCategory() {
+        return $this->belongsTo('App\Models\BelongsToCategory');
+    }
+
 }

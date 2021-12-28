@@ -14,4 +14,8 @@ class Report extends Model
 
         protected $table = 'reporty';
         protected $primaryKey = 'reportid';
+
+        public function User() {
+            return $this->belongsTo('App\Models\User');
+        }
 }

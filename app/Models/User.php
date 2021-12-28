@@ -37,4 +37,44 @@ class User extends Authenticatable
         'userpassword',
     ];
 
+    
+    
+    
+    //tenho duvidas aqui
+    public function reports()
+    {
+        return $this->hasMany('App\Models\Report');
+    }
+
+    public function cart()
+    {
+        return $this->hasOne('App\Models\Cart');
+    }
+
+    public function wishlist()
+    {
+        return $this->hasOne('App\Models\Wishlist');
+    }
+    
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+    
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification');
+    }
+    
+    public function orders()
+    {
+        return $this->hasMany('App\Models\UserOrder');
+    }
+    
+    public function creditCards()
+    {
+        return $this->hasMany('App\Models\Card');
+    }
+    
+    //falta o message
 }

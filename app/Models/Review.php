@@ -15,4 +15,14 @@ class Review extends Model
         protected $table = 'review';
         protected $primaryKey = 'reviewid';
 
+        public function user()
+        {
+            return $this->belongsTo('App\Models\User');
+        }
+
+        public function bookContent()
+        {
+            return $this->belongsTo('App\Models\BookContent');
+        }
+
 }

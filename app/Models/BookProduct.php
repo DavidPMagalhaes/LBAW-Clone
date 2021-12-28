@@ -19,4 +19,19 @@ class BookProduct extends Model
         return $this->hasOne('App\Models\BookContent');
     }
 
+    public function carts()
+    {
+        return $this->belongsTo('App\Models\Cart');
+    }
+
+    public function wishlists()
+    {
+        return $this->belongsTo('App\Models\Wishlist');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\OrderInformation');
+    }
+
 }

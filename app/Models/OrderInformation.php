@@ -13,4 +13,19 @@ class OrderInformation extends Model
         public $timestamps  = false;
 
         protected $table = 'order_information';
+
+        public function notifications()
+        {
+            return $this->hasMany('App\Models\Notification');
+        }
+
+        public function creditCard()
+        {
+            return $this->belongsTo('App\Models\UserOrder');
+        }
+
+        public function books()
+        {
+            return $this->hasMany('App\Models\BookProduct');
+        }
 }

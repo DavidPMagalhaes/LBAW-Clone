@@ -15,4 +15,9 @@ class Author extends Model
     protected $table = 'Author';
     protected $primaryKey = 'authorid';
 
+    public function books()
+    {
+        return $this->hasMany('App\Models\BookContent');
+    }
+
 }

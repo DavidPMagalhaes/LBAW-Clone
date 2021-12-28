@@ -13,4 +13,14 @@ class Cart extends Model
         public $timestamps  = false;
 
         protected $table = 'carts';
+
+        public function user()
+        {
+            return $this->belongsTo('App\Models\User');
+        }
+
+        public function books()
+        {
+            return $this->hasMany('App\Models\BookProduct');
+        }
 }
