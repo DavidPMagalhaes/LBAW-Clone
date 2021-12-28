@@ -54,14 +54,88 @@ main > div2 {
   background-color: #c4aeae;
   color: #333030;
   border-color: #c4aeae;
-
+  width: 40%;
 }
 
 .topnav .search-container button:hover {
   background: #ccc;
 }
+.general-content {
+  display: flex;
+  justify-content: start
+}
+
+.block {
+  font-size: 20px;
+  padding-left: 20px;
+  width: 100%;
+  background-color: rgb(236, 228, 228);
+}
+
+.btn-group{
+  width: 20%;
+}
+
+.btn-group a.button{
+  font-size: 15px;
+  cursor: pointer; 
+  height: 15%;
+  width: 100%; 
+  display: block; 
+  background-color: #d6291c;
+  border-color: #d6291c;
+  color:rgb(255, 255, 255);
+  /*
+  background-color: #ffffff;
+  color: #333030;
+  border-color: #c4aeae;*/
+
+}
+
+.btn-group a.button:active{
+  background-color: #d6291c;
+  border-color: #d6291c;
+  color:rgb(255, 255, 255);
+}
 
 
+.profile-info{
+  display: flex;
+  justify-content: start;
+  width: 300%;
+}
+
+.block h1{
+  margin-top: revert;
+  color: #5c5151;
+}
+
+.photo-name{
+  width:8%;
+  background-color: #ffffff;
+  text-align: center;
+
+}
+
+.photo-name img {
+  border-radius: 50%;
+  margin-top: 10%;
+}
+
+.space{
+  background-color: rgb(236, 228, 228);
+  width: 0.5%;
+}
+
+.information{
+  background-color: #ffffff;
+  width:20%;
+}
+
+.information p2{
+  font-size: 25px;
+  color :#d6291c;
+}
 #cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -191,10 +265,15 @@ a.button.button-outline {
 a { 
   color: #d6291c;
 }
-b.button {
+.topnav a.button {
   color:#333030;
   background-color:#ffffff;
   border-color: #f7f2f2;
+}
+.topnav a.button:hover {
+  background-color: #d6291c;
+  border-color: #d6291c;
+  color:rgb(255, 255, 255);
 }
 
 input[type=text]:focus,

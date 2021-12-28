@@ -204,7 +204,7 @@ INSERT INTO author(authorid, authorname) VALUES  (1,'Ayanna Stephens'),
   (29,'Hilel Muñoz'),
   (30,'Nehru Pietsch');
 
-INSERT INTO registered_user (userid, email, username, userpassword, isBlocked, isAdmin) VALUES
+INSERT INTO registered_user (userid,username, email, userpassword, isBlocked, isAdmin) VALUES
 (1,'Malcolm Pratt','malcolmpratt9095@protonmail.com','FXL66AEP1CP4','False','False'),
   (2,'Inez Newton','ineznewton6225@protonmail.org','AKB72VUA3JM1','True','False'),
   (3,'Jena French','jenafrench@outlook.couk','DMI81FCZ1QQ3','False','False'),
