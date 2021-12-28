@@ -8,16 +8,10 @@
     </div>
 
     <div class="flex justify-center pt-20">
-        <div class="block">
-            <div>
-                <h2 class="text">Price: {{ $book->price }}</h2>
-            </div>
-            <div>
-                <h2 class="text">Stock: {{ $book->stock }}</h2>
-            </div>
-            <div>
-                <h2 class="text">Publisher: {{ $book->publisher }}</h2>
-            </div>
+        <div class="text">
+            <p>Price: {{ $book->price }}</p>
+            <p>Stock: {{ $book->stock }}</p>
+            <p>Publisher: {{ $book->publisher }}</p>
         </div>
     </div>
 
