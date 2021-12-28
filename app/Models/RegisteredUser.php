@@ -15,4 +15,6 @@ class RegisteredUser extends Model
     protected $table = 'registered_user';
     protected $primaryKey = 'userid';
 
+    protected $fillable = ['name', 'email', 'password'];
+
 }

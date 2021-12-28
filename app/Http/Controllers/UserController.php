@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RegisteredUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class RegisteredUserController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class RegisteredUserController extends Controller
      */
     public function index()
     {
-        //
+        //SELECT * from user
+        //$data = 
+        return view('user/profile');
     }
 
     /**
@@ -44,20 +46,24 @@ class RegisteredUserController extends Controller
      * @param  \App\Models\RegisteredUser  $registeredUser
      * @return \Illuminate\Http\Response
      */
-    public function show(RegisteredUser $registeredUser)
+    public function show($id)
     {
         //
+        $user = User::find($id)->first();
+        return view('user.profile')->with('user', $user);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RegisteredUser  $registeredUser
+     * @param  \App\Models\User  $registeredUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(RegisteredUser $registeredUser)
+    public function edit($id)
     {
         //
+        $user = User::find($id)->first();
+        return view('user.edit')->with('user', $user);
     }
 
     /**
@@ -67,9 +73,18 @@ class RegisteredUserController extends Controller
      * @param  \App\Models\RegisteredUser  $registeredUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RegisteredUser $registeredUser)
+    public function update(Request $request, $id)
     {
         //
+        $user = User::where('id', $id)
+            ->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'userpassword' => $request->input('userpassword')
+        ]);
+        //n sei se é assim para aceder ao valor de id
+        return redirect('/user/{{ $id }}');
+ 
     }
 
     /**
@@ -78,7 +93,7 @@ class RegisteredUserController extends Controller
      * @param  \App\Models\RegisteredUser  $registeredUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RegisteredUser $registeredUser)
+    public function destroy(User $User)
     {
         //
     }

@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class User extends Authenticatable
 {
+    // use HasFactory;
     use Notifiable;
 
     // Don't add create and update timestamps in database.
@@ -21,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'userpassword',
+        'name', 'email', 'userpassword',
     ];
 
     /**
@@ -30,7 +34,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+        'userpassword',
     ];
 
 }

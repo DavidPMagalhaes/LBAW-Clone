@@ -162,7 +162,7 @@ paths:
        '200':
          description: 'Ok. Show User Profile UI'
 
- /user/{id}/changeinfo:
+ /user/{id}/edit:
   post:
     operationId: R202
     summary: 'R202: Change user information'
