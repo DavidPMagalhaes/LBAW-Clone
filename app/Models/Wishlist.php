@@ -16,4 +16,14 @@ class Wishlist extends Model
         //protected $primaryKey = 'reportid';
         //primary key composta...
 
+        public function user()
+        {
+            return $this->belongsTo('App\Models\User');
+        }
+
+        public function books()
+        {
+            return $this->hasMany('App\Models\BookProduct');
+        }
+
 }

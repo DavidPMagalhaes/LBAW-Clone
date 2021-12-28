@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 // Home
 Route::get('/', 'Auth\LoginController@home');
+Route::get('/home', 'HomeController@show');
 
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
+
+// Books
+Route::get('api/books/viewBook/{id}', 'BookProductController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -38,5 +42,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-
-
+// Static Pages
+Route::get('about', 'AboutUsController@show');
+Route::get('contact', 'ContactController@show');
+Route::get('faq', 'FAQController@show');

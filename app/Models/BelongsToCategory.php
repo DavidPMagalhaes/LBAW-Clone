@@ -13,4 +13,16 @@ class BelongsToCategory extends Model
     public $timestamps  = false;
 
     protected $table = 'belongs_to_category';
+
+    public function book()
+    {
+        return $this->hasOne('App\Models\BookContent');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Models\Category');
+    }
+
+    
 }

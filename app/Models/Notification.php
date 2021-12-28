@@ -15,4 +15,15 @@ class Notification extends Model
         protected $table = 'notification';
         protected $primaryKey = 'notificationid';
 
+        public function user()
+        {
+            return $this->belongsTo('App\Models\User');
+        }
+
+        public function orderInformation()
+        {
+            return $this->belongsTo('App\Models\OrderInformation');
+        }
+    
+
 }

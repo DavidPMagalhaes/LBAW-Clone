@@ -14,7 +14,7 @@ class BookContentController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
     /**
      * Shows all cards.

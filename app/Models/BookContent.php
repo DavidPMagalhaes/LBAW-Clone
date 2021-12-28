@@ -12,6 +12,25 @@ class BookContent extends Model
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
-    protected $table = 'book-content';
+    protected $table = 'book_content';
     protected $primaryKey = 'bookid';
+
+    public function bookProduct() {
+        //o q é aquele bookcontentid?
+        return $this->belongsTo('App\Models\BookProduct', 'bookcontentid');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo('App\Models\Author');
+    }
+
+    public function belongToCategory() {
+        return $this->belongsTo('App\Models\BelongsToCategory');
+    }
 }

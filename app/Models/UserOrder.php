@@ -15,4 +15,20 @@ class UserOrder extends Model
         protected $table = 'user_order';
         protected $primaryKey = 'orderid';
 
+        public function user()
+        {
+            return $this->belongsTo('App\Models\User');
+        }
+
+        public function creditCard()
+        {
+            return $this->belongsTo('App\Models\CreditCard');
+        }
+
+        //ao contrario?
+        public function orderInformation()
+        {
+            return $this->hasOne('App\Models\OrderInformation');
+        }
+
 }
