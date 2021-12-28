@@ -39,10 +39,9 @@
       </header>
       <div class="topnav">
         <div1>
-        <b class="button" href="{{ url('/home') }}">Home</b>
-        <b class="button" href="{{ url('/home') }}">About</b>
-        <b class="button" href="#contact">Contact</b>
-        <b class="button" href="#contact">Contact</b>
+        <a class="button" href="{{ url('/home') }}">Home</a>
+        <a class="button" href="{{ url('/about') }}">About</a>
+        <a class="button" href="{{ url('/contact') }}">Contact</a>
         </div1>
 
         <div class="search-container">

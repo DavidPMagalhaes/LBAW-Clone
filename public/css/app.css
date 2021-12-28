@@ -182,19 +182,15 @@ button {
   border-color: #d6291c;
 }
 a.button {
-  background-color: #d6291c;
-  border-color: #d6291c;
+  color:#333030;
+  background-color:#ffffff;
+  border-color: #f7f2f2;
 }
 a.button.button-outline {
   color: #3d0501;
 }
 a { 
   color: #d6291c;
-}
-b.button {
-  color:#333030;
-  background-color:#ffffff;
-  border-color: #f7f2f2;
 }
 
 input[type=text]:focus,
@@ -205,4 +201,5 @@ input[type=password]:focus {
 
 .text {
   color: #973a34;
+  padding: 5mm;
 }
