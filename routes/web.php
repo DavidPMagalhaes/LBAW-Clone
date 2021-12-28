@@ -20,6 +20,9 @@ Route::get('/', 'Auth\LoginController@home');
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
 
+// Books
+Route::get('api/books/viewBook/{id}', 'BookProductController@show');
+
 // Cards
 Route::get('cards', 'CardController@list');
 Route::get('cards/{id}', 'CardController@show');

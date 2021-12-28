@@ -9,10 +9,14 @@ class BookProduct extends Model
 {
     use HasFactory;
 
-        // Don't add create and update timestamps in database.
-        public $timestamps  = false;
+    // Don't add create and update timestamps in database.
+    public $timestamps  = false;
 
-        protected $table = 'book_product';
-        protected $primaryKey = 'bookid';
+    protected $table = 'book_product';
+    protected $primaryKey = 'bookid';
+
+    public function bookContent() {
+        return $this->hasOne('App\Models\BookContent');
+    }
 
 }

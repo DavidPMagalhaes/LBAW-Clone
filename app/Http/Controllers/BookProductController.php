@@ -14,7 +14,7 @@ class BookProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('book/view');
     }
 
     /**
@@ -24,26 +24,12 @@ class BookProductController extends Controller
      */
     public function create()
     {
-        $bookProduct = new BookProduct();
 
-        $this->authorize('create', $bookProduct);
-
-        $bookProduct->price = $request->input('price');
-        $bookProduct->stock = $request->input('stock');
-        $bookProduct->bookcontentid = Auth::bookcontentid()->bookid;
-        $bookProduct->save();
-
-        return $bookProduct;
     }
 
     public function delete(Request $request, $id)
     {
-      $bookProduct = BookProduct::find($id);
 
-      $this->authorize('delete', $bookProduct);
-      $bookProduct->delete();
-
-      return $bookProduct;
     }
 
     /**
@@ -63,17 +49,16 @@ class BookProductController extends Controller
      * @param  \App\Models\BookProduct  $bookProduct
      * @return \Illuminate\Http\Response
      */
-    public function show(BookProduct $bookProduct)
+    public function show($id)
     {
-        $this->authorize('show', $bookProduct);
-        return view('pages.book', ['bookProduct' => $bookProduct]);
+        $book = BookProduct::find($id);
+        //echo $book->bookContent->title;
+        return view('book.view')->with('book', $book);
     }
 
     public function list()
     {
-        $this->authorize('list', BookProduct::class);
-        $bookProduct = Auth::books()->orderBy('id')->get();
-        return view('pages.books', ['books' => $books]);
+
     }
 
     /**
