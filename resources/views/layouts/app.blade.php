@@ -42,6 +42,7 @@
         <a class="button" href="{{ url('/home') }}">Home</a>
         <a class="button" href="{{ url('/about') }}">About</a>
         <a class="button" href="{{ url('/contact') }}">Contact</a>
+        <a class="button" href="{{ url('/faq') }}">FAQ</a>
         </div1>
 
         <div class="search-container">

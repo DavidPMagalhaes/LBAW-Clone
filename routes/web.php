@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 // Home
 Route::get('/', 'Auth\LoginController@home');
+Route::get('/home', 'HomeController@show');
 
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
@@ -44,3 +45,4 @@ Route::post('register', 'Auth\RegisterController@register');
 // Static Pages
 Route::get('about', 'AboutUsController@show');
 Route::get('contact', 'ContactController@show');
+Route::get('faq', 'FAQController@show');
