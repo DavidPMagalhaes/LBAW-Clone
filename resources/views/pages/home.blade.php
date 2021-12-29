@@ -15,7 +15,7 @@
         @foreach($books as $book)
       <div class="flex justify-center pt-20">
         <div class="text">
-          <p>Name: {{ $book->title }} </p>
+          <p>Name: {{ $book->bookcontentid }} </p>
           <p>Price: {{ $book->price }}</p>
           <p>Edition: {{ $book->edition }}</p>
           <p>Book Type: {{ $book->booktype }}</p>
