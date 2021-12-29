@@ -49,7 +49,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $user = User::find($id)->first();
+        $user = User::find($id);
         return view('user.profile')->with('user', $user);
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        $user = User::find($id)->first();
+        $user = User::find($id);
         return view('user.edit')->with('user', $user);
     }
 
@@ -75,15 +75,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $user = User::where('id', $id)
             ->update([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'userpassword' => $request->input('userpassword')
+                'password' => $request->input('password')
         ]);
         //n sei se é assim para aceder ao valor de id
-        return redirect('/user/{{ $id }}');
+        $user->save();
+
+        return redirect('/user/{{Auth::user()->id}}');
+
  
     }
 
