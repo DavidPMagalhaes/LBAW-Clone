@@ -634,6 +634,46 @@ paths:
                 description: 'Failed to update cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
 
+ /users/{id}/cart/checkout:
+  post:
+    operationId: R505
+    summary: 'R505: Checkout Action'
+    description: 'Accessess remove cart and generates a random order number. Access: USR'
+    tags:
+      - 'M05: Cart'
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              book name:
+                type: string
+              author:
+                type: string
+              year:
+                type: integer
+            required:
+                            - book name
+
+    responses:
+      '302':
+        description: 'Redirect after processing cart form.'
+        headers:
+          Location:
+            schema:
+              type: string
+            examples:
+              302Success:
+                description: 'Successful checkout. Redirect to user cart.'
+                value: '/users/{id}/ViewCart'
+              302Failure:
+                description: 'Failed checkout. Redirect to user profile.'
+                value: '/users/{id}/ViewCart'
+
+
  /item/{id}/view-reviews:
   get:
     operationId: R601
