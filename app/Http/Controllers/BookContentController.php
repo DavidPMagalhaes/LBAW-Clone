@@ -23,8 +23,7 @@ class BookContentController extends Controller
      */
     public function list()
     {
-      $bookContent = Auth::user()->cards()->orderBy('id')->get();
-      return view('pages.cards', ['cards' => $cards]);
+        //
     }
 
     /**
@@ -34,25 +33,12 @@ class BookContentController extends Controller
      */
     public function create()
     {
-        $bookContent = new BookContent();
-
-        $this->authorize('create', $bookContent);
-
-        $bookContent->title = $request->input('title');
-        $bookContent->bookyear = $request->input('bookyear');
-        $bookContent->save();
-
-        return $bookContent;
+        //
     }
 
     public function delete(Request $request, $id)
     {
-      $bookContent =BookContent::find($id);
-
-      $this->authorize('delete', $bookContent);
-      $bookContent->delete();
-
-      return $bookContent;
+        //
     }
 
 

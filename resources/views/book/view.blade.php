@@ -22,9 +22,12 @@
 
     <div class="flex justify-center pt-20">
         <div class="text">
-            <p>Price: {{ $book->price }}</p>
-            <p>Stock: {{ $book->stock }}</p>
-            <p>Publisher: {{ $book->publisher }}</p>
+        <p>Name: {{ $book->title }} </p>
+          <p>Price: {{ $book->price }}</p>
+          <p>Edition: {{ $book->edition }}</p>
+          <p>Book Type: {{ $book->booktype }}</p>
+          <p>Stock: {{ $book->stock }}</p>
+          <p>Publisher: {{ $book->publisher }}</p>
         </div>
     </div>
 

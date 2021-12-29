@@ -16,8 +16,7 @@ class BookContent extends Model
     protected $primaryKey = 'bookid';
 
     public function bookProduct() {
-        //o q é aquele bookcontentid?
-        return $this->belongsTo('App\Models\BookProduct', 'bookcontentid');
+        return $this->belongsTo('App\Models\BookProduct');
     }
 
     public function reviews()
