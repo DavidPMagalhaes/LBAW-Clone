@@ -12,7 +12,7 @@ class Author extends Model
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
-    protected $table = 'Author';
+    protected $table = 'author';
     protected $primaryKey = 'authorid';
 
     public function books()

@@ -26,7 +26,7 @@
         <h1><a href="{{ url('/home') }}">RedWood</a>         
         <img src= "https://www.nicepng.com/png/full/41-412236_red-evergreen-tree-clip-art-pine-tree-silhouette.png" width="30" height="50"> 
         </h1>
-        <div1>
+        <div>
         @if (Auth::check())
         <a class="button" href="{{ url('/logout') }}"> WishList </a> 
           <a class="button" href="{{ url('/logout') }}"> Cart </a> 
@@ -35,15 +35,16 @@
           <a class="button" href="{{ url('/logout') }}"> Log in </a> 
           <a class="button" href="{{ url('/logout') }}"> Sign Up</a> 
         @endif
-        </div1>
+        </div>
       </header>
       <div class="topnav">
-        <div1>
+        <div>
         <a class="button" href="{{ url('/home') }}">Home</a>
         <a class="button" href="{{ url('/about') }}">About</a>
         <a class="button" href="{{ url('/contact') }}">Contact</a>
         <a class="button" href="{{ url('/faq') }}">FAQ</a>
-        </div1>
+        <a class="button float-right" href="/login">Cart</a>
+      </div>
 
         <div class="search-container">
           <form action="/action_page.php">

@@ -12,9 +12,22 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        /*
+        $cart = []; 
+        foreach(session('products') as $session){
+            $tempCart=Cart::find($session->id);
+            $cart[] = $tempCart;
+        }
+        return view('pages.checkout')->with('products ',$products);
+        */
+        //supostamente devolve todos as rows com aquele user id
+        $bookIds = Cart::where('userid', $id)->get();
+        //dd($bookIds);
+
+        //return view('cart.index')->with('bookIds', $bookIds);
+        return view('cart.index',['bookIds' => $bookIds]);
     }
 
     /**
@@ -22,17 +35,19 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $card = new Card();
+        $cart = new Cart();
 
-        $this->authorize('create', $card);
+        $this->authorize('create', $cart);
 
-        $card->name = $request->input('name');
-        $card->user_id = Auth::user()->id;
-        $card->save();
+        $cart->name = $request->input('quantity');
+        //$cart->userid = Auth::user()->id;
+        $cart->bookId = $request->route('id');
+        $cart->save();
 
-        return $card;
+        dd($cart);
+        return $cart;
     }
 
     public function delete(Request $request, $id)
@@ -57,19 +72,19 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $cart)
+    public function show($id)
     {
         $cart = Cart::find($id);
         $this->authorize('show', $cart);
-        return view('pages.cart', ['cart' => $cart]); 
+        return view('cart.index', ['cart' => $cart]); 
     }
 
     public function list()
     {
-      if (!Auth::check()) return redirect('/login');
-      $this->authorize('list', Cart::class);
-      $carts = Auth::registered_user()->carts()->orderBy('id')->get();
-      return view('pages.carts', ['carts' => $carts]);
+      //if (!Auth::check()) return redirect('/login');
+      //$this->authorize('list', Cart::class);
+      //$carts = Auth::registered_user()->carts()->orderBy('id')->get();
+      //return view('pages.carts', ['carts' => $carts]);
     }
 
     /**

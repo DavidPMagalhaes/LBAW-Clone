@@ -24,9 +24,11 @@ Route::get('user/{id}/edit', 'UserController@edit');
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
+// Cart
+Route::get('users/{id}/cart', 'CartController@index');
+Route::post('users/{id}/cart/add', 'CartController@create');
+Route::post('users/{id}/cart/remove', 'CartController@show');
+Route::post('users/{id}/cart/update', 'CartController@show');
 
 // API
 Route::put('api/cards', 'CardController@create');

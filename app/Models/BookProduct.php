@@ -16,7 +16,7 @@ class BookProduct extends Model
     protected $primaryKey = 'bookid';
 
     public function bookContent() {
-        return $this->hasOne('App\Models\BookContent');
+        return $this->hasOne('App\Models\BookContent', 'bookcontentid');
     }
 
     public function carts()

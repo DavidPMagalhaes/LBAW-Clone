@@ -7,6 +7,19 @@
         </div>
     </div>
 
+    <div class="btn-group float-right">
+        <div>
+            <h6>quantity</h6> 
+            <input 
+                type="text" 
+                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                name="quantity">
+            <a class="button"  href=""> Add to Cart</a> 
+        </div>
+        
+        <a class="button"  href=""> Add to Wishlist</a> 
+    </div>
+
     <div class="flex justify-center pt-20">
         <div class="text">
             <p>Price: {{ $book->price }}</p>
