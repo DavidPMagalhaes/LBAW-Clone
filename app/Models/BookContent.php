@@ -16,7 +16,7 @@ class BookContent extends Model
     protected $primaryKey = 'bookid';
 
     public function bookProduct() {
-        return $this->belongsTo('App\Models\BookProduct');
+        return $this->hasMany('App\Models\BookProduct');
     }
 
     public function reviews()

@@ -7,28 +7,38 @@
         </div>
     </div>
 
-    <div class="btn-group float-right">
-        <div>
-            <h6>quantity</h6> 
-            <input 
-                type="text" 
-                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                name="quantity">
-            <a class="button"  href=""> Add to Cart</a> 
-        </div>
-        
-        <a class="button"  href=""> Add to Wishlist</a> 
-    </div>
-
     <div class="flex justify-center pt-20">
         <div class="text">
-        <p>Name: {{ $book->title }} </p>
+        <p>Name: {{ $book->bookcontentid }} </p>
           <p>Price: {{ $book->price }}</p>
           <p>Edition: {{ $book->edition }}</p>
           <p>Book Type: {{ $book->booktype }}</p>
           <p>Stock: {{ $book->stock }}</p>
           <p>Publisher: {{ $book->publisher }}</p>
         </div>
+    </div>
+
+    <div class="btn-group float-left">
+        <div>
+            <form action="CartController.php" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="block">
+                    <h6>quantity</h6>
+                    <input 
+                        type="text" 
+                        class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                        name="quantity">
+            <button type="submit" class="button">Add to Cart</button>
+        </div>
+            <div>
+                <form action="WishlistController.php" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="block">
+                    <button type="submit" class="button">Add to Wishlist</button>
+            </div>
+        </div>        
     </div>
 
 @endsection
