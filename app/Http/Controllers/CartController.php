@@ -57,7 +57,7 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $cart = new Cart;
         //$cart = new Cart();
@@ -68,12 +68,12 @@ class CartController extends Controller
         //$cart->userid = Auth::user()->id;
         $cart->userid = 1; //so para testar
         //$cart->bookid = $request->route('id');
-        $cart->bookid = 11; //so para testar
+        $cart->bookid = $id;
 
         $cart->save();
 
 
-        //return redirect('/login');
+        return redirect('/home');
     }
 
     public function delete(Request $request, $id)

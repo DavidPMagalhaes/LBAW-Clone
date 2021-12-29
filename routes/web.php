@@ -29,7 +29,7 @@ Route::get('user/{id}/edit', 'UserController@edit');
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
 
 // Cart
-Route::put('api/books/viewBook/CartController.php', 'CartController@store');
+Route::put('api/books/viewBook/{id}/CartController.php', 'CartController@store');
 Route::get('users/{id}/cart', 'CartController@index');
 //Route::post('users/{id}/cart/add', 'CartController@store');
 //Route::post('users/{id}/cart/remove', 'CartController@show');

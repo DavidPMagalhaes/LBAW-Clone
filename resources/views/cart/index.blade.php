@@ -6,7 +6,7 @@
 			<h1 class="text-5xl uppercase bold">Cart</h1>
 		</div>
 	</div>
-
+	<a class="button float-right" href="logout">checkout</a>
 	<div class="w-5/6 py-10">
 		@foreach($bookIds as $book)
 		<div class="flex justify-center pt-20">
