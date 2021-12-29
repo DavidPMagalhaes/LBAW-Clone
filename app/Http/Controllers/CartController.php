@@ -39,7 +39,7 @@ class CartController extends Controller
     {
         $cart = new Cart();
 
-        $this->authorize('create', $cart);
+        //$this->authorize('create', $cart);
 
         $cart->name = $request->input('quantity');
         //$cart->userid = Auth::user()->id;
@@ -50,11 +50,7 @@ class CartController extends Controller
         return $cart;
     }
 
-    public function delete(Request $request, $id)
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -62,6 +58,25 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+        $cart = new Cart;
+        //$cart = new Cart();
+
+        //$this->authorize('create', $cart);
+
+        $cart->quantity = $request->input('quantity');
+        //$cart->userid = Auth::user()->id;
+        $cart->userid = 1; //so para testar
+        //$cart->bookid = $request->route('id');
+        $cart->bookid = 11; //so para testar
+
+        $cart->save();
+
+
+        //return redirect('/login');
+    }
+
+    public function delete(Request $request, $id)
     {
         //
     }

@@ -9,15 +9,25 @@
 
     <div class="btn-group float-right">
         <div>
-            <h6>quantity</h6> 
-            <input 
-                type="text" 
-                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                name="quantity">
-            <a class="button"  href=""> Add to Cart</a> 
+            <form action="CartController.php" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="block">
+                    <h6>quantity</h6>
+                    <input 
+                        type="text" 
+                        class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                        name="quantity">
+            <button type="submit" class="button">Add to Cart</button>
         </div>
-        
-        <a class="button"  href=""> Add to Wishlist</a> 
+            <div>
+                <form action="WishlistController.php" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="block">
+                    <button type="submit" class="button">Add to Wishlist</button>
+            </div>
+        </div>        
     </div>
 
     <div class="flex justify-center pt-20">
