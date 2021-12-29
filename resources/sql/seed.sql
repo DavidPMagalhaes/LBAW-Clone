@@ -9,7 +9,8 @@ CREATE TABLE users(
   email TEXT NOT NULL,
   password TEXT NOT NULL,
   isBlocked Bool default False,
-  isAdmin Bool default False
+  isAdmin Bool default False,
+  profilePicture text default 'https://i.stack.imgur.com/l60Hf.png'
 ) ;
 
 DROP TABLE IF EXISTS credit_card cascade;
@@ -24,10 +25,12 @@ CREATE TABLE credit_card(
 );
 
 
-DROP TABLE IF EXISTS author cascade;
+DROP TABLE IF EXISTS author ;
 CREATE TABLE author(
     authorid serial PRIMARY KEY,
-    authorname   TEXT NOT NULL
+    authorname   TEXT NOT NULL,
+    description text,
+    picture text default 'https://i.stack.imgur.com/l60Hf.png'
 );
 
 
@@ -41,7 +44,7 @@ CREATE TABLE book_content (
     authorid int NOT NULL REFERENCES author(authorid)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-	bookcover TEXT 
+    	bookcover TEXT 
 ) ;
 
 
@@ -50,7 +53,7 @@ CREATE TABLE book_content (
 DROP TABLE IF EXISTS category cascade;
 CREATE TABLE category (
   categoryid serial PRIMARY KEY,
-  label varchar(64) UNIQUE NOT NULL
+  label text UNIQUE NOT NULL
 );
 
 
@@ -177,146 +180,146 @@ create table report(
 );
 
 
-INSERT INTO author(authorid, authorname) VALUES  (1,'Ayanna Stephens'),
-  (2,'Stacy Hoffman'),
-  (3,'Hall Oliver'),
-  (4,'Anne Herrera'),
-  (5,'Felix Velasco'),
-  (6,'Marah Kowalski'),
-  (7,'Diana Lawrence'),
-  (8,'Hall Serrano'),
-  (9,'Fredericka Arias'),
-  (10,'Owen Strauß'),
-  (11,'Maris Wenzler'),
-  (12,'Hadley Fernandez'),
-  (13,'Wallace Wright'),
-  (14,'Vielka Howard'),
-  (15,'Mona Prieto'),
-  (16,'Caleb Marshall'),
-  (17,'Kitra Wenzler'),
-  (18,'Cade Merkle'),
-  (19,'Christen Ford'),
-  (20,'Teagan Moreno'),
-  (21,'Tucker Bravo'),
-  (22,'Nora Cook'),
-  (23,'Keelie Merino'),
-  (24,'Maite Schubert'),
-  (25,'Edan Hanson'),
-  (26,'Brock Fink'),
-  (27,'Aurelia Weber'),
-  (28,'Magee Martin'),
-  (29,'Hilel Muñoz'),
-  (30,'Nehru Pietsch');
+INSERT INTO author( authorname, description, picture) VALUES  ('Ayanna Stephens', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Stacy Hoffman', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Hall Oliver', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Anne Herrera', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Felix Velasco', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Marah Kowalski',null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Diana Lawrence', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Hall Serrano', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Fredericka Arias', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Owen Strauß', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Maris Wenzler', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Hadley Fernandez', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Wallace Wright', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Vielka Howard', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Mona Prieto'),null, 'https://i.stack.imgur.com/l60Hf.png',
+  ('Caleb Marshall',null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Kitra Wenzler', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Cade Merkle', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Christen Ford'), null, 'https://i.stack.imgur.com/l60Hf.png',
+  ('Teagan Moreno', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Tucker Bravo',null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Nora Cook', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Keelie Merino', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Maite Schubert',null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Edan Hanson', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Brock Fink', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Aurelia Weber', null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Magee Martin'),null, 'https://i.stack.imgur.com/l60Hf.png',
+  ('Hilel Muñoz',null, 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Nehru Pietsch', null, 'https://i.stack.imgur.com/l60Hf.png');
 
-INSERT INTO users (name, email, password, isBlocked, isAdmin) VALUES
-('Malcolm Pratt','malcolmpratt9095@protonmail.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False'),
-  ('Inez Newton','ineznewton6225@protonmail.org','AKB72VUA3JM1','True','False'),
-  ('Jena French','jenafrench@outlook.couk','DMI81FCZ1QQ3','False','False'),
-  ('Nichole Wright','nicholewright8299@hotmail.ca','UFX55VWC9GL0','True','False'),
-  ('Zahir Craft','zahircraft7246@yahoo.ca','TXD78IMK2OX7','True','True'),
-  ('Lev Mccarthy','levmccarthy@outlook.org','RGO41XKX6NB6','False','True'),
-  ('Hashim Madden','hashimmadden7128@google.edu','WZO45WKG0BX4','False','False'),
-  ('Jessica Ochoa','jessicaochoa5418@icloud.ca','QJW41SKY8PJ2','False','True'),
-  ('Savannah Dixon','savannahdixon2572@protonmail.ca','KXM46YVK5NQ8','False','True'),
-  ('Jaden Kane','jadenkane@outlook.org','QIV75SFQ1JU6','True','True'),
-  ('Lewis Michael','lewismichael7278@outlook.net','ZPP03GYI2RO7','True','True'),
-  ('Malachi Waller','malachiwaller2036@yahoo.edu','WOL24AGT6KJ6','False','True'),
-  ('Daquan Marks','daquanmarks@google.com','AWB18RRZ2OI6','True','False'),
-  ('Amir Washington','amirwashington@google.ca','RZM35MZH7YG1','False','True'),
-  ('Wanda Pennington','wandapennington4865@aol.edu','KCC88PQS3LM5','True','False'),
-  ('Melvin Glenn','melvinglenn@yahoo.net','OJD26QHI8JV7','False','True'),
-  ('Dean Baird','deanbaird5809@yahoo.com','OJL38PRG7FW8','False','False'),
-  ('Eleanor Byrd','eleanorbyrd@hotmail.org','MMD45INE8IT2','True','False'),
-  ('Ursa Rosa','ursarosa4328@icloud.com','RXQ37AMV7XM8','False','True'),
-  ('Mason Peters','masonpeters@outlook.net','NEI07RHX8OY5','False','True'),
-  ('Jared Atkins','jaredatkins4278@hotmail.couk','IIB86COT8YE8','False','False'),
-  ('Randall Alexander','randallalexander2597@google.ca','XDO47QJI2ZZ2','False','True'),
-  ('Natalie Rosa','natalierosa6697@icloud.net','RKA81HWP5EY3','False','True'),
-  ('Richard Mcguire','richardmcguire6079@outlook.ca','MLP35NXL2MQ5','True','False'),
-  ('Cooper Flores','cooperflores@outlook.couk','KJO31ACX7FP9','False','False'),
-  ('Keaton Bush','keatonbush@outlook.ca','OXR51WOE2DS0','True','True'),
-  ('Gemma Fleming','gemmafleming4125@protonmail.com','IDJ32IYH7JL7','True','True'),
-  ('Shannon Hampton','shannonhampton4653@icloud.ca','QYK75JKS5GP8','False','True'),
-  ('Tyrone Deleon','tyronedeleon5301@aol.com','MPI03MGQ4HT8','True','True'),
-  ('Jacqueline Stevens','jacquelinestevens9551@yahoo.ca','QEJ70FFW1CY5','True','True'),
-  ('Xyla Contreras','xylacontreras8390@outlook.com','QEY56PME4OW4','True','False'),
-  ('Zephania Hooper','zephaniahooper8316@aol.ca','AUC05ENP6VL8','False','True'),
-  ('Jermaine Hutchinson','jermainehutchinson@outlook.net','NYD97KLQ7RW5','True','False'),
-  ('Gay Velez','gayvelez3464@yahoo.com','IPC32JWK0SS3','False','False'),
-  ('Mariko Orr','marikoorr2280@google.org','UAF86NXP4PT2','False','False'),
-  ('Yuri Dale','yuridale@icloud.couk','SNP45VPX6TV6','False','True'),
-  ('Rhonda Graves','rhondagraves6791@hotmail.org','VYX13ZRO9NA4','False','False'),
-  ('Claire French','clairefrench@hotmail.edu','TEN56YFI3IJ4','False','True'),
-  ('Carol Benson','carolbenson@outlook.edu','ITQ48XWB2WD6','True','True'),
-  ('Nero Estes','neroestes@protonmail.couk','GYD25RUK2NC8','False','False'),
-  ('Tanisha Short','tanishashort2488@yahoo.couk','EDG19UCE0JK5','False','False'),
-  ('Forrest Gill','forrestgill3331@protonmail.net','YEE83OBS6CF2','False','False'),
-  ('Hedley Compton','hedleycompton@google.org','IWN16IWC2BR9','False','True'),
-  ('Chloe Mckay','chloemckay@google.ca','LOZ54CSO1WW8','False','False'),
-  ('Nevada Frost','nevadafrost@protonmail.com','VSK09FQP8LC9','False','False'),
-  ('Hope Barlow','hopebarlow@protonmail.com','YFT27BJT6FY3','False','False'),
-  ('Erica Howell','ericahowell@icloud.edu','HJN53VLJ4ZP4','True','False'),
-  ('Cailin Brooks','cailinbrooks6961@hotmail.edu','SFH72VOV6BT4','True','True'),
-  ('Josiah Watson','josiahwatson4219@protonmail.edu','JTS34FUI8IT8','False','False'),
-  ('Herman Hamilton','hermanhamilton1778@outlook.edu','KSU35BPX4EH4','True','False');
+INSERT INTO users (name, email, password, isBlocked, isAdmin, profilePicture) VALUES
+('Malcolm Pratt','malcolmpratt9095@protonmail.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://image.shutterstock.com/mosaic_250/2936380/640011838/stock-photo-handsome-unshaven-young-dark-skinned-male-laughing-out-loud-at-funny-meme-he-found-on-internet-640011838.jpg'),
+  ('Inez Newton','ineznewton6225@protonmail.org','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False', 'https://media.istockphoto.com/photos/young-woman-portrait-in-the-city-picture-id1009749608?k=20&m=1009749608&s=612x612&w=0&h=3bnVp0Y1625uKkSwnp7Uh2_y_prWbgRBH6a_6jRew3g='),
+  ('Jena French','jenafrench@outlook.couk','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://st.depositphotos.com/1771835/2038/i/600/depositphotos_20380765-stock-photo-happy-man-portrait-real-high.jpg'),
+  ('Nichole Wright','nicholewright8299@hotmail.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False', 'https://photo-cdn2.icons8.com/YJC2iz1UStJU0PKDNg1DE_b4gBHgzdKbMena3tvjSbo/rs:fit:576:432/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvMzQ4LzI5OTQz/NDk4LWU1ZGItNDI4/NC04YmY2LTc2NGIx/MDBmZjZjNS5qcGc.jpg'),
+  ('Zahir Craft','zahircraft7246@yahoo.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','True', 'https://www.elitelisbon.com/media//1/FOTOS/1034/21082979687370d.jpg'),
+  ('Hashim Madden','hashimmadden7128@google.edu','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://images.mubicdn.net/images/cast_member/406770/cache-134070-1461597796/image-w856.jpg?size=800x'),
+  ('Jessica Ochoa','jessicaochoa5418@icloud.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True','https://scontent.fopo3-2.fna.fbcdn.net/v/t31.18172-8/24297477_10212261735477507_7956367575064930791_o.jpg?_nc_cat=100&ccb=1-5&_nc_sid=174925&_nc_ohc=JKT0nxAWIv4AX_kz3K-&tn=ku_8x6ySDPZOyApb&_nc_ht=scontent.fopo3-2.fna&oh=00_AT_yctG9T_ueq2Ap6b0ILa2codDz0DJ8KHh28mw-Sd007A&oe=61F278DB'),
+  ('Savannah Dixon','savannahdixon2572@protonmail.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://scontent.fopo3-2.fna.fbcdn.net/v/t31.18172-8/471981_3164191782673_1569719874_o.jpg?_nc_cat=102&ccb=1-5&_nc_sid=de6eea&_nc_ohc=UcRIGl1GERIAX_QLbQ6&_nc_ht=scontent.fopo3-2.fna&oh=00_AT-isk8hoolMoREN7katjqj9GKqeU_cqhIxUWMMO8VWWKg&oe=61F3A61D'),
+  ('Jaden Kane','jadenkane@outlook.org','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False', 'https://scontent.fopo3-2.fna.fbcdn.net/v/t31.18172-8/175794_1982701566156_1227336_o.jpg?_nc_cat=102&ccb=1-5&_nc_sid=de6eea&_nc_ohc=vRUmOmtKXeAAX_YnWlM&_nc_ht=scontent.fopo3-2.fna&oh=00_AT9RliYZwsIi8qT82m2DLXoOx1Dwqx20ZPaXaFMP8AxXBA&oe=61F40608'),
+  ('Lewis Michael','lewismichael7278@outlook.net','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False' , 'https://scontent.fopo3-1.fna.fbcdn.net/v/t31.18172-8/210716_1719226499444_5687395_o.jpg?_nc_cat=106&ccb=1-5&_nc_sid=de6eea&_nc_ohc=tOgOvlZ73rwAX_8EEzG&_nc_ht=scontent.fopo3-1.fna&oh=00_AT_FGToj3Zh-GiwHur-v23R0sq4J5a5ty37qkzKMFXfTnw&oe=61F271D8'),
+  ('Malachi Waller','malachiwaller2036@yahoo.edu','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://studiosol-a.akamaihd.net/uploadfile/letras/fotos/e/f/8/a/ef8a0cb94166d9830af93aad8092fbe5.jpg'),
+  ('Daquan Marks','daquanmarks@google.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False', 'https://capricho.abril.com.br/wp-content/uploads/2019/09/harry-styles-e1568916476418.jpg'),
+  ('Amir Washington','amirwashington@google.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://cdn1.newsplex.pt/fotos/2021/11/12/799431.jpg?type=Artigo'),
+  ('Wanda Pennington','wandapennington4865@aol.edu','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False','https://www.meme-arsenal.com/memes/7e25ad21a23cbe76792c2232fbbbb149.jpg'),
+  ('Melvin Glenn','melvinglenn@yahoo.net','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://www.istockphoto.com/resources/images/PhotoFTLP/1035146258.jpg'),
+  ('Dean Baird','deanbaird5809@yahoo.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://www.istockphoto.com/resources/images/PhotoFTLP/1035146258.jpg'),
+  ('Eleanor Byrd','eleanorbyrd@hotmail.org','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False', 'https://media.istockphoto.com/photos/happy-smiling-man-looking-away-picture-id1158245623?k=20&m=1158245623&s=612x612&w=0&h=rGmn02kNdoQySPEoQmbbDBxOayL4sdW3QWqP9rjgxCg='),
+  ('Ursa Rosa','ursarosa4328@icloud.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://media.istockphoto.com/photos/happy-smiling-man-looking-away-picture-id1158245623?k=20&m=1158245623&s=612x612&w=0&h=rGmn02kNdoQySPEoQmbbDBxOayL4sdW3QWqP9rjgxCg='),
+  ('Mason Peters','masonpeters@outlook.net','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://image.shutterstock.com/mosaic_250/2936380/640011838/stock-photo-handsome-unshaven-young-dark-skinned-male-laughing-out-loud-at-funny-meme-he-found-on-internet-640011838.jpg'),
+  ('Jared Atkins','jaredatkins4278@hotmail.couk','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://image.shutterstock.com/mosaic_250/2936380/640011838/stock-photo-handsome-unshaven-young-dark-skinned-male-laughing-out-loud-at-funny-meme-he-found-on-internet-640011838.jpg'),
+  ('Randall Alexander','randallalexander2597@google.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Natalie Rosa','natalierosa6697@icloud.net','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Richard Mcguire','richardmcguire6079@outlook.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','False', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Cooper Flores','cooperflores@outlook.couk','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Keaton Bush','keatonbush@outlook.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','True', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Gemma Fleming','gemmafleming4125@protonmail.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','True','True', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Shannon Hampton','shannonhampton4653@icloud.ca','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','True', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Tyrone Deleon','tyronedeleon5301@aol.com','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','True', 'https://image.shutterstock.com/image-photo/portrait-beautiful-redhead-girl-smiling-260nw-657764164.jpg'),
+  ('Jacqueline Stevens','jacquelinestevens9551@yahoo.ca','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Xyla Contreras','xylacontreras8390@outlook.com','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Zephania Hooper','zephaniahooper8316@aol.ca','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Jermaine Hutchinson','jermainehutchinson@outlook.net','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Gay Velez','gayvelez3464@yahoo.com','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Mariko Orr','marikoorr2280@google.org','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Yuri Dale','yuridale@icloud.couk','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Rhonda Graves','rhondagraves6791@hotmail.org','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Claire French','clairefrench@hotmail.edu','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Carol Benson','carolbenson@outlook.edu','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Nero Estes','neroestes@protonmail.couk','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Tanisha Short','tanishashort2488@yahoo.couk','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Forrest Gill','forrestgill3331@protonmail.net','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Hedley Compton','hedleycompton@google.org','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Chloe Mckay','chloemckay@google.ca','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Nevada Frost','nevadafrost@protonmail.com','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Hope Barlow','hopebarlow@protonmail.com','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Erica Howell','ericahowell@icloud.edu','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Cailin Brooks','cailinbrooks6961@hotmail.edu','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','True', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Josiah Watson','josiahwatson4219@protonmail.edu','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','False','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Herman Hamilton','hermanhamilton1778@outlook.edu','$2y$10$erEEpBNDdgr6FZuvO0BmFe/S6RPfeJ/.tZx8sd1OqZ9CWOW7yx.ti','True','False', 'https://i.stack.imgur.com/l60Hf.png'),
+  ('Ana Mariz', 'aismariz@gmailcom', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', 'False', 'False', 'https://scontent.fopo3-1.fna.fbcdn.net/v/t1.6435-9/81563614_10218175164349533_9188962932132675584_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=174925&_nc_ohc=_GGIJLs20CgAX-BnsH_&_nc_ht=scontent.fopo3-1.fna&oh=00_AT83lyeUqfNhWSebt6GJNj7hg4m3NA0CC94pK5df_4mTUA&oe=61F28EFC' );
  
  
- INSERT INTO credit_card (cardid, ownername, cardnumber, securitycode, userid) VALUES
-(1, 'João Pinto', '4701470123', 214, 1),
-(2, 'Maria Pinto', '8910103817', 311,2),
-(3, 'Maria Pinto', '2428193713', 311,2);
+ INSERT INTO credit_card ( ownername, cardnumber, securitycode, userid) VALUES
+('João Pinto', '4701470123', 214, 1),
+( 'Maria Pinto', '8910103817', 311,2),
+('Maria Pinto', '2428193713', 311,2);
 
 
-INSERT INTO book_content (bookid, title, bookyear, average, authorid, bookcover) VALUES
- (1,'woman of glory',2010,'1.9',20, 'https://i.ebayimg.com/images/g/yT0AAOSwScBf~elE/s-l500.jpg'),
-  (2,'king of the prison',1989,'2.8',21,'https://images-na.ssl-images-amazon.com/images/I/51ysBE+VPKL.jpg'),
-  (3,'blacksmiths with sins',1970,'3.4',29, 'https://images-na.ssl-images-amazon.com/images/I/415CuPjYppL._SX342_SY445_QL70_ML2_.jpg'),
-  (4,'robots without faith',2003,'2.0',9, 'https://images-na.ssl-images-amazon.com/images/I/51xie+PczKL._SY344_BO1,204,203,200_.jpg'),
-  (5,'bandits and knights',1988,'2.7',26,'https://images-na.ssl-images-amazon.com/images/I/51lnGa8RUQS._SX311_BO1,204,203,200_.jpg'),
-  (6,'traitors and robots',2016,'3.2',29, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1420944735l/22929546.jpg'),
-  (7,'ruins without desire',1982,'2.6',29, 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Ruins_Smith.jpg/220px-Ruins_Smith.jpg'),
-  (8,'inception without sin',1999,'2.9',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628213328l/58710332._SY475_.jpg'),
-  (9,'clinging to the immortals',1993,'2.3',6, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443023859l/25746707.jpg'),
-  (10,'escape my futuretraitor of gold',1994,'3.8',9, 'https://images-na.ssl-images-amazon.com/images/I/71ODoJm2YuL.jpg'),
-  (11,'tortoise of next year',1979,'1.3',19, 'https://m.media-amazon.com/images/I/51JsJKXkkqL.jpg'),
-  (12,'Adam Lindsay',1998,'1.9',2, 'https://images-na.ssl-images-amazon.com/images/I/31DW6gKFg-L._SX313_BO1,204,203,200_.jpg'),
-  (13,'guardians of hope',1971,'2.3',29, 'https://images-na.ssl-images-amazon.com/images/I/41aVMHg4%2BTL._AC_UL600_SR384,600_.jpg'),
-  (14,'traitors of joy',1972,'3.2',13, 'https://m.media-amazon.com/images/I/41CtM8+im0L.jpg'),
-  (15,'rats and hunters',1994,'2.7',27, 'https://images-na.ssl-images-amazon.com/images/I/41GKCBQK15L._SX302_BO1,204,203,200_.jpg'),
-  (16,'witches and friends',1991,'3.2',29, 'https://images-na.ssl-images-amazon.com/images/I/81Ql7Oy80EL.jpg'),
-  (17,'history of the nation',1983,'2.4',14, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347621762l/13723762.jpg'),
-  (18,'Odessa Copeland',1982,'2.5',19, 'https://images-na.ssl-images-amazon.com/images/I/31-YytYMtPL._SX342_SY445_QL70_ML2_.jpg'),
-  (19,'birth of the river',1984,'1.8',29, 'https://thumbs.worthpoint.com/zoom/images1/1/0314/19/birth-river-thomas-donnell-signed-1st_1_e56bf56512a785cc1b8636249261e59f.jpg'),
-  (20,'whispers in the west',1980,'3.7',24 , 'https://images-na.ssl-images-amazon.com/images/I/71PCHuzIcnL.jpg'),
-  (21,'robot of the solstice',1995,'2.1',4, 'https://images-na.ssl-images-amazon.com/images/I/719HYP216HS.jpg'),
-  (22,'hiding the end',1994,'4.0',21, 'https://kbimages1-a.akamaihd.net/36756681-cef7-4797-82b9-aea3e6443207/353/569/90/False/after-the-world-ends-hide-book-2.jpg'),
-  (23,'defender of secrets',1992,'3.0',18, 'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/19577/OCT110586._SX360_QL80_TTD_.jpg'),
-  (24,'Ciara Compton',1996,'3.7',21, 'https://images-na.ssl-images-amazon.com/images/I/81cpnlo5FeS.jpg'),
-  (25,'Genevieve Moon',1998,'3.3',9, 'https://images-na.ssl-images-amazon.com/images/I/81jjm5C9tKL.jpg'),
-  (26,'excellent imagination',1973,'2.6',23, 'http://www.amreading.com/wp-content/uploads/my-grandmother-asked-me-to-tell-you-shes-sorry-9781501115066_hr-600x901.jpg'),
-  (27,'love of nature',1998,'2.9',15, 'https://images-na.ssl-images-amazon.com/images/I/41bJ7Urlg6L._SX331_BO1,204,203,200_.jpg'),
-  (28,'clans of the swamp',1982,'3.0',5, 'https://images-na.ssl-images-amazon.com/images/I/817-Al99HUL.jpg'),
-  (29,'paintings per realm',2001,'2.4',25, 'http://www.psupress.org/images/covers/294wide/978-0-271-07103-9md_294.jpg'),
-  (30,'pests and ancients',2007,'1.8',25,'https://m.media-amazon.com/images/I/41fA8shHWCL.jpg'),
-  (31,'insects and moons',1981,'5.0',19, 'https://www.moonstoystore.com/wp-content/uploads/2020/05/2456INSB.jpg'),
-  (32,'angels per continent',1979,'2.5',10, 'https://images-na.ssl-images-amazon.com/images/I/816u9mlA0DL.jpg'),
-  (33,'deafened by the worldspiders of tomorrow',1971,'3.2',23, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1547966857l/43422483.jpg'),
-  (34,'pirates and priests',2012,'3.6',23, 'https://m.media-amazon.com/images/I/412CrRpC-yL.jpg'),
-  (35,'figures of a painting',2000,'3.1',29, 'https://images-na.ssl-images-amazon.com/images/I/5153B177FYL.jpg'),
-  (36,'defenders of outer space',1999,'2.3',15, 'https://images-na.ssl-images-amazon.com/images/I/513fgAb3C0L._SX324_BO1,204,203,200_.jpg'),
-  (37,'gangster of the void',1973,'3.3',2, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1481203033l/30039018.jpg'),
-  (38,'vampires and fish',2017,'2.7',5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348094753l/7634106.jpg'),
-  (39,'owls of destruction',1999,'3.2',17, 'https://images-na.ssl-images-amazon.com/images/I/71yv6CGxbcL.jpg'),
-  (40,'Buckminster Shepherd',2011,'4.6',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348263390l/574916.jpg');
+INSERT INTO book_content ( title, bookyear, average, authorid, bookcover) VALUES
+ ('woman of glory',2010,'1.9',20, 'https://i.ebayimg.com/images/g/yT0AAOSwScBf~elE/s-l500.jpg'),
+  ('king of the prison',1989,'2.8',21,'https://images-na.ssl-images-amazon.com/images/I/51ysBE+VPKL.jpg'),
+  ('blacksmiths with sins',1970,'3.4',29, 'https://images-na.ssl-images-amazon.com/images/I/415CuPjYppL._SX342_SY445_QL70_ML2_.jpg'),
+  ('robots without faith',2003,'2.0',9, 'https://images-na.ssl-images-amazon.com/images/I/51xie+PczKL._SY344_BO1,204,203,200_.jpg'),
+  ('bandits and knights',1988,'2.7',26,'https://images-na.ssl-images-amazon.com/images/I/51lnGa8RUQS._SX311_BO1,204,203,200_.jpg'),
+  ('traitors and robots',2016,'3.2',29, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1420944735l/22929546.jpg'),
+  ('ruins without desire',1982,'2.6',29, 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Ruins_Smith.jpg/220px-Ruins_Smith.jpg'),
+  ('inception without sin',1999,'2.9',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628213328l/58710332._SY475_.jpg'),
+  ('clinging to the immortals',1993,'2.3',6, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443023859l/25746707.jpg'),
+  ('escape my futuretraitor of gold',1994,'3.8',9, 'https://images-na.ssl-images-amazon.com/images/I/71ODoJm2YuL.jpg'),
+  ('tortoise of next year',1979,'1.3',19, 'https://m.media-amazon.com/images/I/51JsJKXkkqL.jpg'),
+  ('Adam Lindsay',1998,'1.9',2, 'https://images-na.ssl-images-amazon.com/images/I/31DW6gKFg-L._SX313_BO1,204,203,200_.jpg'),
+  ('guardians of hope',1971,'2.3',29, 'https://images-na.ssl-images-amazon.com/images/I/41aVMHg4%2BTL._AC_UL600_SR384,600_.jpg'),
+  ('traitors of joy',1972,'3.2',13, 'https://m.media-amazon.com/images/I/41CtM8+im0L.jpg'),
+  ('rats and hunters',1994,'2.7',27, 'https://images-na.ssl-images-amazon.com/images/I/41GKCBQK15L._SX302_BO1,204,203,200_.jpg'),
+  ('witches and friends',1991,'3.2',29, 'https://images-na.ssl-images-amazon.com/images/I/81Ql7Oy80EL.jpg'),
+  ('history of the nation',1983,'2.4',14, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347621762l/13723762.jpg'),
+  ('Odessa Copeland',1982,'2.5',19, 'https://images-na.ssl-images-amazon.com/images/I/31-YytYMtPL._SX342_SY445_QL70_ML2_.jpg'),
+  ('birth of the river',1984,'1.8',29, 'https://thumbs.worthpoint.com/zoom/images1/1/0314/19/birth-river-thomas-donnell-signed-1st_1_e56bf56512a785cc1b8636249261e59f.jpg'),
+  ('whispers in the west',1980,'3.7',24 , 'https://images-na.ssl-images-amazon.com/images/I/71PCHuzIcnL.jpg'),
+  ('robot of the solstice',1995,'2.1',4, 'https://images-na.ssl-images-amazon.com/images/I/719HYP216HS.jpg'),
+  ('hiding the end',1994,'4.0',21, 'https://kbimages1-a.akamaihd.net/36756681-cef7-4797-82b9-aea3e6443207/353/569/90/False/after-the-world-ends-hide-book-2.jpg'),
+  ('defender of secrets',1992,'3.0',18, 'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/19577/OCT110586._SX360_QL80_TTD_.jpg'),
+  ('Ciara Compton',1996,'3.7',21, 'https://images-na.ssl-images-amazon.com/images/I/81cpnlo5FeS.jpg'),
+  ('Genevieve Moon',1998,'3.3',9, 'https://images-na.ssl-images-amazon.com/images/I/81jjm5C9tKL.jpg'),
+  ('excellent imagination',1973,'2.6',23, 'http://www.amreading.com/wp-content/uploads/my-grandmother-asked-me-to-tell-you-shes-sorry-9781501115066_hr-600x901.jpg'),
+  ('love of nature',1998,'2.9',15, 'https://images-na.ssl-images-amazon.com/images/I/41bJ7Urlg6L._SX331_BO1,204,203,200_.jpg'),
+  ('clans of the swamp',1982,'3.0',5, 'https://images-na.ssl-images-amazon.com/images/I/817-Al99HUL.jpg'),
+  ('paintings per realm',2001,'2.4',25, 'http://www.psupress.org/images/covers/294wide/978-0-271-07103-9md_294.jpg'),
+  ('pests and ancients',2007,'1.8',25,'https://m.media-amazon.com/images/I/41fA8shHWCL.jpg'),
+  ('insects and moons',1981,'5.0',19, 'https://www.moonstoystore.com/wp-content/uploads/2020/05/2456INSB.jpg'),
+  ('angels per continent',1979,'2.5',10, 'https://images-na.ssl-images-amazon.com/images/I/816u9mlA0DL.jpg'),
+  ('deafened by the worldspiders of tomorrow',1971,'3.2',23, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1547966857l/43422483.jpg'),
+  ('pirates and priests',2012,'3.6',23, 'https://m.media-amazon.com/images/I/412CrRpC-yL.jpg'),
+  ('figures of a painting',2000,'3.1',29, 'https://images-na.ssl-images-amazon.com/images/I/5153B177FYL.jpg'),
+  ('defenders of outer space',1999,'2.3',15, 'https://images-na.ssl-images-amazon.com/images/I/513fgAb3C0L._SX324_BO1,204,203,200_.jpg'),
+  ('gangster of the void',1973,'3.3',2, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1481203033l/30039018.jpg'),
+  ('vampires and fish',2017,'2.7',5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348094753l/7634106.jpg'),
+  ('owls of destruction',1999,'3.2',17, 'https://images-na.ssl-images-amazon.com/images/I/71yv6CGxbcL.jpg'),
+  ('Buckminster Shepherd',2011,'4.6',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348263390l/574916.jpg');
  
  
  
  
  
-INSERT INTO category (categoryid, label) VALUES
-(1,'Romance'),(2,'Comedy'),(3,'Biography'),(4,'Sport'),(5,'Drama'),
-(6,'Sci-Fi'),(7,'Western'),(8,'War'),(9,'Adventure'),(10,'Horror'),
-(11,'Fantasy'),(12,'Mystery'),(13,'Crime'),(14,'Family'),(15,'History');
+INSERT INTO category ( label) VALUES
+('Romance'),('Comedy'),('Biography'),('Sport'),('Drama'),
+('Sci-Fi'),('Western'),('War'),('Adventure'),('Horror'),
+('Fantasy'),('Mystery'),('Crime'),('Family'),('History');
 
 
 INSERT INTO belongs_to_category(bookid, categoryid) VALUES  (1,11),
@@ -386,83 +389,83 @@ INSERT INTO belongs_to_category(bookid, categoryid) VALUES  (1,11),
   (40,1);
  
  
-INSERT INTO review (reviewid, reviewcomment, rating, timeposted, userid, bookid) VALUES
-(1,'very cool', 4, '2001-01-01 01:01:01',1,2),
-(2,null, 2, '2011-11-21 22:01:01',2,1),
-(3,'life changing', 5, '2020-11-21 22:01:01',2,1);
+INSERT INTO review ( reviewcomment, rating, timeposted, userid, bookid) VALUES
+('very cool', 4, '2001-01-01 01:01:01',1,2),
+(null, 2, '2011-11-21 22:01:01',2,1),
+('life changing', 5, '2020-11-21 22:01:01',2,1);
 
 
 
-INSERT INTO book_product (bookid, price, stock, publisher, edition, booktype, bookcontentid) VALUES
-  (1,'7.59','449','Euismod Est Arcu Ltd',2,'physical',16),
-  (2,'28.08','518','Aenean Eget Incorporated',6,'physical',35),
-  (3,'10.49','661','Aliquet Libero PC',7,'physical',29),
-  (4,'15.64','535','Sapien Cras Dolor Associates',8,'physical',19),
-  (5,'10.09','732','Rhoncus Incorporated',9,'physical',32),
-  (6,'10.29','577','Non PC',8,'e-book',22),
-  (7,'25.84','441','Mollis Integer Tincidunt LLC',5,'e-book',17),
-  (8,'16.74','580','Tincidunt Nunc Corp.',5,'e-book',11),
-  (9,'20.32','789','Sem Semper Institute',3,'e-book',24),
-  (10,'20.63','428','Ultrices Posuere Cubilia LLC',6,'physical',15),
-  (11,'7.61','627','Tellus Sem Mollis Corp.',8,'physical',22),
-  (12,'18.52','409','Ipsum Phasellus Vitae PC',2,'physical',33),
-  (13,'21.24','498','Nullam Ut Nisi Corporation',8,'e-book',32),
-  (14,'9.77','325','Ullamcorper Velit Inc.',3,'physical',34),
-  (15,'15.39','351','Mi Enim Consulting',2,'e-book',21),
-  (16,'14.65','567','Cras Interdum Nunc Associates',4,'e-book',8),
-  (17,'21.40','600','Semper Cursus LLP',4,'e-book',35),
-  (18,'14.95','534','Nibh Sit Associates',6,'e-book',8),
-  (19,'17.19','286','Ut Odio Incorporated',8,'e-book',40),
-  (20,'19.71','599','Suspendisse Incorporated',2,'physical',26),
-  (21,'23.52','602','Amet Risus Associates',3,'e-book',23),
-  (22,'23.59','391','Phasellus Nulla PC',3,'physical',24),
-  (23,'29.79','240','Penatibus Corporation',8,'e-book',14),
-  (24,'24.69','402','Magna Sed LLC',8,'physical',35),
-  (25,'14.14','696','Non Lacinia At PC',7,'physical',24),
-  (26,'7.45','533','Donec Inc.',2,'e-book',7),
-  (27,'8.55','389','Tincidunt Nunc Industries',4,'e-book',18),
-  (28,'10.70','411','Nunc Mauris Inc.',5,'e-book',30),
-  (29,'5.84','421','Ipsum Nunc Id Inc.',6,'physical',18),
-  (30,'5.98','733','Phasellus Incorporated',3,'e-book',23),
-  (31,'8.48','520','Leo Cras Foundation',6,'physical',12),
-  (32,'28.19','633','Elit Pede Malesuada Institute',4,'e-book',35),
-  (33,'21.07','584','Eget Metus LLC',3,'physical',37),
-  (34,'5.34','553','Curabitur Ut Odio LLP',6,'e-book',5),
-  (35,'22.18','701','Mi Lorem Industries',2,'e-book',35),
-  (36,'11.42','535','In Institute',5,'e-book',24),
-  (37,'19.01','599','Proin Nisl Associates',7,'physical',16),
-  (38,'26.36','339','Amet Metus Associates',6,'e-book',27),
-  (39,'10.00','260','Auctor Mauris Vel LLP',5,'e-book',7),
-  (40,'24.31','329','Cras Dictum Ultricies Limited',8,'e-book',24),
-  (41,'16.57','371','Adipiscing Corporation',7,'e-book',27),
-  (42,'14.41','381','Facilisis Consulting',1,'physical',1),
-  (43,'25.74','471','Gravida Praesent Eu LLC',5,'e-book',17),
-  (44,'14.12','723','Egestas Fusce Inc.',9,'e-book',4),
-  (45,'16.51','799','Dapibus Foundation',1,'e-book',8),
-  (46,'27.58','523','Pretium PC',8,'e-book',35),
-  (47,'12.24','614','Id Ante Institute',6,'physical',8),
-  (48,'29.09','473','Duis Incorporated',10,'e-book',33),
-  (49,'29.06','535','Tincidunt PC',10,'e-book',27),
-  (50,'25.30','536','Vitae Semper Consulting',6,'e-book',5),
-  (51,'15.00','550','Ridiculus Mus LLP',2,'e-book',2),
-  (52,'8.56','373','Velit Cras Lorem Corp.',5,'physical',7),
-  (53,'26.75','551','Quam Vel Institute',8,'e-book',35),
-  (54,'24.49','37','Aliquam Institute',5,'e-book',32),
-  (55,'24.30','319','Morbi Neque Tellus Foundation',4,'physical',20),
-  (56,'19.47','837','Elit Erat Vitae Corp.',5,'physical',11),
-  (57,'12.15','640','Amet Diam Institute',9,'e-book',15),
-  (58,'19.53','513','Vestibulum Nec Euismod Incorporated',6,'e-book',29),
-  (59,'10.59','505','Gravida Aliquam Foundation',9,'physical',16),
-  (60,'21.04','516','Quis Diam Foundation',9,'physical',3);
+INSERT INTO book_product (price, stock, publisher, edition, booktype, bookcontentid) VALUES
+  ('7.59','449','Euismod Est Arcu Ltd',2,'physical',16),
+  ('28.08','518','Aenean Eget Incorporated',6,'physical',35),
+  ('10.49','661','Aliquet Libero PC',7,'physical',29),
+  ('15.64','535','Sapien Cras Dolor Associates',8,'physical',19),
+  ('10.09','732','Rhoncus Incorporated',9,'physical',32),
+  ('10.29','577','Non PC',8,'e-book',22),
+  ('25.84','441','Mollis Integer Tincidunt LLC',5,'e-book',17),
+  ('16.74','580','Tincidunt Nunc Corp.',5,'e-book',11),
+  ('20.32','789','Sem Semper Institute',3,'e-book',24),
+  ('20.63','428','Ultrices Posuere Cubilia LLC',6,'physical',15),
+  ('7.61','627','Tellus Sem Mollis Corp.',8,'physical',22),
+  ('18.52','409','Ipsum Phasellus Vitae PC',2,'physical',33),
+  ('21.24','498','Nullam Ut Nisi Corporation',8,'e-book',32),
+  ('9.77','325','Ullamcorper Velit Inc.',3,'physical',34),
+  ('15.39','351','Mi Enim Consulting',2,'e-book',21),
+  ('14.65','567','Cras Interdum Nunc Associates',4,'e-book',8),
+  ('21.40','600','Semper Cursus LLP',4,'e-book',35),
+  ('14.95','534','Nibh Sit Associates',6,'e-book',8),
+  ('17.19','286','Ut Odio Incorporated',8,'e-book',40),
+  ('19.71','599','Suspendisse Incorporated',2,'physical',26),
+  ('23.52','602','Amet Risus Associates',3,'e-book',23),
+  ('23.59','391','Phasellus Nulla PC',3,'physical',24),
+  ('29.79','240','Penatibus Corporation',8,'e-book',14),
+  ('24.69','402','Magna Sed LLC',8,'physical',35),
+  ('14.14','696','Non Lacinia At PC',7,'physical',24),
+  ('7.45','533','Donec Inc.',2,'e-book',7),
+  ('8.55','389','Tincidunt Nunc Industries',4,'e-book',18),
+  ('10.70','411','Nunc Mauris Inc.',5,'e-book',30),
+  ('5.84','421','Ipsum Nunc Id Inc.',6,'physical',18),
+  ('5.98','733','Phasellus Incorporated',3,'e-book',23),
+  ('8.48','520','Leo Cras Foundation',6,'physical',12),
+  ('28.19','633','Elit Pede Malesuada Institute',4,'e-book',35),
+  ('21.07','584','Eget Metus LLC',3,'physical',37),
+  ('5.34','553','Curabitur Ut Odio LLP',6,'e-book',5),
+  ('22.18','701','Mi Lorem Industries',2,'e-book',35),
+  ('11.42','535','In Institute',5,'e-book',24),
+  ('19.01','599','Proin Nisl Associates',7,'physical',16),
+  ('26.36','339','Amet Metus Associates',6,'e-book',27),
+  ('10.00','260','Auctor Mauris Vel LLP',5,'e-book',7),
+  ('24.31','329','Cras Dictum Ultricies Limited',8,'e-book',24),
+  ('16.57','371','Adipiscing Corporation',7,'e-book',27),
+  ('14.41','381','Facilisis Consulting',1,'physical',1),
+  ('25.74','471','Gravida Praesent Eu LLC',5,'e-book',17),
+  ('14.12','723','Egestas Fusce Inc.',9,'e-book',4),
+  ('16.51','799','Dapibus Foundation',1,'e-book',8),
+  ('27.58','523','Pretium PC',8,'e-book',35),
+  ('12.24','614','Id Ante Institute',6,'physical',8),
+  ('29.09','473','Duis Incorporated',10,'e-book',33),
+  ('29.06','535','Tincidunt PC',10,'e-book',27),
+  ('25.30','536','Vitae Semper Consulting',6,'e-book',5),
+  ('15.00','550','Ridiculus Mus LLP',2,'e-book',2),
+  ('8.56','373','Velit Cras Lorem Corp.',5,'physical',7),
+  ('26.75','551','Quam Vel Institute',8,'e-book',35),
+  ('24.49','37','Aliquam Institute',5,'e-book',32),
+  ('24.30','319','Morbi Neque Tellus Foundation',4,'physical',20),
+  ('19.47','837','Elit Erat Vitae Corp.',5,'physical',11),
+  ('12.15','640','Amet Diam Institute',9,'e-book',15),
+  ('19.53','513','Vestibulum Nec Euismod Incorporated',6,'e-book',29),
+  ('10.59','505','Gravida Aliquam Foundation',9,'physical',16),
+  ('21.04','516','Quis Diam Foundation',9,'physical',3);
  
  
  
     
-INSERT INTO user_order (orderid, orderdate, creditcardid, userid) VALUES
-(1,'2021-01-01 21:42:01', 2, 2),
-(2,'2021-10-31 04:32:56', 2, 2),
-(3,'2021-11-12 02:48:12', 3, 2),
-(4,'2021-08-04 22:24:41', 1, 1);
+INSERT INTO user_order ( orderdate, creditcardid, userid) VALUES
+('2021-01-01 21:42:01', 2, 2),
+('2021-10-31 04:32:56', 2, 2),
+('2021-11-12 02:48:12', 3, 2),
+('2021-08-04 22:24:41', 1, 1);
     
     
 
@@ -489,7 +492,7 @@ INSERT INTO notification( notificationMessage, notificationTime, userid, orderid
 ('Status changed', '2021-01-04 11:34:01', 4, 1,4);
 
 
-INSERT INTO report (reportid, description, isHandeled, userid, adminid) VALUES
-(1, 'Website is lagging ', 'WAITING FOR ADMIN', 1, null),
-(2, 'Website is lagging ', 'WAITING FOR ADMIN', 3, null),
-(3, 'Wrong order ', 'DEALT WITH', 14, 2);
+INSERT INTO report ( description, isHandeled, userid, adminid) VALUES
+( 'Website is lagging ', 'WAITING FOR ADMIN', 1, null),
+('Website is lagging ', 'WAITING FOR ADMIN', 3, null),
+('Wrong order ', 'DEALT WITH', 14, 2);

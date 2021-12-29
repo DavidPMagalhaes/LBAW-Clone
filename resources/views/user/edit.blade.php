@@ -8,7 +8,7 @@
     </div>
 
     <div class="flex justify-center pt-20">
-        <form action="/user/1" method="POST">
+        <form action="/user/{{ $user->id }}" method="POST">
             @method('PUT')
             @csrf
             <div class="block">
@@ -35,10 +35,8 @@
                 </button>
 
 
-
-
             </div>
-        </form>
+        <!--</form>-->
     </div>
 
 @endsection

@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@show');
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
+//Route::post('user/{id}/edit', 'UserController@update');
+
 
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
