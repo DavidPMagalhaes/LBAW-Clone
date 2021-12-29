@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookProduct;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 
@@ -60,7 +61,19 @@ class CartController extends Controller
     public function store(Request $request, $id)
     {
         $cart = new Cart;
-        //$cart = new Cart();
+        
+        $uniqueBook = Cart::where('bookid', '=', $id)
+        ->where('userid', '=', 1)   //para teste
+        ->first();
+        /*
+        $uniqueBook = Cart::where(['bookid', '=', '$id'],
+        ['userid', '==', '1'])->first();
+        */
+        if ($uniqueBook === null) {
+        // User does not exist
+        return redirect()->back()->with('book alredy in cart');
+        } 
+        
 
         //$this->authorize('create', $cart);
 

@@ -34,4 +34,10 @@ class Cart extends Model
         {
             return $this->hasMany('App\Models\BookProduct', 'bookid');
         }
+
+        public function bookid($id){
+            $book = BookProduct::find($id);
+            //dd($book);
+            return $book;
+        }
 }

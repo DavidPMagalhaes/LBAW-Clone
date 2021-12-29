@@ -6,10 +6,16 @@
             <h1 class="text">Book Page</h1>
         </div>
     </div>
-
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+          alert(msg);
+        }
+    </script>
     <div class="flex justify-center pt-20">
         <div class="text">
-        <p>Name: {{ $book->bookContent()->get('title') }} </p>
+        <p>Name: {{ $book->bookid($book->bookid)->title }} </p>
           <p>Price: {{ $book->price }}</p>
           <p>Edition: {{ $book->edition }}</p>
           <p>Book Type: {{ $book->booktype }}</p>

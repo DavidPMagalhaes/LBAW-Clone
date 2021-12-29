@@ -43,7 +43,7 @@
         <a class="button" href="{{ url('/about') }}">About</a>
         <a class="button" href="{{ url('/contact') }}">Contact</a>
         <a class="button" href="{{ url('/faq') }}">FAQ</a>
-        <a class="button float-right" href="/login">Cart</a>
+        <a class="button float-right" href="/users/1/cart">Cart</a>
       </div>
 
         <div class="search-container">
