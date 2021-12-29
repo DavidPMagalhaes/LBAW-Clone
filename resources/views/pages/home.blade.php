@@ -21,6 +21,7 @@
           <p>Book Type: {{ $book->booktype }}</p>
           <p>Stock: {{ $book->stock }}</p>
           <p>Publisher: {{ $book->publisher }}</p>
+          <a class="button" href='/api/books/viewBook/{{ $book->bookid }}'> View Details</a>
         </div>
       </div>
       <hr style="width:50%;text-align:left;margin-left:0">
