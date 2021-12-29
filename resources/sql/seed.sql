@@ -1,11 +1,15 @@
-DROP TABLE IF EXISTS registered_user cascade;
-CREATE TABLE registered_user(
-  userid serial PRIMARY KEY ,
+create schema if not exists lbaw2131;
+SET search_path TO lbaw2131;
+
+
+DROP TABLE IF EXISTS users cascade;
+CREATE TABLE users(
+  id serial PRIMARY KEY ,
+  name TEXT NOT NULL,
   email TEXT NOT NULL,
-  username TEXT NOT NULL,
-  userpassword TEXT NOT NULL,
-  isBlocked Bool Not NULL,
-  isAdmin Bool Not NULL
+  password TEXT NOT NULL,
+  isBlocked Bool default False,
+  isAdmin Bool default False
 ) ;
 
 DROP TABLE IF EXISTS credit_card cascade;
@@ -14,7 +18,7 @@ CREATE TABLE credit_card(
     ownername text not null,
     cardnumber text not null,
     securitycode int not null,
-    userid int not null references registered_user(userid)
+    userid int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -67,7 +71,7 @@ CREATE TABLE review (
     reviewcomment text,
     rating int default 1 check (rating >0 and rating <= 5),
     timeposted Time WITH TIME ZONE not null default CURRENT_TIMESTAMP,
-    userid int not null references registered_user(userid)
+    userid int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     bookid int not null references book_content(bookid)
@@ -97,7 +101,7 @@ CREATE TABLE user_order(
     creditcardid int not null references credit_card(cardid)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-    userid int not null references registered_user(userid)
+    userid int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -125,7 +129,7 @@ CREATE TABLE cart(
     bookid serial not null references book_product(bookid)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-    userid int not null references registered_user(userid)
+    userid int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     quantity int not null default 1 check (quantity>0),
@@ -136,7 +140,7 @@ CREATE TABLE wishlist(
     bookid serial not null references book_product(bookid)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-    userid int not null references registered_user(userid)
+    userid int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     PRIMARY KEY (bookid, userid)
@@ -151,7 +155,7 @@ CREATE TABLE notification(
     userid int not null,
     orderid int not null,
     bookid int not null,
-    FOREIGN KEY (userid) references registered_user(userid)
+    FOREIGN KEY (userid) references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     FOREIGN KEY (orderid, bookid) references order_information(orderid, bookid)
@@ -164,10 +168,10 @@ create table report(
     reportid serial PRIMARY KEY,
     description text not null,
     isHandeled text check (isHandeled in ('WAITING FOR ADMIN', 'IN PROCESS',  'DEALT WITH')),
-    userid int not null references registered_user(userid)
+    userid int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-    adminid int references registered_user(userid)
+    adminid int references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -204,57 +208,57 @@ INSERT INTO author(authorid, authorname) VALUES  (1,'Ayanna Stephens'),
   (29,'Hilel Muñoz'),
   (30,'Nehru Pietsch');
 
-INSERT INTO registered_user (userid,username, email, userpassword, isBlocked, isAdmin) VALUES
-(1,'Malcolm Pratt','malcolmpratt9095@protonmail.com','FXL66AEP1CP4','False','False'),
-  (2,'Inez Newton','ineznewton6225@protonmail.org','AKB72VUA3JM1','True','False'),
-  (3,'Jena French','jenafrench@outlook.couk','DMI81FCZ1QQ3','False','False'),
-  (4,'Nichole Wright','nicholewright8299@hotmail.ca','UFX55VWC9GL0','True','False'),
-  (5,'Zahir Craft','zahircraft7246@yahoo.ca','TXD78IMK2OX7','True','True'),
-  (6,'Lev Mccarthy','levmccarthy@outlook.org','RGO41XKX6NB6','False','True'),
-  (7,'Hashim Madden','hashimmadden7128@google.edu','WZO45WKG0BX4','False','False'),
-  (8,'Jessica Ochoa','jessicaochoa5418@icloud.ca','QJW41SKY8PJ2','False','True'),
-  (9,'Savannah Dixon','savannahdixon2572@protonmail.ca','KXM46YVK5NQ8','False','True'),
-  (10,'Jaden Kane','jadenkane@outlook.org','QIV75SFQ1JU6','True','True'),
-  (11,'Lewis Michael','lewismichael7278@outlook.net','ZPP03GYI2RO7','True','True'),
-  (12,'Malachi Waller','malachiwaller2036@yahoo.edu','WOL24AGT6KJ6','False','True'),
-  (13,'Daquan Marks','daquanmarks@google.com','AWB18RRZ2OI6','True','False'),
-  (14,'Amir Washington','amirwashington@google.ca','RZM35MZH7YG1','False','True'),
-  (15,'Wanda Pennington','wandapennington4865@aol.edu','KCC88PQS3LM5','True','False'),
-  (16,'Melvin Glenn','melvinglenn@yahoo.net','OJD26QHI8JV7','False','True'),
-  (17,'Dean Baird','deanbaird5809@yahoo.com','OJL38PRG7FW8','False','False'),
-  (18,'Eleanor Byrd','eleanorbyrd@hotmail.org','MMD45INE8IT2','True','False'),
-  (19,'Ursa Rosa','ursarosa4328@icloud.com','RXQ37AMV7XM8','False','True'),
-  (20,'Mason Peters','masonpeters@outlook.net','NEI07RHX8OY5','False','True'),
-  (21,'Jared Atkins','jaredatkins4278@hotmail.couk','IIB86COT8YE8','False','False'),
-  (22,'Randall Alexander','randallalexander2597@google.ca','XDO47QJI2ZZ2','False','True'),
-  (23,'Natalie Rosa','natalierosa6697@icloud.net','RKA81HWP5EY3','False','True'),
-  (24,'Richard Mcguire','richardmcguire6079@outlook.ca','MLP35NXL2MQ5','True','False'),
-  (25,'Cooper Flores','cooperflores@outlook.couk','KJO31ACX7FP9','False','False'),
-  (26,'Keaton Bush','keatonbush@outlook.ca','OXR51WOE2DS0','True','True'),
-  (27,'Gemma Fleming','gemmafleming4125@protonmail.com','IDJ32IYH7JL7','True','True'),
-  (28,'Shannon Hampton','shannonhampton4653@icloud.ca','QYK75JKS5GP8','False','True'),
-  (29,'Tyrone Deleon','tyronedeleon5301@aol.com','MPI03MGQ4HT8','True','True'),
-  (30,'Jacqueline Stevens','jacquelinestevens9551@yahoo.ca','QEJ70FFW1CY5','True','True'),
-  (31,'Xyla Contreras','xylacontreras8390@outlook.com','QEY56PME4OW4','True','False'),
-  (32,'Zephania Hooper','zephaniahooper8316@aol.ca','AUC05ENP6VL8','False','True'),
-  (33,'Jermaine Hutchinson','jermainehutchinson@outlook.net','NYD97KLQ7RW5','True','False'),
-  (34,'Gay Velez','gayvelez3464@yahoo.com','IPC32JWK0SS3','False','False'),
-  (35,'Mariko Orr','marikoorr2280@google.org','UAF86NXP4PT2','False','False'),
-  (36,'Yuri Dale','yuridale@icloud.couk','SNP45VPX6TV6','False','True'),
-  (37,'Rhonda Graves','rhondagraves6791@hotmail.org','VYX13ZRO9NA4','False','False'),
-  (38,'Claire French','clairefrench@hotmail.edu','TEN56YFI3IJ4','False','True'),
-  (39,'Carol Benson','carolbenson@outlook.edu','ITQ48XWB2WD6','True','True'),
-  (40,'Nero Estes','neroestes@protonmail.couk','GYD25RUK2NC8','False','False'),
-  (41,'Tanisha Short','tanishashort2488@yahoo.couk','EDG19UCE0JK5','False','False'),
-  (42,'Forrest Gill','forrestgill3331@protonmail.net','YEE83OBS6CF2','False','False'),
-  (43,'Hedley Compton','hedleycompton@google.org','IWN16IWC2BR9','False','True'),
-  (44,'Chloe Mckay','chloemckay@google.ca','LOZ54CSO1WW8','False','False'),
-  (45,'Nevada Frost','nevadafrost@protonmail.com','VSK09FQP8LC9','False','False'),
-  (46,'Hope Barlow','hopebarlow@protonmail.com','YFT27BJT6FY3','False','False'),
-  (47,'Erica Howell','ericahowell@icloud.edu','HJN53VLJ4ZP4','True','False'),
-  (48,'Cailin Brooks','cailinbrooks6961@hotmail.edu','SFH72VOV6BT4','True','True'),
-  (49,'Josiah Watson','josiahwatson4219@protonmail.edu','JTS34FUI8IT8','False','False'),
-  (50,'Herman Hamilton','hermanhamilton1778@outlook.edu','KSU35BPX4EH4','True','False');
+INSERT INTO users (name, email, password, isBlocked, isAdmin) VALUES
+('Malcolm Pratt','malcolmpratt9095@protonmail.com','$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W','False','False'),
+  ('Inez Newton','ineznewton6225@protonmail.org','AKB72VUA3JM1','True','False'),
+  ('Jena French','jenafrench@outlook.couk','DMI81FCZ1QQ3','False','False'),
+  ('Nichole Wright','nicholewright8299@hotmail.ca','UFX55VWC9GL0','True','False'),
+  ('Zahir Craft','zahircraft7246@yahoo.ca','TXD78IMK2OX7','True','True'),
+  ('Lev Mccarthy','levmccarthy@outlook.org','RGO41XKX6NB6','False','True'),
+  ('Hashim Madden','hashimmadden7128@google.edu','WZO45WKG0BX4','False','False'),
+  ('Jessica Ochoa','jessicaochoa5418@icloud.ca','QJW41SKY8PJ2','False','True'),
+  ('Savannah Dixon','savannahdixon2572@protonmail.ca','KXM46YVK5NQ8','False','True'),
+  ('Jaden Kane','jadenkane@outlook.org','QIV75SFQ1JU6','True','True'),
+  ('Lewis Michael','lewismichael7278@outlook.net','ZPP03GYI2RO7','True','True'),
+  ('Malachi Waller','malachiwaller2036@yahoo.edu','WOL24AGT6KJ6','False','True'),
+  ('Daquan Marks','daquanmarks@google.com','AWB18RRZ2OI6','True','False'),
+  ('Amir Washington','amirwashington@google.ca','RZM35MZH7YG1','False','True'),
+  ('Wanda Pennington','wandapennington4865@aol.edu','KCC88PQS3LM5','True','False'),
+  ('Melvin Glenn','melvinglenn@yahoo.net','OJD26QHI8JV7','False','True'),
+  ('Dean Baird','deanbaird5809@yahoo.com','OJL38PRG7FW8','False','False'),
+  ('Eleanor Byrd','eleanorbyrd@hotmail.org','MMD45INE8IT2','True','False'),
+  ('Ursa Rosa','ursarosa4328@icloud.com','RXQ37AMV7XM8','False','True'),
+  ('Mason Peters','masonpeters@outlook.net','NEI07RHX8OY5','False','True'),
+  ('Jared Atkins','jaredatkins4278@hotmail.couk','IIB86COT8YE8','False','False'),
+  ('Randall Alexander','randallalexander2597@google.ca','XDO47QJI2ZZ2','False','True'),
+  ('Natalie Rosa','natalierosa6697@icloud.net','RKA81HWP5EY3','False','True'),
+  ('Richard Mcguire','richardmcguire6079@outlook.ca','MLP35NXL2MQ5','True','False'),
+  ('Cooper Flores','cooperflores@outlook.couk','KJO31ACX7FP9','False','False'),
+  ('Keaton Bush','keatonbush@outlook.ca','OXR51WOE2DS0','True','True'),
+  ('Gemma Fleming','gemmafleming4125@protonmail.com','IDJ32IYH7JL7','True','True'),
+  ('Shannon Hampton','shannonhampton4653@icloud.ca','QYK75JKS5GP8','False','True'),
+  ('Tyrone Deleon','tyronedeleon5301@aol.com','MPI03MGQ4HT8','True','True'),
+  ('Jacqueline Stevens','jacquelinestevens9551@yahoo.ca','QEJ70FFW1CY5','True','True'),
+  ('Xyla Contreras','xylacontreras8390@outlook.com','QEY56PME4OW4','True','False'),
+  ('Zephania Hooper','zephaniahooper8316@aol.ca','AUC05ENP6VL8','False','True'),
+  ('Jermaine Hutchinson','jermainehutchinson@outlook.net','NYD97KLQ7RW5','True','False'),
+  ('Gay Velez','gayvelez3464@yahoo.com','IPC32JWK0SS3','False','False'),
+  ('Mariko Orr','marikoorr2280@google.org','UAF86NXP4PT2','False','False'),
+  ('Yuri Dale','yuridale@icloud.couk','SNP45VPX6TV6','False','True'),
+  ('Rhonda Graves','rhondagraves6791@hotmail.org','VYX13ZRO9NA4','False','False'),
+  ('Claire French','clairefrench@hotmail.edu','TEN56YFI3IJ4','False','True'),
+  ('Carol Benson','carolbenson@outlook.edu','ITQ48XWB2WD6','True','True'),
+  ('Nero Estes','neroestes@protonmail.couk','GYD25RUK2NC8','False','False'),
+  ('Tanisha Short','tanishashort2488@yahoo.couk','EDG19UCE0JK5','False','False'),
+  ('Forrest Gill','forrestgill3331@protonmail.net','YEE83OBS6CF2','False','False'),
+  ('Hedley Compton','hedleycompton@google.org','IWN16IWC2BR9','False','True'),
+  ('Chloe Mckay','chloemckay@google.ca','LOZ54CSO1WW8','False','False'),
+  ('Nevada Frost','nevadafrost@protonmail.com','VSK09FQP8LC9','False','False'),
+  ('Hope Barlow','hopebarlow@protonmail.com','YFT27BJT6FY3','False','False'),
+  ('Erica Howell','ericahowell@icloud.edu','HJN53VLJ4ZP4','True','False'),
+  ('Cailin Brooks','cailinbrooks6961@hotmail.edu','SFH72VOV6BT4','True','True'),
+  ('Josiah Watson','josiahwatson4219@protonmail.edu','JTS34FUI8IT8','False','False'),
+  ('Herman Hamilton','hermanhamilton1778@outlook.edu','KSU35BPX4EH4','True','False');
  
  
  INSERT INTO credit_card (cardid, ownername, cardnumber, securitycode, userid) VALUES
