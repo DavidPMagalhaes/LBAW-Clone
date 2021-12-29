@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookProduct;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,11 +14,7 @@ class HomeController extends Controller
      */
     public function show()
     {
-        return view('pages.home');
-    }
-    public function listBooks() {
-        // $this->authorize('list', BookContent::class);
-        // $books = Auth::bookProduct()->orderBy('id')->get();
-        // return view('pages.home', ['books' => $books]);
+        $books = BookProduct::all();
+        return view('pages.home', ['books' => $books]);
     }
 }
