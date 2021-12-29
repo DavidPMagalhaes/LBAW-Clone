@@ -9,7 +9,7 @@
     <div class="general-content">
     <div class="btn-group">
         <a class="button"  href=""> User Profile</a> 
-        <a class="button"  href="{{ $user->id }}/edit"> Edit profile</a> 
+        <a class="button"  href="edit"> Edit profile</a> 
         <a class="button"  href=" {{ $user->id }}/payment-methods"> Payment methods</a> 
         <a class="button" href=" {{ $user->id }}/wishlist" > WishList </a>
         <a class="button" href=" {{ $user->id }}/review-history"> Review history </a> 

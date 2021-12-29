@@ -9,7 +9,7 @@
 
     <div class="flex justify-center pt-20">
         <div class="text">
-        <p>Name: {{ $book->bookcontentid }} </p>
+        <p>Name: {{ $book->bookContent()->get('title') }} </p>
           <p>Price: {{ $book->price }}</p>
           <p>Edition: {{ $book->edition }}</p>
           <p>Book Type: {{ $book->booktype }}</p>
@@ -20,7 +20,7 @@
 
     <div class="btn-group float-left">
         <div>
-            <form action="CartController.php" method="POST">
+            <form action="{{$book->bookid}}/CartController.php" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="block">
