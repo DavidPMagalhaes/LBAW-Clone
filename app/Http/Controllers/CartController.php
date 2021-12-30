@@ -62,32 +62,33 @@ class CartController extends Controller
     public function store(Request $request, $id)
     {
         $cart = new Cart;
+        $userid = Auth::id(); 
         
         $uniqueBook = Cart::where('bookid', '=', $id)
-        ->where('userid', '=', 1)   //para teste
+        ->where('userid', '=', $userid)   //para teste
         ->first();
         /*
         $uniqueBook = Cart::where(['bookid', '=', '$id'],
         ['userid', '==', '1'])->first();
         */
         if ($uniqueBook === null) {
+            
+                    $cart->quantity = $request->input('quantity');
+                    $cart->userid = Auth::user()->id;
+                    //$cart->userid = 1; //so para testar
+                    //$cart->bookid = $request->route('id');
+                    $cart->bookid = $id;
+            
+                    $cart->save();
+            
+            
+                    return redirect('/home');
         // User does not exist
-        return redirect()->back()->with('book alredy in cart');
         } 
+        return redirect()->back()->with('book alredy in cart');
         
 
         //$this->authorize('create', $cart);
-
-        $cart->quantity = $request->input('quantity');
-        $cart->userid = Auth::user()->id;
-        //$cart->userid = 1; //so para testar
-        //$cart->bookid = $request->route('id');
-        $cart->bookid = $id;
-
-        $cart->save();
-
-
-        return redirect('/home');
     }
 
     public function delete(Request $request, $id)
@@ -145,8 +146,13 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id, $bookid)
     {
-        //
+        $cart = Cart::where('bookid', '=', $bookid)
+        ->where('userid', '=', $id)   //para teste
+        ->first();
+
+        $cart->delete();
+        return redirect()->back();
     }
 }

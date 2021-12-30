@@ -13,29 +13,29 @@
 	<br>
 	<div class="w-5/6 py-10">
 		@foreach($bookIds as $book)
-		<div class="float-right">
-            <form action="" method="POST">
-                @method('PUT')
-                @csrf
-                <div class="">
-            		<button type="submit" class="button">Remove</button>
-        		</div>
-		</div>	
-		<br>
-		<br>
-		<div class="flex justify-center pt-20">
-			<div class="text">
-				<img src="{{$book->bookid($book->bookid)->bookid($book->bookid)->bookcover}}" 
-					class="float-right" width="200" height="auto">
-				<p>id: {{ $book->bookid }}</p>
-				<p>Name: {{$book->bookid($book->bookid)->bookid($book->bookid)->title }}</p>
-				<p>Price: {{ $book->bookid($book->bookid)->price }}</p>
-				<p>Stock: {{ $book->bookid($book->bookid)->stock}}</p>
-				<p>Publisher: {{ $book->bookid($book->bookid)->publisher }}</p>
-				<p>Quantity: {{ $book->quantity }}</p>
+			<div class="float-right">
+				<form action="cart/{{ $book->bookid }}/delete" method="POST">
+					@method('delete')
+					@csrf
+					<div>
+						<button type="submit" class="button">Remove</button>
+					</div>
+			</div>	
+			<br>
+			<br>
+			<div class="flex justify-center pt-20">
+				<div class="text">
+					<img src="{{$book->bookid($book->bookid)->bookid($book->bookid)->bookcover}}" 
+						class="float-right" width="200" height="auto">
+					<p>id: {{ $book->bookid }}</p>
+					<p>Name: {{$book->bookid($book->bookid)->bookid($book->bookid)->title }}</p>
+					<p>Price: {{ $book->bookid($book->bookid)->price }}</p>
+					<p>Stock: {{ $book->bookid($book->bookid)->stock}}</p>
+					<p>Publisher: {{ $book->bookid($book->bookid)->publisher }}</p>
+					<p>Quantity: {{ $book->quantity }}</p>
+				</div>
 			</div>
-		</div>
-		<hr style="width:50%;text-align:left;margin-left:0">
+			<hr style="width:50%;text-align:left;margin-left:0">
 
 		@endforeach
 	</div>
