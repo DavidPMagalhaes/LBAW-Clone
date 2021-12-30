@@ -151,7 +151,7 @@ class CartController extends Controller
         $cart = Cart::where('bookid', '=', $bookid)
         ->where('userid', '=', $id)   //para teste
         ->first();
-
+        //dd($cart);
         $cart->delete();
         return redirect()->back();
     }

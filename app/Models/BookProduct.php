@@ -35,8 +35,10 @@ class BookProduct extends Model
     }
 
     public function bookid($id){
+        // $book = BookContent::where('bookcontentid', '=', $id)
+        // ->first();
         $book = BookContent::find($id);
-        //dd($book);
+        // //dd($book);
         return $book;
     }
 
