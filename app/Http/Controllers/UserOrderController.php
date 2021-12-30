@@ -44,9 +44,14 @@ class UserOrderController extends Controller
      * @param  \App\Models\UserOrder  $userOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(UserOrder $userOrder)
+    public function show(UserOrder $id)
     {
-        //
+        $order = UserOrder::find($id);
+        $this->authorize('show', $order);
+
+        return ;
+
+
     }
 
     /**

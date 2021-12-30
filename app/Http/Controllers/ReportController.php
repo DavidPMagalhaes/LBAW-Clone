@@ -29,7 +29,7 @@ class ReportController extends Controller
         $this->authorize('create', $report);
 
         $report->description = $request->input('description');
-        $report->user_id = Auth::registered_user()->userid;
+        $report->userid = Auth::registered_user()->userid;
         $report->save();
 
         return $report;

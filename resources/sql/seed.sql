@@ -104,7 +104,7 @@ CREATE TABLE user_order(
     creditcardid int not null references credit_card(cardid)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
-    userid int not null references users(id)
+    user_id int not null references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
@@ -461,7 +461,7 @@ INSERT INTO book_product (price, stock, publisher, edition, booktype, bookconten
  
  
     
-INSERT INTO user_order ( orderdate, creditcardid, userid) VALUES
+INSERT INTO user_order ( orderdate, creditcardid, user_id) VALUES
 ('2021-01-01 21:42:01', 2, 2),
 ('2021-10-31 04:32:56', 2, 2),
 ('2021-11-12 02:48:12', 3, 2),

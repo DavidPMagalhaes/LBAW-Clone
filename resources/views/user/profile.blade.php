@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+
+
+
 @section('content')
     <div class="m-auto w-4/8 py-24">
         <div class="text-center">
@@ -12,34 +15,17 @@
         <a class="button"  href="edit"> Edit profile</a> 
         <a class="button"  href=" {{ $user->id }}/payment-methods"> Payment methods</a> 
         <a class="button" href=" {{ $user->id }}/review-history"> Review history </a> 
-        <a class="button" href=" {{ $user->id }}/order-history"> Order history </a> 
+        <a class="button" href=" {{ $user->id }}/purchase-history"> Order history </a> 
 
     </div>
                <div class="block">
-                   <!--@yield('action')-->
-                   <h1> Profile</h1>
-                    <div class= "profile-info">
-                        <div class= "photo-name">
-                            <img src = {{ $user->profilepicture }} width="260" height="220">
-                            <figcaption>{{ $user->name }} </figcaption>
-                        </div>
-                        <div class="space"></div>
-                        <div class= "information">
-                            <h1> Account Details: {{ $user->profilePicture }} </h1><hr>
-                            <p2>Username:</p2> <p3>  {{ $user->name }} </p3><hr>
-                            <p2>Email: </p2> <p3>  {{ $user->email }}</p3><hr>
-                            <p2>Password: </p2> <p3>  {{ $user->password }}</p3><hr>
-
-
-                        </div>
-
-
-                    </div>
+                   @yield('action')
+                   
+                   
                </div>
                    
                    
                  
-                   
-    </div>
+    </div>        
 
 @endsection
