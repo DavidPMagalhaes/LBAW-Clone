@@ -21,7 +21,7 @@
           <p>Book Type: {{ $book->booktype }}</p>
           <p>Stock: {{ $book->stock }}</p>
           <p>Publisher: {{ $book->publisher }}</p>
-          <p>Publisher: {{ $book->bookContent()->get('bookcover')}}</p>
+          <p>Publisher: {{ $book->bookid($book->bookid)}}</p>
           $bookcover= {{ $book->bookContent()->get('bookcover')}};
           <img src= $bookcover width="30" height="50"> 
 

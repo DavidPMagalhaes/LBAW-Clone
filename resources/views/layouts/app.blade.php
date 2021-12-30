@@ -29,7 +29,7 @@
         <div>
         @if (Auth::check())
         <a class="button" href="{{ url('/logout') }}"> WishList </a> 
-          <a class="button" href="users/{{Auth::user()->id}}/cart"> Cart </a> 
+          <a class="button" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
           <a class="button" href="/user/{{Auth::user()->id}}"> Account </a> <span>{{ Auth::user()->name }}</span>
         @else 
           <a class="button" href="{{ url('/logout') }}"> Log in </a> 
