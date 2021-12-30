@@ -25,10 +25,11 @@
 			<br>
 			<div class="flex justify-center pt-20">
 				<div class="text">
-					<img src="{{$book->bookid($book->bookid)->bookid($book->bookid)->bookcover}}" 
+					<img src="{{$book->bookContentid($book->bookid($book->bookid)->bookcontentid)->bookcover}}" 
 						class="float-right" width="200" height="auto">
 					<p>id: {{ $book->bookid }}</p>
-					<p>Name: {{$book->bookid($book->bookid)->bookid($book->bookid)->title }}</p>
+					
+					<p>Name: {{ $book->bookContentid($book->bookid($book->bookid)->bookcontentid)->title }}</p>
 					<p>Price: {{ $book->bookid($book->bookid)->price }}</p>
 					<p>Stock: {{ $book->bookid($book->bookid)->stock}}</p>
 					<p>Publisher: {{ $book->bookid($book->bookid)->publisher }}</p>

@@ -40,4 +40,10 @@ class Cart extends Model
             //dd($book);
             return $book;
         }
+
+        public function bookContentid($id) {
+            $book = BookContent::find($id);
+            //dd($book);
+            return $book;
+        }
 }
