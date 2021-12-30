@@ -2,7 +2,7 @@ create schema if not exists lbaw2131;
 SET search_path TO lbaw2131;
 
 
-DROP TABLE IF EXISTS users cascade;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users(
   id serial PRIMARY KEY ,
   name TEXT NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE credit_card(
 );
 
 
-DROP TABLE IF EXISTS author ;
+DROP TABLE IF EXISTS author cascade;
 CREATE TABLE author(
     authorid serial PRIMARY KEY,
     authorname   TEXT NOT NULL,
@@ -194,11 +194,11 @@ INSERT INTO author( authorname, description, picture) VALUES  ('Ayanna Stephens'
   ('Hadley Fernandez', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Wallace Wright', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Vielka Howard', null, 'https://i.stack.imgur.com/l60Hf.png'),
-  ('Mona Prieto'),null, 'https://i.stack.imgur.com/l60Hf.png',
+  ('Mona Prieto',null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Caleb Marshall',null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Kitra Wenzler', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Cade Merkle', null, 'https://i.stack.imgur.com/l60Hf.png'),
-  ('Christen Ford'), null, 'https://i.stack.imgur.com/l60Hf.png',
+  ('Christen Ford', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Teagan Moreno', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Tucker Bravo',null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Nora Cook', null, 'https://i.stack.imgur.com/l60Hf.png'),
@@ -207,7 +207,7 @@ INSERT INTO author( authorname, description, picture) VALUES  ('Ayanna Stephens'
   ('Edan Hanson', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Brock Fink', null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Aurelia Weber', null, 'https://i.stack.imgur.com/l60Hf.png'),
-  ('Magee Martin'),null, 'https://i.stack.imgur.com/l60Hf.png',
+  ('Magee Martin',null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Hilel Muñoz',null, 'https://i.stack.imgur.com/l60Hf.png'),
   ('Nehru Pietsch', null, 'https://i.stack.imgur.com/l60Hf.png');
 

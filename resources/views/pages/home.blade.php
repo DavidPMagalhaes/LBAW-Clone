@@ -21,6 +21,11 @@
           <p>Book Type: {{ $book->booktype }}</p>
           <p>Stock: {{ $book->stock }}</p>
           <p>Publisher: {{ $book->publisher }}</p>
+          <p>Publisher: {{ $book->bookContent()->get('bookcover')}}</p>
+          $bookcover= {{ $book->bookContent()->get('bookcover')}};
+          <img src= $bookcover width="30" height="50"> 
+
+
           <a class="button" href='/api/books/viewBook/{{ $book->bookid }}'> View Details</a>
         </div>
       </div>
