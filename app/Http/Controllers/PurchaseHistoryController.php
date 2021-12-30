@@ -18,6 +18,7 @@ class PurchaseHistoryController extends Controller
     public function show($id)
     {   
         $orders = User::with('orders')->find($id)->orders;
-        return view('user.purchase_history');
+        $orders = UserOrder::where('orderid','=',$id)->get();
+        return view('user.purchase_history')->with('orders', $orders);
     }
 }
