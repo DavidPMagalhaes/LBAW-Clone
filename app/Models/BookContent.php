@@ -32,4 +32,6 @@ class BookContent extends Model
     public function belongToCategory() {
         return $this->belongsTo('App\Models\BelongsToCategory');
     }
+
+
 }

@@ -29,7 +29,7 @@
         <div>
         @if (Auth::check())
         <a class="button" href="{{ url('/logout') }}"> WishList </a> 
-          <a class="button" href="{{ url('/logout') }}"> Cart </a> 
+          <a class="button" href="users/{{Auth::user()->id}}/cart"> Cart </a> 
           <a class="button" href="/user/{{Auth::user()->id}}"> Account </a> <span>{{ Auth::user()->name }}</span>
         @else 
           <a class="button" href="{{ url('/logout') }}"> Log in </a> 
@@ -43,7 +43,6 @@
         <a class="button" href="{{ url('/about') }}">About</a>
         <a class="button" href="{{ url('/contact') }}">Contact</a>
         <a class="button" href="{{ url('/faq') }}">FAQ</a>
-        <a class="button float-right" href="/login">Cart</a>
       </div>
 
         <div class="search-container">

@@ -34,4 +34,10 @@ class BookProduct extends Model
         return $this->belongsTo('App\Models\OrderInformation');
     }
 
+    public function bookid($id){
+        $book = BookContent::find($id);
+        //dd($book);
+        return $book;
+    }
+
 }

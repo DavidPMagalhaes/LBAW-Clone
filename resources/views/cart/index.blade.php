@@ -12,10 +12,10 @@
 		<div class="flex justify-center pt-20">
 			<div class="text">
 				<p>id: {{ $book->bookid }}</p>
-				<p>Name: {{$book->books()->get('bookcontentid')->get('title') }}</p>
-				<p>Price: {{ $book->books()->get('price') }}</p>
-				<p>Stock: {{ $book->books()->get('stock')}}</p>
-				<p>Publisher: {{ $book->books()->get('publisher') }}</p>
+				<p>Name: {{$book->bookid($book->bookid)->bookid($book->bookid)->title }}</p>
+				<p>Price: {{ $book->bookid($book->bookid)->price }}</p>
+				<p>Stock: {{ $book->bookid($book->bookid)->stock}}</p>
+				<p>Publisher: {{ $book->bookid($book->bookid)->publisher }}</p>
 				<p>Quantity: {{ $book->quantity }}</p>
 			</div>
 		</div>
