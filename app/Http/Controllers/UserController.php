@@ -50,6 +50,7 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
+        //dd($user);
         return view('user.profile')->with('user', $user);
     }
 

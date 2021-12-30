@@ -7,11 +7,12 @@ main > header {
   padding: 1em;
   display: flex;
   justify-content: space-between;
+
 }
 main > header h1 {
   float: left;
   margin: 0;
-  width: 300px;
+  font-size: 60px;
 }
 main > header div1 {
   float: right;
@@ -85,6 +86,8 @@ main > div2 {
   background-color: #d6291c;
   border-color: #d6291c;
   color:rgb(255, 255, 255);
+  display: inline-flex;
+  align-items: center;
   /*
   background-color: #ffffff;
   color: #333030;
@@ -92,10 +95,10 @@ main > div2 {
 
 }
 
-.btn-group a.button:active{
-  background-color: #d6291c;
-  border-color: #d6291c;
-  color:rgb(255, 255, 255);
+.btn-group a.button:hover{
+  background-color: #ffffff;
+  color: #333030;
+  border-color: #c4aeae;
 }
 
 
@@ -114,7 +117,7 @@ main > div2 {
   width:8%;
   background-color: #ffffff;
   text-align: center;
-
+  border-radius: 25px;
 }
 
 .photo-name img {
@@ -130,6 +133,7 @@ main > div2 {
 .information{
   background-color: #ffffff;
   width:20%;
+  border-radius: 25px;
 }
 
 .information p2{
