@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookContent;
 use App\Models\BookProduct;
 use Illuminate\Http\Request;
 
@@ -17,13 +18,19 @@ class SearchBarController extends Controller
         //
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //$search = $request->search;
+        $search = $request->input('search');
 
-        $book = BookProduct::find($id);
+        //se bookContent for collection acho que nao vai funcionar
+        $bookContent = BookContent::where('title', 'LIKE', '%'.$search.'%')->get();
+        dd($bookContent->get('bookcontentid')[0]->bookcontentid);
+        $contentids= $bookContent->get('bookcontentid')[0]->bookcontentid;
+        $books = BookProduct::where('bookcontentid', '=', $contentids)->get();
+        //$book = BookProduct::find($id);
 
-        return view('pages.search', ['book' => $book]);
+        return view('pages.search', ['books' => $books]);
+        //return view('pages.search', ['book' => $book]);
     }
 
 }
