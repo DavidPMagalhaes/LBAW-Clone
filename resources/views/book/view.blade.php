@@ -15,9 +15,9 @@
     </script>
     <div class="flex justify-center pt-20">
         <div class="text">
-            <img src="{{$book->bookid($book->bookid)->bookcover}}" 
+            <img src="{{$book->bookContent()->get('bookcover')[0]->bookcover}}" 
 						class="float-right" width="200" height="auto">
-            <p>Name: {{ $book->bookid($book->bookid)->title }} </p>
+            <p>Name: {{ $book->bookContent()->get('title')[0]->title }} </p>
             <p>Price: {{ $book->price }}</p>
             <p>Edition: {{ $book->edition }}</p>
             <p>Book Type: {{ $book->booktype }}</p>

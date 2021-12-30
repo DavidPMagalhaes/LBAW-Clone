@@ -15,6 +15,6 @@ class HomeController extends Controller
     public function show()
     {
         $books = BookProduct::all();
-        return view('pages.home', ['books' => $books]);
+        return view('pages.home')->with('books', $books);
     }
 }
