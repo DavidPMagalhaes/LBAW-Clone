@@ -46,7 +46,7 @@
       </div>
 
         <div class="search-container">
-          <form action="/action_page.php">
+          <form action="/search/3">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Submit<i class="fa fa-search"></i></button>
           </form>

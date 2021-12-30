@@ -19,6 +19,9 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', 'Auth\LoginController@home');
 Route::get('/home', 'HomeController@show');
 
+// Search
+Route::get('search/{id}', 'SearchBarController@show');
+
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
