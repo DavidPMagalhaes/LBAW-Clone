@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BookProduct;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -78,8 +79,8 @@ class CartController extends Controller
         //$this->authorize('create', $cart);
 
         $cart->quantity = $request->input('quantity');
-        //$cart->userid = Auth::user()->id;
-        $cart->userid = 1; //so para testar
+        $cart->userid = Auth::user()->id;
+        //$cart->userid = 1; //so para testar
         //$cart->bookid = $request->route('id');
         $cart->bookid = $id;
 
