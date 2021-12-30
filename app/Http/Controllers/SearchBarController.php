@@ -33,22 +33,23 @@ class SearchBarController extends Controller
 
         $books = BookProduct::where('bookcontentid', '=', $contentids)->get();
 
-        dd($bookContent);
-        $counter = 0;
+        //dd($bookContent[2]->bookid);
+        $counter = -1;
         foreach($bookContent as $bookcontent){   
-            if ($counter == 0) continue;
+            //$counter++;
+            if ($counter++ == 0) continue;
 
-            //dd($bookcontent[$counter]);
-            if(!$bookcontent[$counter]->bookid) continue;
-            $contentids = $bookcontent[$counter]->bookid;
-            $books->add(BookProduct::where('bookcontentid', '=', $contentids)->get());
-            $counter++;
+            //dd($bookcontent->bookid);
+            $contentids = $bookcontent->bookid;
+            $tempBook = BookProduct::where('bookcontentid', '=', $contentids)->get();
+            //$books->push(BookProduct::where('bookcontentid', '=', $contentids)->get());
+            $books = $books->merge($tempBook);
+            //dd($books);
         }
         //dd($books);
         //$book = BookProduct::find($id);
 
         return view('pages.search', ['books' => $books]);
-        //return view('pages.search', ['book' => $book]);
     }
 
 }
