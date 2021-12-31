@@ -26,12 +26,11 @@ class BookContent extends Model
 
     public function author()
     {
-        return $this->belongsTo('App\Models\Author');
+        return $this->belongsTo('App\Models\Author', 'authorid');
     }
 
     public function belongToCategory() {
         return $this->belongsTo('App\Models\BelongsToCategory');
     }
-
 
 }

@@ -42,4 +42,8 @@ class BookProduct extends Model
         return $book;
     }
 
+    public function getAuthor($id) {
+        $author = Author::find($id);
+        return $author;
+    } 
 }
