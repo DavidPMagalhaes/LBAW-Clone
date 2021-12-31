@@ -1,5 +1,4 @@
 @extends('layouts.app')
-int $randomNum = rand(100000,999999);
 @section('content')
 <h1 class=""> Checkout</h1>
 <h2> Order Details </h2>
@@ -18,7 +17,10 @@ int $randomNum = rand(100000,999999);
     <h3>Credit Card: {{$creditCard->cardnumber}}</h3>            
     <div class="float-left">
         <div>
-            <a class="button" href="checkout/confirmed">Confirm</a>
+            <form action="checkout/confirmed" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('put') }}
+                <button type="submit" class="button">Confirm</button>
         </div>
     </div>
 

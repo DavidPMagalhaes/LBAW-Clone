@@ -15,8 +15,10 @@ class OrderInformation extends Model
 
         protected $table = 'order_information';
 
+        protected $primaryKey = 'orderid';
+
         protected $fillable = [
-            'orderid', 'bookid', 'priceBought','orderStatus', 'quantity'
+            'orderid', 'bookid', 'pricebought','orderstatus', 'quantity'
         ];
 
 

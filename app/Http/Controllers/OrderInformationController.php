@@ -17,13 +17,6 @@ class OrderInformationController extends Controller
 
     public function checkout($id)
     {
-        /*
-        //to empty cart
-        $cart = Cart::where('userid', $id)->get();
-        dd($cart);
-        $cart->destroy($id, 5);
-        */
-        
 
         //default credit card that user has saved
         $creditCard = CreditCard::where('userid', $id)->first();
@@ -33,38 +26,48 @@ class OrderInformationController extends Controller
         // $order = UserOrder::where('user_id', '=', $id)
         // ->first();
         // $this->authorize('show', $order);
-
-// //////////////////////////////////////////////////////////////////////////////////
-//         $orderid = rand(10000000,999999999);
-//         //dd($bookIds[0]);
-//         $orderInformation = new OrderInformation;
-//         $orderInformation->orderid = $orderid;
-//         //vai ser preciso um for dps
-//         $orderInformation->bookid = $bookIds[0]->bookid;
-//         $orderInformation->priceBought = $bookIds[0]->bookid;
-//         $orderInformation->orderStatus = 'PROCESSING';
-//         $orderInformation->quantity = $bookIds[0]->quantity;
-//         //dd($orderInformation);
-//         //$orderInformation->save();
-// //////////////////////////////////////////////////////////////////////////////////
-//         $userOrder = new UserOrder;
-//         $userOrder->user_id = Auth::user()->id;
-//         $userOrder->orderdate = Carbon::now()->toDateTimeString();
-//         //alterar id e orderid
-//         $userOrder->orderid = $orderid;
-//         $userOrder->creditcardid = $creditCard->cardid;
-//         dd($userOrder);
-//         //$userOrder->save();
-
-// //////////////////////////////////////////////////////////////////////////////////
         return view('checkout.index', ['bookIds' => $bookIds])->with('creditCard', $creditCard); 
     }
 
 
-    public function confirmedCheckout($id)
+    public function confirmedCheckout(Request $request, $id)
     {
         //falta diminuir o stock
 
+
+        //default credit card that user has saved
+        $creditCard = CreditCard::where('userid', $id)->first();
+        
+        $bookIds = Cart::where('userid', $id)->get();
+
+
+        // $this->authorize('show', $order);
+
+        foreach($bookIds as $book){   
+            $orderid = rand(10000000,999999999);
+            
+            
+            $userOrder = new UserOrder;
+            $userOrder->userid = Auth::user()->id;
+            $userOrder->orderdate = Carbon::now()->toDateTimeString();
+            //alterar id e orderid
+            $userOrder->orderid = $orderid;
+            $userOrder->creditcardid = $creditCard->cardid;
+            //dd($userOrder);
+            $userOrder->save();
+
+            //dd($book->bookid($book->bookid)->price );
+            $orderInformation = new OrderInformation;
+            $orderInformation->orderid = $orderid;
+            //vai ser preciso um for dps
+            $orderInformation->bookid = $book->bookid;
+            $orderInformation->pricebought = $book->bookid($book->bookid)->price;
+            $orderInformation->orderstatus = 'PROCESSING';
+            $orderInformation->quantity = $book->quantity;
+            //dd($orderInformation);
+            $orderInformation->save();
+
+        }
         /*
         //to empty cart
         $cart = Cart::where('userid', $id)->get();
@@ -72,36 +75,8 @@ class OrderInformationController extends Controller
         $cart->destroy($id, 5);
         */
 
-        //default credit card that user has saved
-        $creditCard = CreditCard::where('userid', $id)->first();
-        
-        $bookIds = Cart::where('userid', $id)->get();
-        
+        return redirect()->back();
 
-        // $this->authorize('show', $order);
-
-//////////////////////////////////////////////////////////////////////////////////
-        $orderid = rand(10000000,999999999);
-        dd($bookIds[0]);
-        $orderInformation = new OrderInformation;
-        $orderInformation->orderid = $orderid;
-        //vai ser preciso um for dps
-        $orderInformation->bookid = $bookIds[0]->bookid;
-        $orderInformation->priceBought = $bookIds[0]->bookid;
-        $orderInformation->orderStatus = 'PROCESSING';
-        $orderInformation->quantity = $bookIds[0]->quantity;
-        //dd($orderInformation);
-        $orderInformation->save();
-//////////////////////////////////////////////////////////////////////////////////
-        $userOrder = new UserOrder;
-        $userOrder->user_id = Auth::user()->id;
-        $userOrder->orderdate = Carbon::now()->toDateTimeString();
-        //alterar id e orderid
-        $userOrder->orderid = $orderid;
-        $userOrder->creditcardid = $creditCard->cardid;
-        //dd($userOrder);
-        $userOrder->save();
-//////////////////////////////////////////////////////////////////////////////////
 
     }
 

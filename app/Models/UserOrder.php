@@ -16,7 +16,7 @@ class UserOrder extends Model
         protected $primaryKey = 'orderid';
 
         protected $fillable = [
-            'orderid', 'orderdate', 'creditcardid','user_id'
+            'orderid', 'orderdate', 'creditcardid','userid'
         ];
 
         public function user()
