@@ -21,6 +21,7 @@
         <p> Price Bought: {{ $orderInformation->pricebought }} </p>
         <p> Quantity: {{ $orderInformation->quantity }}</p>
         <p> Status: {{ $orderInformation->orderstatus }} </p>
+        <img src="{{ $orderInformation->getBookContent($orderInformation->getBookProduct($orderInformation->bookid)->bookcontentid)->bookcover }}" width="200" >
       </div>
     @endforeach
     <p> ------------------------------------------------------------------- </p>
