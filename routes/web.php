@@ -43,7 +43,7 @@ Route::get('users/{id}/cart', 'CartController@index');
 
 // Checkout
 Route::get('/users/{id}/cart/checkout', 'OrderInformationController@checkout');
-Route::get('/users/{id}/cart/checkout/confirmed', 'OrderInformationController@store');
+Route::get('/users/{id}/cart/checkout/confirmed', 'OrderInformationController@confirmedCheckout');
 
 // API
 Route::put('api/cards', 'CardController@create');

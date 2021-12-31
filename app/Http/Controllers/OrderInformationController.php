@@ -19,7 +19,56 @@ class OrderInformationController extends Controller
     {
         /*
         //to empty cart
-        $cart = Cart::find($id);
+        $cart = Cart::where('userid', $id)->get();
+        dd($cart);
+        $cart->destroy($id, 5);
+        */
+        
+
+        //default credit card that user has saved
+        $creditCard = CreditCard::where('userid', $id)->first();
+        
+        $bookIds = Cart::where('userid', $id)->get();
+        
+        // $order = UserOrder::where('user_id', '=', $id)
+        // ->first();
+        // $this->authorize('show', $order);
+
+// //////////////////////////////////////////////////////////////////////////////////
+//         $orderid = rand(10000000,999999999);
+//         //dd($bookIds[0]);
+//         $orderInformation = new OrderInformation;
+//         $orderInformation->orderid = $orderid;
+//         //vai ser preciso um for dps
+//         $orderInformation->bookid = $bookIds[0]->bookid;
+//         $orderInformation->priceBought = $bookIds[0]->bookid;
+//         $orderInformation->orderStatus = 'PROCESSING';
+//         $orderInformation->quantity = $bookIds[0]->quantity;
+//         //dd($orderInformation);
+//         //$orderInformation->save();
+// //////////////////////////////////////////////////////////////////////////////////
+//         $userOrder = new UserOrder;
+//         $userOrder->user_id = Auth::user()->id;
+//         $userOrder->orderdate = Carbon::now()->toDateTimeString();
+//         //alterar id e orderid
+//         $userOrder->orderid = $orderid;
+//         $userOrder->creditcardid = $creditCard->cardid;
+//         dd($userOrder);
+//         //$userOrder->save();
+
+// //////////////////////////////////////////////////////////////////////////////////
+        return view('checkout.index', ['bookIds' => $bookIds])->with('creditCard', $creditCard); 
+    }
+
+
+    public function confirmedCheckout($id)
+    {
+        //falta diminuir o stock
+
+        /*
+        //to empty cart
+        $cart = Cart::where('userid', $id)->get();
+        dd($cart);
         $cart->destroy($id, 5);
         */
 
@@ -28,8 +77,7 @@ class OrderInformationController extends Controller
         
         $bookIds = Cart::where('userid', $id)->get();
         
-        $order = UserOrder::where('user_id', '=', $id)
-        ->first();
+
         // $this->authorize('show', $order);
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +90,7 @@ class OrderInformationController extends Controller
         $orderInformation->priceBought = $bookIds[0]->bookid;
         $orderInformation->orderStatus = 'PROCESSING';
         $orderInformation->quantity = $bookIds[0]->quantity;
-        dd($orderInformation);
+        //dd($orderInformation);
         $orderInformation->save();
 //////////////////////////////////////////////////////////////////////////////////
         $userOrder = new UserOrder;
@@ -51,14 +99,16 @@ class OrderInformationController extends Controller
         //alterar id e orderid
         $userOrder->orderid = $orderid;
         $userOrder->creditcardid = $creditCard->cardid;
-
-        $order->save();
-
+        //dd($userOrder);
+        $userOrder->save();
 //////////////////////////////////////////////////////////////////////////////////
-        // return ;
-        return view('checkout.index', ['bookIds' => $bookIds])->with('creditCard', $creditCard); 
 
     }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *

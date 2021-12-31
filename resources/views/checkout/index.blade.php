@@ -17,13 +17,9 @@ int $randomNum = rand(100000,999999);
         @endforeach
     <h3>Credit Card: {{$creditCard->cardnumber}}</h3>            
     <div class="float-left">
-        <form action="" method="POST">
-            @method('put')
-            @csrf
-            <div>
-                <button type="submit" class="button">Confirm</button>
-            </div>
-        </form>
+        <div>
+            <a class="button" href="checkout/confirmed">Confirm</a>
+        </div>
     </div>
 
 @endsection

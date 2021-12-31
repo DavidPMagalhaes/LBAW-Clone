@@ -39,9 +39,7 @@
                         name="quantity">
             <button type="submit" class="button">Add to Cart</button>
         </div>
-            <div>
-                <a class="button" href="confirmed"Confirm>
-            </div>
+           
         </div>        
     </div>
 
