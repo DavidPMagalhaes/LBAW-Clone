@@ -26,7 +26,7 @@ Route::get('search/{id}', 'SearchBarController@show');
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
 //Route::post('user/{id}/edit', 'UserController@update');
-Route::get('user/{id}/purchase-history', 'PurchaseHistoryController@show');
+Route::get('user/{id}/purchase-history', 'PurchaseHistoryController@index');
 
 
 

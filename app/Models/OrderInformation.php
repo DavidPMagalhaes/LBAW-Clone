@@ -42,5 +42,13 @@ class OrderInformation extends Model
             return $this->hasOne('App\Models\UserOrder', 'orderid');
         }
 
+        public function getBookProduct($id) {
+            $book = BookProduct::find($id);
+            return $book;
+        }
 
+        public function getBookContent($id) {
+            $book = BookContent::find($id);
+            return $book;
+        }
 }

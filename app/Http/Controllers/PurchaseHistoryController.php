@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserOrder;
+use App\Models\OrderInformation;
 
 
 use Illuminate\Http\Request;
@@ -15,10 +16,9 @@ class PurchaseHistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function index($id)
     {   
-        $orders = User::with('orders')->find($id)->orders;
-        $orders = UserOrder::where('orderid','=',$id)->get();
-        return view('user.purchase_history')->with('orders', $orders);
+        $orders = UserOrder::where('userid', $id)->get();
+        return view('user.purchase_history', ['orders' => $orders]);
     }
 }

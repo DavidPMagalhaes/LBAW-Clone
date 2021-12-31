@@ -32,7 +32,17 @@ class UserOrder extends Model
         //ao contrario?
         public function orderInformation()
         {
-            return $this->belongsTo('App\Models\OrderInformation');
+            return $this->belongsTo('App\Models\OrderInformation', 'orderid');
+        }
+
+        public function getOrderInformation($id) {
+            $orderInformation = OrderInformation::where('orderid', $id)->get();
+            return $orderInformation; 
+        }
+
+        public function getCreditCard($id) {
+            $creditCard = CreditCard::find($id);
+            return $creditCard; 
         }
 
 }
