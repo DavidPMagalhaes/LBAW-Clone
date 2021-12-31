@@ -4,11 +4,7 @@
 
 
 @section('content')
-    <div class="m-auto w-4/8 py-24">
-        <div class="text-center">
-        </div>
-    </div>
-
+ 
     <div class="general-content">
     <div class="btn-group">
         <a class="button"  href=""> User Profile</a> 

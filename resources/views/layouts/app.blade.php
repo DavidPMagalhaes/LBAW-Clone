@@ -24,7 +24,7 @@
     <main>
       <header>
         <h1><a href="{{ url('/home') }}">RedWood</a>         
-        <img src= "https://www.nicepng.com/png/full/41-412236_red-evergreen-tree-clip-art-pine-tree-silhouette.png" width="30" height="50"> 
+        <img src= "https://www.nicepng.com/png/full/41-412236_red-evergreen-tree-clip-art-pine-tree-silhouette.png" width="50" height="70"> 
         </h1>
         <div1>
         @if (Auth::check())

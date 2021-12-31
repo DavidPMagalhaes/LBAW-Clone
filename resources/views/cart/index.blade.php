@@ -11,6 +11,7 @@
 	</div>
 	<br>
 	<br>
+
 	<div class="w-5/6 py-10">
 		@foreach($bookIds as $book)
 			<div class="float-right">

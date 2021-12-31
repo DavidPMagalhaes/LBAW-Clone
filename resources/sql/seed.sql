@@ -289,7 +289,7 @@ INSERT INTO book_content ( title, bookyear, average, authorid, bookcover) VALUES
   ('witches and friends',1991,'3.2',29, 'https://images-na.ssl-images-amazon.com/images/I/81Ql7Oy80EL.jpg'),
   ('history of the nation',1983,'2.4',14, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347621762l/13723762.jpg'),
   ('Odessa Copeland',1982,'2.5',19, 'https://images-na.ssl-images-amazon.com/images/I/31-YytYMtPL._SX342_SY445_QL70_ML2_.jpg'),
-  ('birth of the river',1984,'1.8',29, 'https://thumbs.worthpoint.com/zoom/images1/1/0314/19/birth-river-thomas-donnell-signed-1st_1_e56bf56512a785cc1b8636249261e59f.jpg'),
+  ('birth of the river',1984,'1.8',29, 'https://m.media-amazon.com/images/I/41dAaKGzykL._SS500_.jpg'),
   ('whispers in the west',1980,'3.7',24 , 'https://images-na.ssl-images-amazon.com/images/I/71PCHuzIcnL.jpg'),
   ('robot of the solstice',1995,'2.1',4, 'https://images-na.ssl-images-amazon.com/images/I/719HYP216HS.jpg'),
   ('hiding the end',1994,'4.0',21, 'https://kbimages1-a.akamaihd.net/36756681-cef7-4797-82b9-aea3e6443207/353/569/90/False/after-the-world-ends-hide-book-2.jpg'),
