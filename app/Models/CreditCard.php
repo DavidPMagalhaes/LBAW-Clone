@@ -22,7 +22,7 @@ class CreditCard extends Model
 
     public function orders()
     {
-        return $this->hasMany('App\Models\UserOrder');
+        return $this->hasMany('App\Models\UserOrder', 'userid');
     }
 
 }

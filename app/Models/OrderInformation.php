@@ -9,10 +9,16 @@ class OrderInformation extends Model
 {
     use HasFactory;
 
+
         // Don't add create and update timestamps in database.
         public $timestamps  = false;
 
         protected $table = 'order_information';
+
+        protected $fillable = [
+            'orderid', 'bookid', 'priceBought','orderStatus', 'quantity'
+        ];
+
 
         public function notifications()
         {
@@ -26,6 +32,13 @@ class OrderInformation extends Model
 
         public function books()
         {
-            return $this->hasMany('App\Models\BookProduct');
+            return $this->hasMany('App\Models\BookProduct', 'bookid');
         }
+
+        public function userOrder()
+        {
+            return $this->hasOne('App\Models\UserOrder', 'orderid');
+        }
+
+
 }

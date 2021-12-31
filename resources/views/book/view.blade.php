@@ -40,11 +40,7 @@
             <button type="submit" class="button">Add to Cart</button>
         </div>
             <div>
-                <form action="WishlistController.php" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="block">
-                    <button type="submit" class="button">Add to Wishlist</button>
+                <a class="button" href="confirmed"Confirm>
             </div>
         </div>        
     </div>

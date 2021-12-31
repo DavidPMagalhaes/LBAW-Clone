@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Cart;
 use App\Models\UserOrder;
 use Illuminate\Http\Request;
 
@@ -35,6 +37,14 @@ class UserOrderController extends Controller
      */
     public function store(Request $request)
     {
+        $order = new UserOrder;
+
+        $order->orderdate = Carbon::now()->toDateTimeString();
+        //alterar id e orderid
+        $order->orderid = rand(10000000,999999999);
+        $order->creditcardid = 1;
+
+        $order->save();
         //
     }
 
@@ -44,15 +54,6 @@ class UserOrderController extends Controller
      * @param  \App\Models\UserOrder  $userOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(UserOrder $id)
-    {
-        $order = UserOrder::find($id);
-        $this->authorize('show', $order);
-
-        return ;
-
-
-    }
 
     /**
      * Show the form for editing the specified resource.
