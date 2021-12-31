@@ -37,10 +37,13 @@ Route::get('api/books/viewBook/{id}', 'BookProductController@show');
 Route::put('api/books/viewBook/{id}/CartController.php', 'CartController@store');
 Route::delete('users/{id}/cart/{bookid}/delete', 'CartController@destroy');
 Route::get('users/{id}/cart', 'CartController@index');
-Route::get('/users/{id}/cart/checkout', 'CartCheckout@index');
 //Route::post('users/{id}/cart/add', 'CartController@store');
 //Route::post('users/{id}/cart/remove', 'CartController@show');
 //Route::post('users/{id}/cart/update', 'CartController@show');
+
+// Checkout
+Route::get('/users/{id}/cart/checkout', 'OrderInformationController@checkout');
+Route::get('/users/{id}/cart/checkout/confirmed', 'OrderInformationController@store');
 
 // API
 Route::put('api/cards', 'CardController@create');

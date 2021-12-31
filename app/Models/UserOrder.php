@@ -15,6 +15,10 @@ class UserOrder extends Model
         protected $table = 'user_order';
         protected $primaryKey = 'orderid';
 
+        protected $fillable = [
+            'orderid', 'orderdate', 'creditcardid','user_id'
+        ];
+
         public function user()
         {
             return $this->belongsTo('App\Models\User');
@@ -28,7 +32,7 @@ class UserOrder extends Model
         //ao contrario?
         public function orderInformation()
         {
-            return $this->hasOne('App\Models\OrderInformation');
+            return $this->belongsTo('App\Models\OrderInformation');
         }
 
 }
