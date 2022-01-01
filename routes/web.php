@@ -20,7 +20,11 @@ Route::get('/', 'Auth\LoginController@home');
 Route::get('/home', 'HomeController@show');
 
 // Search
+//aquele id n esta a fazer nada, dps é para tirar
 Route::get('search/{id}', 'SearchBarController@show');
+Route::get('category/{key}', 'CategoryController@show');
+
+
 
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
