@@ -29,10 +29,11 @@ Route::put('user/{id}/edit/update', 'UserController@update');
 //Route::post('user/{id}/edit', 'UserController@update');
 Route::get('user/{id}/purchase-history', 'PurchaseHistoryController@index');
 
-
-
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
+
+// Review
+Route::get('api/books/viewBook/{id}/reviews', 'ReviewController@show');
 
 // Cart
 Route::put('api/books/viewBook/{id}/CartController.php', 'CartController@store');
@@ -45,13 +46,6 @@ Route::get('users/{id}/cart', 'CartController@index');
 // Checkout
 Route::get('/users/{id}/cart/checkout', 'OrderInformationController@checkout');
 Route::put('/users/{id}/cart/checkout/confirmed', 'OrderInformationController@confirmedCheckout');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\BookContent;
+use App\Models\BookProduct;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -63,10 +65,12 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show($id)
     {
-        $this->authorize('show', $review);
-        return view('pages.review', ['review' => $review]);
+        $reviews = Review::where('bookid', '=', $id)->get();
+        $book = BookProduct::find($id);
+        $book = BookContent::find($book->bookcontentid);
+        return view('review.reviews', ['reviews' => $reviews], ['book' => $book]);
     }
 
     public function list()
