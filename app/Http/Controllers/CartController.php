@@ -149,8 +149,7 @@ class CartController extends Controller
     public function destroy($id, $bookid)
     {
         $cart = Cart::where('bookid', '=', $bookid)
-        ->where('userid', '=', $id)   //para teste
-        ->first();
+        ->where('userid', '=', $id);   //para teste
         //dd($cart);
         $cart->delete();
         return redirect()->back();
