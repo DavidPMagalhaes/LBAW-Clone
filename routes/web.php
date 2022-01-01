@@ -42,6 +42,11 @@ Route::get('users/{id}/cart', 'CartController@index');
 //Route::post('users/{id}/cart/remove', 'CartController@show');
 //Route::post('users/{id}/cart/update', 'CartController@show');
 
+// Wishlist
+Route::put('api/books/viewBook/{id}/WishlistController.php', 'WishlistController@store');
+Route::delete('users/{id}/wishlist/{bookid}/delete', 'WishlistController@destroy');
+Route::get('users/{id}/wishlist', 'WishlistController@index');
+
 // Checkout
 Route::get('/users/{id}/cart/checkout', 'OrderInformationController@checkout');
 Route::put('/users/{id}/cart/checkout/confirmed', 'OrderInformationController@confirmedCheckout');

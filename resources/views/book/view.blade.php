@@ -13,6 +13,20 @@
           alert(msg);
         }
     </script>
+
+    <div class="float-right">
+        <div>
+                <form action="{{$book->bookid}}/WishlistController.php" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <button type="submit" class="red-button">Add to WishList</button>
+                </form>
+        </div>
+    </div>   
+    <br>
+    <br>
+    <br>
+
     <div class="flex justify-center pt-20">
         <div class="text">
             <img src="{{$book->bookContent()->get('bookcover')[0]->bookcover}}" 
@@ -42,5 +56,6 @@
            
         </div>        
     </div>
+
 
 @endsection

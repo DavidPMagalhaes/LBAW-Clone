@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -12,9 +13,11 @@ class WishlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $bookIds = Wishlist::where('userid', $id)->get();
+        return view('wishlist.index',['bookIds' => $bookIds]);
+
     }
 
     /**
@@ -22,28 +25,21 @@ class WishlistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $wishlist = new Wishlist();
+        $wishlist = new Wishlist;
 
-        $this->authorize('create', $wishlist);
+        //$this->authorize('create', $cart);
 
-        $wishlist->bookid = $request->input('bookid');
-        $wishlist->userid = Auth::registered_user()->userid;
+        $wishlist->name = $request->input('quantity');
+        //$cart->userid = Auth::user()->id;
+        $wishlist->bookId = $request->route('id');
         $wishlist->save();
 
+        dd($wishlist);
         return $wishlist;
     }
 
-    public function delete(Request $request, $id)
-    {
-        $wishlist = Wishlist::find($id);
-
-        $this->authorize('delete', $wishlist);
-        $wishlist->delete();
-
-        return $wishlist;
-    }
     
 
     /**
@@ -52,9 +48,29 @@ class WishlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+        $wishlist = new Wishlist;
+        $userid = Auth::id(); 
+        
+        $uniqueBook = Wishlist::where('bookid', '=', $id)
+        ->where('userid', '=', $userid)   //para teste
+        ->first();
+
+        if ($uniqueBook === null) {
+            
+            $wishlist->userid = Auth::user()->id;
+
+            $wishlist->bookid = $id;
+    
+            $wishlist->save();
+    
+    
+            return redirect('/home');
+        } 
+        // User does not exist
+        return redirect()->back()->with('book alredy in wishlist');
+        
     }
 
     /**
@@ -95,8 +111,12 @@ class WishlistController extends Controller
      * @param  \App\Models\Wishlist  $wishlist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wishlist $wishlist)
+    public function destroy($id, $bookid)
     {
-        //
+        $wishlist = Wishlist::where('bookid', '=', $bookid)
+        ->where('userid', '=', $id);   //para teste
+        //dd($cart);
+        $wishlist->delete();
+        return redirect()->back();
     }
 }
