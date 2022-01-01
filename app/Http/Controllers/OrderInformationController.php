@@ -43,8 +43,8 @@ class OrderInformationController extends Controller
 
         // $this->authorize('show', $order);
 
+        $orderid = rand(10000000,999999999);
         foreach($bookIds as $book){   
-            $orderid = rand(10000000,999999999);
             
             
             $userOrder = new UserOrder;
