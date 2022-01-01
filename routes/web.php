@@ -25,6 +25,7 @@ Route::get('search/{id}', 'SearchBarController@show');
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
+Route::put('user/{id}/edit/update', 'UserController@update');
 //Route::post('user/{id}/edit', 'UserController@update');
 Route::get('user/{id}/purchase-history', 'PurchaseHistoryController@index');
 

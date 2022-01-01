@@ -8,9 +8,9 @@
     </div>
 
     <div class="flex justify-center pt-20">
-        <form action="/user/{{ $user->id }}" method="POST">
-            @method('PUT')
-            @csrf
+        <form action="/user/{{ $user->id }}/edit/update" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('put') }}
             <div class="block">
                 <h6>name</h6>
                 <input 

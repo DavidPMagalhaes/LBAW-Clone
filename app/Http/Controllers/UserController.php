@@ -76,16 +76,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /*
         $user = User::where('id', $id)
-            ->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => $request->input('password')
+        ->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ]);
-        //n sei se é assim para aceder ao valor de id
         $user->save();
+        */
+        $user = User::find($id);
 
-        return redirect('/user/{{Auth::user()->id}}');
+        // Make sure you've got the Page model
+        if($user) {
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->save();
+        }
+        return redirect('/user/{{user->id}}');
+        //return redirect()->route( '/user/' )
+
 
  
     }
