@@ -91,9 +91,12 @@ class UserController extends Controller
         if($user) {
             $user->name = $request->input('name');
             $user->email = $request->input('email');
+            if($request->filled('password')) {
+                $user->email = $request->input('password');
+            }
             $user->save();
         }
-        return redirect('/user/{{user->id}}');
+        return redirect('/home');
         //return redirect()->route( '/user/' )
 
 
