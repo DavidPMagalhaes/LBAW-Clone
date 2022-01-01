@@ -21,6 +21,7 @@
 					<div>
 						<button type="submit" class="button">Remove</button>
 					</div>
+				</form>
 			</div>	
 			<br>
 			<br>
