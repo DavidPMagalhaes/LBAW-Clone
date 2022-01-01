@@ -67,12 +67,12 @@ class OrderInformationController extends Controller
             $orderInformation->save();
 
         }
-        /*
+        
         //to empty cart
-        $cart = Cart::where('userid', $id)->get();
-        dd($cart);
-        $cart->destroy($id, 5);
-        */
+        $carts = Cart::where('userid', $id)->get();
+        foreach($carts as $cart) {
+            $cart->destroy($id, $cart->bookid);
+        }
 
         return redirect()->back();
 
