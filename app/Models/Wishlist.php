@@ -13,8 +13,13 @@ class Wishlist extends Model
         public $timestamps  = false;
 
         protected $table = 'wishlist';
-        //protected $primaryKey = 'reportid';
-        //primary key composta...
+        protected $primaryKey = 'userid';
+
+
+        protected $fillable = [
+            'bookid', 'userid',
+        ];
+
 
         public function user()
         {
@@ -24,6 +29,18 @@ class Wishlist extends Model
         public function books()
         {
             return $this->hasMany('App\Models\BookProduct');
+        }
+
+        public function bookid($id){
+            $book = BookProduct::find($id);
+            //dd($book);
+            return $book;
+        }
+
+        public function bookContentid($id) {
+            $book = BookContent::find($id);
+            //dd($book);
+            return $book;
         }
 
 }

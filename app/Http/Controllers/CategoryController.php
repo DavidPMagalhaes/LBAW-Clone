@@ -2,11 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BelongsToCategory;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\BookContent;
+use App\Models\BookProduct;
 
 class CategoryController extends Controller
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +42,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -24,14 +51,14 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = new Category();
+        // $category = new Category();
 
-        $this->authorize('create', $category);
+        // $this->authorize('create', $category);
 
-        $category->label = $request->input('label');
-        $category->save();
+        // $category->label = $request->input('label');
+        // $category->save();
 
-        return $category;
+        // return $category;
     }
 
     public function delete(Request $request, $id)
@@ -61,11 +88,67 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($key)
     {
-        $category = Category::find($id);
-        $this->authorize('show', $category);
-        return view('pages.category', ['category' => $category]);
+        $category = $key;
+
+        $categoryid = Category::where('label', '=', $category)->first();
+
+        //dd($categoryid);
+        //collection with id of bookContents of chosen category and id of category 
+        $belongsToCategory = BelongsToCategory::where('categoryid', '=', $categoryid->categoryid)->get();
+
+        //dd($belongsToCategory);
+
+        //first entry of colletion
+        $belongsToIds = $belongsToCategory[0]->bookid;
+
+
+        //bookContents with requested categories 
+        $bookContent = BookContent::where('bookid', '=', $belongsToIds)->get();
+        //dd($bookContent);
+       
+        $counter = -1;
+        foreach($belongsToCategory as $belongstocategory){   
+            //$counter++;
+            if ($counter++ == 0) continue;
+
+            //dd($bookcontent->bookid);
+            $belongsToIds = $belongstocategory->bookid;
+
+            $tempBook = BookProduct::where('bookcontentid', '=', $belongsToIds)->get();
+
+            $bookContent = $bookContent->merge($tempBook);
+            //dd($books);
+        }
+        
+        
+        
+        //dd($bookContent);
+
+        //ids
+        $contentids = $bookContent[0]->bookid;
+        //dd($contentids);
+
+        $books = BookProduct::where('bookcontentid', '=', $contentids)->get();
+
+        //dd($bookContent[2]->bookid);
+        $counter = -1;
+        foreach($bookContent as $bookcontent){   
+            //$counter++;
+            if ($counter++ == 0) continue;
+
+            //dd($bookcontent->bookid);
+            $contentids = $bookcontent->bookid;
+            $tempBook = BookProduct::where('bookcontentid', '=', $contentids)->get();
+            //$books->push(BookProduct::where('bookcontentid', '=', $contentids)->get());
+            $books = $books->merge($tempBook);
+            //dd($books);
+        }
+        //dd($books);
+        //$book = BookProduct::find($id);
+
+        return view('pages.search', ['books' => $books]);
     }
 
     public function list()

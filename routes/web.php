@@ -20,7 +20,11 @@ Route::get('/', 'Auth\LoginController@home');
 Route::get('/home', 'HomeController@show');
 
 // Search
+//aquele id n esta a fazer nada, dps é para tirar
 Route::get('search/{id}', 'SearchBarController@show');
+Route::get('category/{key}', 'CategoryController@show');
+
+
 
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
@@ -42,6 +46,11 @@ Route::get('users/{id}/cart', 'CartController@index');
 //Route::post('users/{id}/cart/add', 'CartController@store');
 //Route::post('users/{id}/cart/remove', 'CartController@show');
 //Route::post('users/{id}/cart/update', 'CartController@show');
+
+// Wishlist
+Route::put('api/books/viewBook/{id}/WishlistController.php', 'WishlistController@store');
+Route::delete('users/{id}/wishlist/{bookid}/delete', 'WishlistController@destroy');
+Route::get('users/{id}/wishlist', 'WishlistController@index');
 
 // Checkout
 Route::get('/users/{id}/cart/checkout', 'OrderInformationController@checkout');
