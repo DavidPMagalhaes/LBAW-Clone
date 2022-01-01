@@ -44,17 +44,16 @@ class OrderInformationController extends Controller
         // $this->authorize('show', $order);
 
         $orderid = rand(10000000,999999999);
+        $userOrder = new UserOrder;
+        $userOrder->userid = Auth::user()->id;
+        $userOrder->orderdate = Carbon::now()->toDateTimeString();
+        //alterar id e orderid
+        $userOrder->orderid = $orderid;
+        $userOrder->creditcardid = $creditCard->cardid;
+        //dd($userOrder);
+        $userOrder->save();
+        
         foreach($bookIds as $book){   
-            
-            
-            $userOrder = new UserOrder;
-            $userOrder->userid = Auth::user()->id;
-            $userOrder->orderdate = Carbon::now()->toDateTimeString();
-            //alterar id e orderid
-            $userOrder->orderid = $orderid;
-            $userOrder->creditcardid = $creditCard->cardid;
-            //dd($userOrder);
-            $userOrder->save();
 
             //dd($book->bookid($book->bookid)->price );
             $orderInformation = new OrderInformation;
