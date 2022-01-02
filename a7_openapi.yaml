@@ -1013,16 +1013,38 @@ paths:
 
 
 
- /viewPage:
+ /about:
   get:
     operationId: R901
-    summary: 'R901: Show static page'
-    description: 'Shows the static page to the user'
+    summary: 'R901: Show about page'
+    description: 'Shows the about page to the user'
     tags:
       - 'M09: Static Pages'
     responses:
       '200':
-       description: 'Ok. Show static page UI'
+       description: 'Ok. Show about page UI'
+
+ /contact:
+  get:
+    operationId: R902
+    summary: 'R902: Show Contact page'
+    description: 'Shows the contact page to the user'
+    tags:
+      - 'M09: Static Pages'
+    responses:
+      '200':
+       description: 'Ok. Show contact page UI'
+
+ /faq:
+  get:
+    operationId: R903
+    summary: 'R903: Show FAQ page'
+    description: 'Shows the FAQ page to the user'
+    tags:
+      - 'M09: Static Pages'
+    responses:
+      '200':
+       description: 'Ok. Show FAQ page UI'
 
  /notification/{id}:
   get:
