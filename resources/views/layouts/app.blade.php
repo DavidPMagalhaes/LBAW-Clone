@@ -28,12 +28,14 @@
         </h1>
         <div1>
         @if (Auth::check())
-        <a class="button" href="/users/{{Auth::user()->id}}/wishlist"> WishList </a> 
+          <a class="button" href="/users/{{Auth::user()->id}}/wishlist"> WishList </a> 
           <a class="button" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
-          <a class="button" href="/user/{{Auth::user()->id}}"> Account </a> <span>{{ Auth::user()->name }}</span>
+          <a class="button" href="/user/{{Auth::user()->id}}"> Account </a> 
+          <a class="button" href="{{ url('/logout') }}"> Logout </a>
+          <span>{{ Auth::user()->name }}</span>
         @else 
           <a class="button" href="{{ url('/logout') }}"> Log in </a> 
-          <a class="button" href="{{ url('/logout') }}"> Sign Up</a> 
+          <a class="button" href="{{ route('register') }}"> Sign Up</a> 
         @endif
         </div1>
       </header>
