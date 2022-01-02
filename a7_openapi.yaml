@@ -592,7 +592,7 @@ paths:
     summary: 'R405: Checkout Action'
     description: 'Accessess remove cart and gives an order number. Access: USR'
     tags:
-      - '405: Cart'
+      - 'M04: Cart'
 
     requestBody:
       required: true
