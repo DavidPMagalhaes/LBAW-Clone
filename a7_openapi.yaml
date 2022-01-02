@@ -12,16 +12,15 @@ servers:
 tags:
  - name: 'M01: Authentication'
  - name: 'M02: Individual Profile'
- - name: 'M03: User Administration'
- - name: 'M04: Book'
- - name: 'M05: Cart'
- - name: 'M06: Review'
- - name: 'M07: Wishlist'
- - name: 'M08: Order'
- - name: 'M09: Report'
- - name: 'M10: Static Pages'
- - name: 'M11: Notification'
- - name: 'M12: Home'
+ - name: 'M03: Book'
+ - name: 'M04: Cart'
+ - name: 'M05: Review'
+ - name: 'M06: Wishlist'
+ - name: 'M07: Order'
+ - name: 'M08: Report'
+ - name: 'M09: Static Pages'
+ - name: 'M10: Notification'
+ - name: 'M11: Home'
 
 
 paths:
@@ -162,7 +161,7 @@ paths:
        '200':
          description: 'Ok. Show User Profile UI'
 
- /user/{id}/edit:
+ /user/{id}/edit/update:
   post:
     operationId: R202
     summary: 'R202: Change user information'
@@ -206,61 +205,14 @@ paths:
                   description: 'Failed to change user profile.'
                   value: '/users/{id}/changeUserInfo'
 
- /user/{id}/deleteUser:
+
+ /user/{id}/purchase-history:
   post:
-    operationId: R301
-    summary: 'R301: Delete user information'
-    description: 'Processes the new user information. Access: ADM'
+    operationId: R203
+    summary: 'R203: Purchase History'
+    description: 'Bans user. Access: USR'
     tags:
-      - 'M03: User Administration'
-
-    requestBody:
-      required: true
-      content:
-        application/x-www-form-urlencoded:
-          schema:
-            type: object
-            properties:
-              name:
-                type: string
-              email:
-                type: string
-              password:
-                type: string
-              cardNumber:
-                type: integer
-              securityNumber:
-                type: integer
-              isBlocked:
-                type: boolean
-              isAdmin:
-                type: boolean
-
-            required:
-                                  - email
-                                  - password
-    responses:
-        '302':
-          description: 'Change the information in user profile'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: 'Successfuly deleted user profile'
-                  value: '/users/{id}/changeUserInfo'
-                302Failure:
-                  description: 'Failed to delete user profile.'
-                  value: '/users/{id}/changeUserInfo'
-
- /user/{id}/BanUser:
-  post:
-    operationId: R302
-    summary: 'R302: Ban user'
-    description: 'Bans user. Access: ADM'
-    tags:
-      - 'M03: User Administration'
+      - 'M02: Individual Profile'
 
     requestBody:
       required: true
@@ -288,20 +240,20 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successfuly banned user profile'
+                  description: 'Successfuly accessed purchase history'
                   value: '/users/{id}/changeUserInfo'
                 302Failure:
-                  description: 'Failed to ban user profile.'
+                  description: 'Failed to access purchase history'
                   value: '/users/{id}/changeUserInfo'
 
- /api/books/searchBook:
+ /search/{id}:
    get:
-     operationId: R401
-     summary: 'R401: Search books API'
+     operationId: R301
+     summary: 'R301: Search books API'
      description: 'Searches for books and returns the results as JSON. Access: PUB.'
 
      tags:
-       - 'M04: Book'
+       - 'M03: Book'
 
      parameters:
        - in: query
@@ -348,24 +300,24 @@ paths:
                    author:
                      type: string
 
- /api/books/viewBook:
+ api/books/viewBook/{id}:
   get:
-    operationId: R402
-    summary: 'R402: View book'
+    operationId: R302
+    summary: 'R302: View book'
     description: 'Show an individual book. Access: USR'
     tags:
-      - 'M04: Book'
+      - 'M03: Book'
     responses:
       '200':
         description: 'Ok. Show Book'
 
  /api/books/addBook:
   post:
-    operationId: R403
-    summary: 'R403: Add Book Action'
+    operationId: R303
+    summary: 'R303: Add Book Action'
     description: 'Provide add book form submission. Access: ADM'
     tags:
-      - 'M04: Book'
+      - 'M03: Book'
 
     requestBody:
       required: true
@@ -408,11 +360,11 @@ paths:
 
  /api/books/editBook:
   post:
-    operationId: R404
-    summary: 'R404: Edit Book Action'
+    operationId: R304
+    summary: 'R304: Edit Book Action'
     description: 'Edit book form submission. Access: ADM'
     tags:
-      - 'M04: Book'
+      - 'M03: Book'
 
     requestBody:
       required: true
@@ -455,11 +407,11 @@ paths:
 
  /api/books/removeBook:
   post:
-    operationId: R405
-    summary: 'R405: Remove Book Action'
+    operationId: R305
+    summary: 'R305: Remove Book Action'
     description: 'Delete book form submission. Access: ADM'
     tags:
-      - 'M04: Book'
+      - 'M03: Book'
 
     requestBody:
       required: true
@@ -503,22 +455,22 @@ paths:
 
  /users/{id}/cart:
   get:
-    operationId: R501
-    summary: 'R501: View user cart'
+    operationId: R401
+    summary: 'R401: View user cart'
     description: 'Show the individual user cart. Access: USR'
     tags:
-      - 'M05: Cart'
+      - 'M04: Cart'
     responses:
       '200':
         description: 'Ok. Show Cart UI31'
 
- /users/{id}/cart/add:
+ /api/books/viewBook/{id}/CartController.php:
   post:
-    operationId: R502
-    summary: 'R502: Add to Cart Action'
+    operationId: R402
+    summary: 'R402: Add to Cart Action'
     description: 'Provide add to cart form submission. Access: USR'
     tags:
-      - 'M05: Cart'
+      - 'M04: Cart'
 
     requestBody:
       required: true
@@ -554,13 +506,13 @@ paths:
                 description: 'Failed add to cart. Redirect to user cart.'
                 value: '/users/{id}/ViewCart'
 
- /users/{id}/cart/remove:
+ /users/{id}/cart/{bookid}/delete:
   post:
-    operationId: R503
-    summary: 'R503: Remove from Cart Action'
+    operationId: R403
+    summary: 'R403: Remove from Cart Action'
     description: 'Provide remove from cart form submission. Access: USR'
     tags:
-      - 'M05: Cart'
+      - 'M04: Cart'
 
     requestBody:
       required: true
@@ -595,11 +547,11 @@ paths:
 
  /users/{id}/cart/update:
   post:
-    operationId: R504
-    summary: 'R504: Update book quantity'
-    description: 'R504: Update book quantity in cart. Access: USR'
+    operationId: R404
+    summary: 'R404: Update book quantity'
+    description: 'Update book quantity in cart. Access: USR'
     tags:
-      - 'M05: Cart'
+      - 'M04: Cart'
     requestBody:
       required: true
       content:
@@ -636,11 +588,11 @@ paths:
 
  /users/{id}/cart/checkout:
   post:
-    operationId: R505
-    summary: 'R505: Checkout Action'
-    description: 'Accessess remove cart and generates a random order number. Access: USR'
+    operationId: R405
+    summary: 'R405: Checkout Action'
+    description: 'Accessess remove cart and gives an order number. Access: USR'
     tags:
-      - 'M05: Cart'
+      - '405: Cart'
 
     requestBody:
       required: true
@@ -674,13 +626,13 @@ paths:
                 value: '/users/{id}/ViewCart'
 
 
- /item/{id}/view-reviews:
+ /api/books/viewBook/{id}/reviews:
   get:
-    operationId: R601
-    summary: 'R601: View item reviews'
+    operationId: R501
+    summary: 'R501: View item reviews'
     description: 'Show the Item reviews. Access: PUB'
     tags:
-      - 'M06: Review'
+      - 'M05: Review'
     responses:
       '200':
         description: 'Ok. Show Item review UI52'
@@ -688,22 +640,22 @@ paths:
 
  /users/{id}/view-writtenReviews:
   get:
-    operationId: R602
-    summary: 'R602: View item written review'
+    operationId: R502
+    summary: 'R502: View item written review'
     description: 'Show the written reviews. Access: USR'
     tags:
-      - 'M06: Review'
+      - 'M05: Review'
     responses:
       '200':
         description: 'Ok. Show Item review UI34'
 
  /users/{id}/DeleteWrittenReview:
   post:
-    operationId: R603
-    summary: 'R603: Remove review Action'
+    operationId: R503
+    summary: 'R503: Remove review Action'
     description: 'Provide remove review. Access: USR'
     tags:
-      - 'M06: Review'
+      - 'M05: Review'
 
     requestBody:
       required: true
@@ -733,11 +685,11 @@ paths:
 
  /users/{id}/EditWrittenReview:
   post:
-    operationId: R604
-    summary: 'R604: Edit review Action'
+    operationId: R504
+    summary: 'R504: Edit review Action'
     description: 'Provide remove review. Access: USR'
     tags:
-      - 'M06: Review'
+      - 'M05: Review'
 
     requestBody:
       required: true
@@ -772,20 +724,20 @@ paths:
 
  /item/{id}/AddReview:
   get:
-    operationId: R605
-    summary: 'R605: View item reviews'
+    operationId: R505
+    summary: 'R505: View item reviews'
     description: 'Show the create review form. Access: USR'
     tags:
-      - 'M06: Review'
+      - 'M05: Review'
     responses:
       '200':
         description: 'Ok. Show Item create review form UI52'
   post:
-    operationId: R606
-    summary: 'R606: Edit review Action'
+    operationId: R506
+    summary: 'R506: Edit review Action'
     description: 'Provide remove review. Access: USR'
     tags:
-      - 'M06: Review'
+      - 'M05: Review'
 
     requestBody:
       required: true
@@ -817,24 +769,24 @@ paths:
                 value: '/users/{id}/WrittenReviews'
 
 
- /users/{id}/wishlist:
+ users/{id}/wishlist:
   get:
-    operationId: R701
-    summary: 'R701: View user wishlist'
+    operationId: R601
+    summary: 'R601: View user wishlist'
     description: 'Show the individual user wishlist. Access: USR'
     tags:
-      - 'M07: Wishlist'
+      - 'M06: Wishlist'
     responses:
       '200':
         description: 'Ok. Show Wishtlist UI33'
 
- /users/{id}/wishlist/add:
+ /api/books/viewBook/{id}/WishlistController.php:
   post:
-    operationId: R702
-    summary: 'R702: Add to Wishtlist Action'
+    operationId: R602
+    summary: 'R602: Add to Wishtlist Action'
     description: 'Provide add to wishlist form submission. Access: USR'
     tags:
-      - 'M07: Wishlist'
+      - 'M06: Wishlist'
 
     requestBody:
       required: true
@@ -867,13 +819,13 @@ paths:
                 description: 'Failed add to wishlist. Redirect to user profile.'
                 value: '/users/{id}'
 
- /users/{id}/wishlist/remove:
+ users/{id}/wishlist/{bookid}/delete:
   post:
-    operationId: R702
-    summary: 'R702: Remove from Wishtlist Action'
+    operationId: R602
+    summary: 'R602: Remove from Wishtlist Action'
     description: 'Provide remove from wishlist form submission. Access: OWN'
     tags:
-      - 'M07: Wishlist'
+      - 'M06: Wishlist'
 
     requestBody:
       required: true
@@ -908,33 +860,33 @@ paths:
 
  /users/{id}/order:
   get:
-    operationId: R801
-    summary: 'R801: View user order'
+    operationId: R701
+    summary: 'R701: View user order'
     description: 'Show the individual user orders. Access: OWN'
     tags:
-      - 'M08: Order'
+      - 'M07: Order'
     responses:
       '200':
         description: 'Ok. Show Order UI'
 
  /users/{id}/order/buycart:
   get:
-    operationId: R802
-    summary: 'R802: Show Current Cart buying form'
+    operationId: R702
+    summary: 'R702: Show Current Cart buying form'
     description: 'Shows the page to add order details. Access: OWN'
     tags:
-      - 'M08: Order'
+      - 'M07: Order'
     responses:
       '200':
         description: 'Ok. Show Current Order UI'
 
  /users/{id}/order/buycart-buy:
   post:
-    operationId: R803
-    summary: 'R803: Buy Current Cart Action'
+    operationId: R703
+    summary: 'R703: Buy Current Cart Action'
     description: 'Fills the details and buys item(s). Access: OWN'
     tags:
-      - 'M08: Order'
+      - 'M07: Order'
     requestBody:
       required: true
       content:
@@ -966,11 +918,11 @@ paths:
 
  /reports:
   get:
-    operationId: R901
-    summary: 'R901: Show list of reports'
+    operationId: R801
+    summary: 'R801: Show list of reports'
     description: 'Shows the list of reports to the admin. Access: ADMIN'
     tags:
-      - 'M09: Report'
+      - 'M08: Report'
     responses:
       '200':
        description: 'Ok. Show report UI'
@@ -978,22 +930,22 @@ paths:
 
  /reports/{id}:
   get:
-    operationId: R902
-    summary: 'R902: Show report'
+    operationId: R802
+    summary: 'R802: Show report'
     description: 'Shows the report to the user'
     tags:
-      - 'M09: Report'
+      - 'M08: Report'
     responses:
       '200':
        description: 'Ok. Show report UI'
 
  /reports/add:
   post:
-    operationId: R903
-    summary: 'R903: Create report'
+    operationId: R803
+    summary: 'R803: Create report'
     description: 'R903: Create report form submission. Access: USR'
     tags:
-      - 'M09: Report'
+      - 'M08: Report'
     requestBody:
       required: true
       content:
@@ -1025,11 +977,11 @@ paths:
 
  /reports/{id}/update:
   post:
-    operationId: R904
-    summary: 'R904: Update report'
-    description: 'R904: Update report. Access: USR'
+    operationId: R804
+    summary: 'R804: Update report'
+    description: 'Update report. Access: USR'
     tags:
-      - 'M09: Report'
+      - 'M08: Report'
     requestBody:
       required: true
       content:
@@ -1063,33 +1015,33 @@ paths:
 
  /viewPage:
   get:
-    operationId: R1001
-    summary: 'R1001: Show static page'
+    operationId: R901
+    summary: 'R901: Show static page'
     description: 'Shows the static page to the user'
     tags:
-      - 'M10: Static Pages'
+      - 'M09: Static Pages'
     responses:
       '200':
        description: 'Ok. Show static page UI'
 
  /notification/{id}:
   get:
-    operationId: R1101
-    summary: 'R1101: Show notification'
+    operationId: R1001
+    summary: 'R1001: Show notification'
     description: 'Shows the notification to the user'
     tags:
-      - 'M11: Notification'
+      - 'M10: Notification'
     responses:
       '200':
        description: 'Ok. Show notification UI'
 
  /notification/{id}/update:
   post:
-    operationId: R1102
-    summary: 'R1102: Read notification'
+    operationId: R1002
+    summary: 'R1002: Read notification'
     description: 'Marks the notification as read'
     tags:
-      - 'M11: Notification'
+      - 'M10: Notification'
     requestBody:
       required: true
       content:
@@ -1112,13 +1064,13 @@ paths:
 
 
 
- /:
+ /home:
   get:
-    operationId: R1201
-    summary: 'R1201: Show Home page'
+    operationId: R1101
+    summary: 'R1101: Show Home page'
     description: 'Shows the the home page to the user'
     tags:
-      - 'M12: Home'
+      - 'M11: Home'
     responses:
       '200':
        description: 'Ok. Show home page UI'
