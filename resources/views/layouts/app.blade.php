@@ -50,8 +50,10 @@
         <div class="search-container">
           <form action="/search/3">
             <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Submit<i class="fa fa-search"></i></button>
+            <button type="submit">Submit</button>
+
           </form>
+
         </div>
       </div> 
     

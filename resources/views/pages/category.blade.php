@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('pages.home')
 
-@section('content')
+@section('title', 'category')
+
+
+@section('information')
 
 
 <section id="books">
