@@ -311,6 +311,15 @@ main > div2 {
   color:rgb(255, 255, 255);
 }
 
+
+#checkout button{
+  background-color: #e4d5d4;
+  width: 350px;
+    background-color: #d6291c;
+  border-color: #d6291c;
+  color:rgb(255, 255, 255);
+}
+
 #checkout a.button:hover{
   background-color: #ffffff;
   color: #333030;

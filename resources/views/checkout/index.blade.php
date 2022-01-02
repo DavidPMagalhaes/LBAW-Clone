@@ -36,7 +36,8 @@
         <form action="checkout/confirmed" method="POST">
             {{ csrf_field() }}
             {{ method_field('put') }}
-            <a  type="submit" class="button">Confirm</button>
+            <button  type="submit" class="button">Confirm</button>
+</form>
 </div>
 
 @endsection

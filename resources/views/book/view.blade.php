@@ -50,6 +50,7 @@
                                     name="quantity">
                         <button type="submit" class="button">Add to Cart</button>
                     </div>
+                        </form>
 
                     <div id="wish">
                             <form action="{{$book->bookid}}/WishlistController.php" method="POST">
