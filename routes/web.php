@@ -24,8 +24,6 @@ Route::get('/home', 'HomeController@show');
 Route::get('search/{id}', 'SearchBarController@show');
 Route::get('category/{key}', 'CategoryController@show');
 
-
-
 // Individual Profile
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
