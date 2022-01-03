@@ -36,6 +36,8 @@ Route::get('api/books/viewBook/{id}', 'BookProductController@show');
 
 // Review
 Route::get('api/books/viewBook/{id}/reviews', 'ReviewController@show');
+Route::get('api/books/viewBook/{id}/addReview', 'ReviewController@addReviewForm');
+Route::put('api/books/viewBook/{id}/addReview/ReviewController.php', 'ReviewController@store');
 
 // Cart
 Route::put('api/books/viewBook/{id}/CartController.php', 'CartController@store');

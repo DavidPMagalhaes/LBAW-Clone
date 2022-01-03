@@ -28,6 +28,7 @@
                     <p>Book Type: {{ $book->booktype }}</p>
                     <p>Publisher: {{ $book->publisher }}</p>
                     <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
+                    <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
 
                 </div1>
 

@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\BookContent;
 use App\Models\BookProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -19,6 +20,11 @@ class ReviewController extends Controller
         //
     }
 
+    public function addReviewForm($id) {
+        $book = BookProduct::find($id);
+        return view('review.add_review', ['book' => $book]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,26 +32,12 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        $review = new Review();
-
-        $this->authorize('create', $review);
-
-        $review->rating = $request->input('rating');
-        $review->reviewcomment = $request->input('comment');
-        $review->userid = Auth::registered_user()->userid;
-        $review->save();
-
-        return $review;
+        //
     }
 
     public function delete(Request $request, $id)
     {
-      $review = Review::find($id);
-
-      $this->authorize('delete', $review);
-      $review->delete();
-
-      return $review;
+        //
     }
 
     /**
@@ -54,9 +46,19 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $review = new Review;
+        $userid = Auth::id(); 
+
+        $review->userid = Auth::user()->id;
+        $review->bookid = $id;
+        $review->rating = $request->input('rating');
+        $review->reviewcomment = $request->input('comment');
+        
+        $review->save();
+
+        return redirect()->action([BookProductController::class, 'show'], ['id' => $review->bookid]);
     }
 
     /**
@@ -75,9 +77,6 @@ class ReviewController extends Controller
 
     public function list()
     {
-      $this->authorize('list', Card::class);
-      $reviews = Auth::bookProduct()->reviews()->orderBy('reviewid');
-      return view('pages.reviews', ['reviews' => $reviews]);
     }
 
     /**
