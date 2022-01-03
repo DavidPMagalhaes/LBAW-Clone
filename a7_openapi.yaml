@@ -222,7 +222,7 @@ paths:
                   description: 'Failed to change user profile.'
                   value: '/users/{id}'
 
-/user/{id}/purchase-history:
+ /user/{id}/purchase-history:
    get:
      operationId: R204
      summary: 'R204: View user purchase history'
@@ -243,7 +243,7 @@ paths:
 
 
 
-/user/{id}/payment-methods:
+ /user/{id}/payment-methods:
    get:
      operationId: R205
      summary: 'R205: View user saved payment methods'
@@ -263,7 +263,7 @@ paths:
          description: 'Ok. Show individual saved payment methods'
 
 
-/admin/users:
+ /admin/users:
    get:
      operationId: R206
      summary: 'R206: View user profiles'
@@ -282,7 +282,7 @@ paths:
        '200':
          description: 'Ok. Show list of user profiles'
 
-/admin/users/{id}:
+ /admin/users/{id}:
    get:
      operationId: R207
      summary: 'R207: View individual user profile'
