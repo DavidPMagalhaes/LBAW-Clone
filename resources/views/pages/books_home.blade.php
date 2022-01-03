@@ -7,7 +7,10 @@
 
 <div id="listing-books">
 
-<h1 class="text">New in</h1>
+<div class="text">
+  <h1>New in</h1>
+</div>
+
 <section id="books">
   @each('partials.book', $books, 'book')
 </section>

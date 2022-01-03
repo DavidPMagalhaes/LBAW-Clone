@@ -4,11 +4,6 @@
 
 @section('information')
 
-    <!--<div class="m-auto w-4/8 py-24">
-        <div class="text-center">
-            <h1 class="text">Book Page</h1>
-        </div>
-    </div>-->
     <script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
