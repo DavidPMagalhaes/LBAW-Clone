@@ -958,7 +958,7 @@ paths:
  /admin/order:
   get:
     operationId: R701
-    summary: 'R701: View user's orders'
+    summary: 'R701: View users orders'
     description: 'Show orders. Access: ADM'
     tags:
       - 'M07: Order'
