@@ -91,9 +91,10 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit($id, $reviewid)
     {
-        //
+        $review = Review::find($reviewid);
+        return view('review.edit_review', ['review' => $review]);
     }
 
     /**
@@ -103,9 +104,19 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, $id, $reviewid)
     {
-        //
+        $review = Review::find($reviewid);
+        $userid = Auth::id(); 
+
+        $review->userid = Auth::user()->id;
+        $review->bookid = $id;
+        $review->rating = $request->input('rating');
+        $review->reviewcomment = $request->input('comment');
+        
+        $review->save();
+
+        return redirect()->action([ReviewController::class, 'showUserReviews'], ['id' => $id]);
     }
 
     /**

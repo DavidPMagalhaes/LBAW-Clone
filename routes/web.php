@@ -40,6 +40,8 @@ Route::get('api/books/viewBook/{id}/reviews', 'ReviewController@show');
 Route::get('api/books/viewBook/{id}/addReview', 'ReviewController@addReviewForm');
 Route::put('api/books/viewBook/{id}/addReview/ReviewController.php', 'ReviewController@store');
 Route::delete('user/{id}/review-history/{reviewid}/delete', 'ReviewController@destroy');
+Route::get('user/{id}/review-history/{reviewid}/edit', 'ReviewController@edit');
+Route::put('user/{id}/review-history/{reviewid}/edit/update', 'ReviewController@update');
 
 // Cart
 Route::put('api/books/viewBook/{id}/CartController.php', 'CartController@store');

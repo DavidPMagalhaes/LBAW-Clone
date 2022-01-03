@@ -19,6 +19,8 @@
         </div>
       </form>
     </div>	
+
+    <a href="review-history/{{$review->reviewid}}/edit" class="button">Editar</a>
     <p> ------------------------------------------------------- </p>
   </div>
 @endforeach
