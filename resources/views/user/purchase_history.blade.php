@@ -24,6 +24,7 @@
         <h2> {{ $orderInformation->getBookContent($orderInformation->getBookProduct($orderInformation->bookid)->bookcontentid)->title}} </h2>
         <p> Quantity: {{ $orderInformation->quantity }}</p>
         <p> Status: {{ $orderInformation->orderstatus }} </p>
+        <a class="button" href="/api/books/viewBook/{{ $orderInformation->bookid }}/addReview"> Add Review </a>
       </article>
       @endforeach
 
