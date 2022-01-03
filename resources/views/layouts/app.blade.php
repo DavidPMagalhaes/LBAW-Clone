@@ -28,6 +28,9 @@
         </h1>
         <div1>
         @if (Auth::check())
+          <a href="/users/{{Auth::user()->id}}/notifications" class="button">
+            <span>Notifications</span>
+          </a> 
           <a class="button" href="/users/{{Auth::user()->id}}/wishlist"> WishList </a> 
           <a class="button" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
           <a class="button" href="/user/{{Auth::user()->id}}"> Account </a> 

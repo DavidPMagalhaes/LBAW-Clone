@@ -72,3 +72,6 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('about', 'AboutUsController@show');
 Route::get('contact', 'ContactController@show');
 Route::get('faq', 'FAQController@show');
+
+// Notification
+Route::get('users/{id}/notifications', 'NotificationController@index');
