@@ -353,10 +353,50 @@ main > div2 {
   padding-left: 15px;;
   padding-top: 15px;
 }
-.edit-formula input{
-  background-color: antiquewhite;
-}
 
+#content label {
+  font-weight: normal;
+}
+#content > form {
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 20em;
+  border: 1px solid #d2afe7;
+}
+#content > form .error {
+  font-weight: bold;
+  color: #ff3333;
+}
+#content > form input {
+  background-color: white;
+}
+@media (max-width: 70em) {
+
+  main > header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  main > header h1 {
+    grid-row-end: span 2;
+  }
+}
+@media (max-width: 25em) {
+  body {
+    margin: 0;
+  }
+  main > header {
+    margin: 0;
+    padding: 0.5em;
+  }
+  main > header span {
+    margin: 0;
+  }
+  #content form {
+    margin: 0;
+    max-width: 25em;
+  }
+
+}
 
 
 /**
