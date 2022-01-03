@@ -975,7 +975,7 @@ paths:
     responses:
       '200':
         description: 'Ok. Show Order UI'
-post:
+  post:
     operationId: R703
     summary: 'R703: Change status  of order'
     description: 'Change status of order. Access: ADM'
