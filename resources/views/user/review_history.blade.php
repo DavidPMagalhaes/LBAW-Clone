@@ -9,6 +9,16 @@
     <p> Comment: {{ $review->reviewcomment }}</p>
     <p> Rating: {{ $review->rating }} </p>
     <p> Time posted: {{ $review->timeposted }} </p>
+
+    <div id = "remove">
+      <form action="review-history/{{ $review->reviewid }}/delete" method="POST">
+        @method('delete')
+        @csrf
+        <div>
+          <button type="submit" class="red-button">Remove</button>
+        </div>
+      </form>
+    </div>	
     <p> ------------------------------------------------------- </p>
   </div>
 @endforeach
