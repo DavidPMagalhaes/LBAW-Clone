@@ -35,6 +35,15 @@ Route::get('user/{id}/review-history', 'ReviewController@showUserReviews');
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
 
+// Admin
+Route::get('/api/books/viewBook/{id}/edit', 'BookProductController@edit');
+Route::put('/api/books/viewBook/{id}/edit/update', 'BookProductController@update');
+Route::get('/api/books/addBook', 'BookProductController@create');
+Route::put('/api/books/addBook/confirmed', 'BookProductController@store');
+Route::get('/admin/users', 'AdminController@users');
+Route::get('/admin/users/{id}', 'AdminController@userDetails');
+
+
 // Review
 Route::get('api/books/viewBook/{id}/reviews', 'ReviewController@show');
 Route::get('api/books/viewBook/{id}/addReview', 'ReviewController@addReviewForm');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\BookProduct;
+use App\Models\BookContent;
 use Illuminate\Http\Request;
 
 class BookProductController extends Controller
@@ -24,7 +26,7 @@ class BookProductController extends Controller
      */
     public function create()
     {
-
+        return view('book.create');
     }
 
     public function delete(Request $request, $id)
@@ -40,7 +42,44 @@ class BookProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bookProduct = new BookProduct;
+        $bookContent = new BookContent;
+
+        $author = Author::where('authorname', '=', $request->input('author'))->first();
+
+        if($author){
+            $bookContent->authorid = $author->authorid;
+        }
+        else{
+            $newAuthor = new Author;
+            $newAuthor->authorname = $bookContent->authorid = $request->input('author');
+            $newAuthor->description = " ";
+            $newAuthor->save();
+
+            $bookContent->authorid = $newAuthor->authorid;
+            //dd($newAuthor);
+        }
+ 
+        $bookContent->title = $request->input('title');
+        $bookContent->bookyear = $request->input('bookyear');
+        $bookContent->average = 0.0;
+        $bookContent->bookcover = $request->input('bookcover');
+        $bookContent->save();
+    
+        $bookProduct->price = $request->input('price');
+        if($bookProduct->booktype == 'e-book'){
+            $bookProduct->stock = 0;
+        }
+        else $bookProduct->stock = $request->input('stock');
+        $bookProduct->publisher = $request->input('publisher');
+        $bookProduct->booktype = $request->input('booktype');
+        $bookProduct->bookcontentid = $bookContent->bookid;
+        $bookProduct->save();
+
+
+
+        return redirect('/home');
+        
     }
 
     /**
@@ -66,9 +105,10 @@ class BookProductController extends Controller
      * @param  \App\Models\BookProduct  $bookProduct
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookProduct $bookProduct)
+    public function edit($id)
     {
-        //
+        $book = BookProduct::find($id);
+        return view('book.edit')->with('book', $book);
     }
 
     /**
@@ -78,9 +118,31 @@ class BookProductController extends Controller
      * @param  \App\Models\BookProduct  $bookProduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BookProduct $bookProduct)
+    public function update(Request $request, $id)
     {
-        //
+        $bookProduct = BookProduct::find($id);
+
+        /*
+        //esta bem??
+        $bookContent = $bookProduct->bookContent();
+        
+        if($bookContent) {
+            $bookContent->title = $request->input('title');
+            $bookContent->bookyear = $request->input('bookyear');
+            $bookContent->authorid = $request->input('authorid');
+            $bookContent->bookcover = $request->input('bookcover');
+            $bookContent->save();
+        }
+        */
+        
+        if($bookProduct) {
+            $bookProduct->price = $request->input('price');
+            $bookProduct->stock = $request->input('stock');
+            $bookProduct->publisher = $request->input('publisher');
+            $bookProduct->booktype = $request->input('booktype');
+            $bookProduct->save();
+        }
+        return redirect('/home');
     }
 
     /**

@@ -21,7 +21,7 @@
 
             <div class="text">
 
-                <div1>
+                <div>
                     <h1> {{ $book->bookContent()->get('title')[0]->title }} </h1>
                     <p> Written by {{ $book->getAuthor($book->bookContent()->get('authorid')[0]->authorid)->authorname }}</p> 
                     <p>Edition: {{ $book->edition }}</p>
@@ -29,8 +29,11 @@
                     <p>Publisher: {{ $book->publisher }}</p>
                     <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
                     <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
+                    @if (Auth::user()->isadmin == 'True')
+                        <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                    @endif
 
-                </div1>
+                </div>
 
                 
                 <div id ="price-buttons">

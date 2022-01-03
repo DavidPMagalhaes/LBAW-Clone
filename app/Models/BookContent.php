@@ -15,6 +15,10 @@ class BookContent extends Model
     protected $table = 'book_content';
     protected $primaryKey = 'bookid';
 
+    protected $fillable = [
+        'bookid', 'title', 'bookyear','average', 'authorid', 'bookcover'
+    ];
+
     public function bookProduct() {
         return $this->hasMany('App\Models\BookProduct');
     }

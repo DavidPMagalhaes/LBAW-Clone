@@ -15,6 +15,10 @@ class BookProduct extends Model
     protected $table = 'book_product';
     protected $primaryKey = 'bookid';
 
+    protected $fillable = [
+        'bookid', 'price', 'stock','publisher', 'edition', 'booktype', 'bookcontentid'
+    ];
+
     public function bookContent() {
         return $this->belongsTo('App\Models\BookContent', 'bookcontentid');
     }
