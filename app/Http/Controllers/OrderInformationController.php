@@ -158,8 +158,19 @@ class OrderInformationController extends Controller
      * @param  \App\Models\OrderInformation  $orderInformation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderInformation $orderInformation)
+    public function destroy($id, $orderid)
     {
-        //
+        $orderInformation = OrderInformation::where('orderid', $orderid)->get();
+
+        foreach ($orderInformation as $order) {
+            if ($order->orderstatus !== 'PROCESSING') {
+                return redirect()->back();
+            }
+        }
+        
+        $order = UserOrder::find($orderid);
+        $order->delete();
+
+        return redirect()->back();
     }
 }

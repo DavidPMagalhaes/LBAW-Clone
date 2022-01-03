@@ -59,6 +59,7 @@ Route::get('users/{id}/wishlist', 'WishlistController@index');
 // Checkout
 Route::get('/users/{id}/cart/checkout', 'OrderInformationController@checkout');
 Route::put('/users/{id}/cart/checkout/confirmed', 'OrderInformationController@confirmedCheckout');
+Route::delete('/user/{id}/purchase-history/{orderid}/delete', 'OrderInformationController@destroy');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
