@@ -75,6 +75,12 @@ class ReviewController extends Controller
         return view('review.reviews', ['reviews' => $reviews], ['book' => $book]);
     }
 
+    public function showUserReviews($id)
+    {
+        $reviews = Review::where('userid', '=', $id)->get();
+        return view('user.review_history', ['reviews' => $reviews]);
+    }
+
     public function list()
     {
     }

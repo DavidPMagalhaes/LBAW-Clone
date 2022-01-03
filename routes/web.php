@@ -30,6 +30,7 @@ Route::get('user/{id}/edit', 'UserController@edit');
 Route::put('user/{id}/edit/update', 'UserController@update');
 //Route::post('user/{id}/edit', 'UserController@update');
 Route::get('user/{id}/purchase-history', 'PurchaseHistoryController@index');
+Route::get('user/{id}/review-history', 'ReviewController@showUserReviews');
 
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
