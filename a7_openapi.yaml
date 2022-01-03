@@ -996,7 +996,7 @@ paths:
 
             required:
                             - orderid
-                            status
+                            - status
 
     responses:
       '302':
