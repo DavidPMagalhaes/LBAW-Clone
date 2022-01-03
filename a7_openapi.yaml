@@ -161,7 +161,7 @@ paths:
        '200':
          description: 'Ok. Show User Profile UI'
 
-/user/{id}/edit:
+ /user/{id}/edit:
    get:
      operationId: R202
      summary: 'R202: View edit form'
@@ -180,7 +180,7 @@ paths:
        '200':
          description: 'Ok. Show Edit Profile UI'
 
- /user/{id}/edit:
+ /user/{id}/edit/confirm:
   post:
     operationId: R203
     summary: 'R203: Change user information'
