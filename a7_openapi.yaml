@@ -301,7 +301,7 @@ paths:
        '200':
          description: 'Ok. Show individual user profile'
 
-/admin/users/{id}/edit:
+ /admin/users/{id}/edit:
   post:
     operationId: R208
     summary: 'R208: Change user status'
