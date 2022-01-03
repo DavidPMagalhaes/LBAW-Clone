@@ -161,10 +161,29 @@ paths:
        '200':
          description: 'Ok. Show User Profile UI'
 
- /user/{id}/edit/update:
+/user/{id}/edit:
+   get:
+     operationId: R202
+     summary: 'R202: View edit form'
+     description: 'Show the individual edit profile form. Access: USR'
+     tags:
+       - 'M02: Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show Edit Profile UI'
+
+ /user/{id}/edit:
   post:
-    operationId: R202
-    summary: 'R202: Change user information'
+    operationId: R203
+    summary: 'R203: Change user information'
     description: 'Processes the new user information. Access: USR'
     tags:
       - 'M02: Individual Profile'
@@ -187,9 +206,7 @@ paths:
               securityNumber:
                 type: integer
 
-            required:
-                                  - email
-                                  - password
+
     responses:
         '302':
           description: 'Change the information in user profile'
@@ -200,17 +217,95 @@ paths:
               examples:
                 302Success:
                   description: 'Successful changed user profile'
-                  value: '/users/{id}/changeUserInfo'
+                  value: '/users/{id}'
                 302Failure:
                   description: 'Failed to change user profile.'
-                  value: '/users/{id}/changeUserInfo'
+                  value: '/users/{id}'
+
+/user/{id}/purchase-history:
+   get:
+     operationId: R204
+     summary: 'R204: View user purchase history'
+     description: 'Show the individual user purchase history. Access: USR'
+     tags:
+       - 'M02: Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show ndividual user purchase history'
 
 
- /user/{id}/purchase-history:
+
+/user/{id}/payment-methods:
+   get:
+     operationId: R205
+     summary: 'R205: View user saved payment methods'
+     description: 'Show the individual user saved payment methods. Access: USR'
+     tags:
+       - 'M02: Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show individual saved payment methods'
+
+
+/admin/users:
+   get:
+     operationId: R206
+     summary: 'R206: View user profiles'
+     description: 'Show list of user profiles. Access: ADM'
+     tags:
+       - 'M02: Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show list of user profiles'
+
+/admin/users/{id}:
+   get:
+     operationId: R207
+     summary: 'R207: View individual user profile'
+     description: 'Show individual user profile. Access: ADM'
+     tags:
+       - 'M02: Individual Profile'
+
+     parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+     responses:
+       '200':
+         description: 'Ok. Show individual user profile'
+
+/admin/users/{id}/edit:
   post:
-    operationId: R203
-    summary: 'R203: Purchase History'
-    description: 'Bans user. Access: USR'
+    operationId: R208
+    summary: 'R208: Change user status'
+    description: 'Change user status. Access: ADM'
     tags:
       - 'M02: Individual Profile'
 
@@ -225,26 +320,28 @@ paths:
                 type: string
               email:
                 type: string
+              password:
+                type: string
               isBlocked:
-                type: boolean
+                type: bool
 
-            required:
-                                  - email
-                                  - password
+
     responses:
         '302':
-          description: 'Change isBlocked value'
+          description: 'Change the user status'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successfuly accessed purchase history'
-                  value: '/users/{id}/changeUserInfo'
+                  description: 'Successful changed user profile'
+                  value: '/admin/users/{id}'
                 302Failure:
-                  description: 'Failed to access purchase history'
-                  value: '/users/{id}/changeUserInfo'
+                  description: 'Failed to change user profile.'
+                  value: '/admin/users/{id}'
+
+
 
  /search/{id}:
    get:
@@ -858,35 +955,33 @@ paths:
                 description: 'Failed removal from wishlist. Redirect to user profile.'
                 value: '/users/{id}'
 
- /users/{id}/order:
+ /admin/order:
   get:
     operationId: R701
-    summary: 'R701: View user order'
-    description: 'Show the individual user orders. Access: OWN'
+    summary: 'R701: View user's orders'
+    description: 'Show orders. Access: ADM'
+    tags:
+      - 'M07: Order'
+    responses:
+      '200':
+        description: 'Ok. Show Orders UI'
+ /admin/orders/{id}:
+  get:
+    operationId: R702
+    summary: 'R702: View specific order'
+    description: 'Show order. Access: ADM'
     tags:
       - 'M07: Order'
     responses:
       '200':
         description: 'Ok. Show Order UI'
-
- /users/{id}/order/buycart:
-  get:
-    operationId: R702
-    summary: 'R702: Show Current Cart buying form'
-    description: 'Shows the page to add order details. Access: OWN'
-    tags:
-      - 'M07: Order'
-    responses:
-      '200':
-        description: 'Ok. Show Current Order UI'
-
- /users/{id}/order/buycart-buy:
-  post:
+post:
     operationId: R703
-    summary: 'R703: Buy Current Cart Action'
-    description: 'Fills the details and buys item(s). Access: OWN'
+    summary: 'R703: Change status  of order'
+    description: 'Change status of order. Access: ADM'
     tags:
       - 'M07: Order'
+
     requestBody:
       required: true
       content:
@@ -894,25 +989,29 @@ paths:
           schema:
             type: object
             properties:
-              credit card:
+              orderid:
                 type: integer
+              status:
+                type: string
+
             required:
-                            - credit card
+                            - orderid
+                            status
 
     responses:
       '302':
-        description: 'Redirect after processing order to user profile.'
+        description: 'Redirect after processing request.'
         headers:
           Location:
             schema:
               type: string
             examples:
               302Success:
-                description: 'Successful purchased your items. Redirect to user profile.'
-                value: '/users/{id}'
+                description: 'Successful change. Redirect to general reviews.'
+                value: '/admin-pages/orders'
               302Failure:
-                description: 'Failed purchase your items. Redirect to user profile.'
-                value: '/users/{id}'
+                description: 'Failed change.  Redirect to general reviews.'
+                value: '/admin-pages/orders'
 
 
 
