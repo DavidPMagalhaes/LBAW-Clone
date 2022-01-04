@@ -54,7 +54,7 @@ Route::get('user/{id}/review-history/{reviewid}/edit', 'ReviewController@edit');
 Route::put('user/{id}/review-history/{reviewid}/edit/update', 'ReviewController@update');
 
 // Cart
-Route::put('api/books/viewBook/{id}/CartController.php', 'CartController@store');
+Route::put('api/books/viewBook/{id}/add-to-cart', 'CartController@store');
 Route::delete('users/{id}/cart/{bookid}/delete', 'CartController@destroy');
 Route::get('users/{id}/cart', 'CartController@index');
 //Route::post('users/{id}/cart/add', 'CartController@store');
@@ -62,7 +62,7 @@ Route::get('users/{id}/cart', 'CartController@index');
 //Route::post('users/{id}/cart/update', 'CartController@show');
 
 // Wishlist
-Route::put('api/books/viewBook/{id}/WishlistController.php', 'WishlistController@store');
+Route::put('api/books/viewBook/{id}/add-to-wishlist', 'WishlistController@store');
 Route::delete('users/{id}/wishlist/{bookid}/delete', 'WishlistController@destroy');
 Route::get('users/{id}/wishlist', 'WishlistController@index');
 

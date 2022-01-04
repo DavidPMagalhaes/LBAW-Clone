@@ -40,7 +40,7 @@
                     <h2>{{ $book->price }}€</h2>
 
                     <div>
-                        <form action="{{$book->bookid}}/CartController.php" method="POST">
+                        <form action="{{$book->bookid}}/add-to-cart" method="POST">
                             @method('PUT')
                             @csrf
                             <div class="block">
@@ -52,7 +52,7 @@
                         </form>
 
                     <div id="wish">
-                            <form action="{{$book->bookid}}/WishlistController.php" method="POST">
+                            <form action="{{$book->bookid}}/add-to-wishlist" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <button type="submit" class="red-button">Add to WishList</button>
