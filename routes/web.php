@@ -42,6 +42,7 @@ Route::get('/api/books/addBook', 'BookProductController@create');
 Route::put('/api/books/addBook/confirmed', 'BookProductController@store');
 Route::get('/admin/users', 'AdminController@users');
 Route::get('/admin/users/{id}', 'AdminController@userDetails');
+Route::put('/admin/orders/{orderid}/{bookid}/updateStatus', 'AdminController@updateStatus');
 
 
 // Review
