@@ -65,7 +65,7 @@ class CartController extends Controller
         $userid = Auth::id(); 
         
         $uniqueBook = Cart::where('bookid', '=', $id)
-        ->where('userid', '=', $userid)   //para teste
+        ->where('userid', '=', $userid)   
         ->first();
         /*
         $uniqueBook = Cart::where(['bookid', '=', '$id'],

@@ -22,7 +22,7 @@ class AdminController extends Controller
 
     public function userDetails($id){
         $user = User::find($id);
-        $orders = UserOrder::where('userid', '=', '$id')->get();
+        $orders = UserOrder::where('userid', '=', $id)->get();
 
         return view('admin.user_details', ['orders' => $orders])->with('user', $user);
     }

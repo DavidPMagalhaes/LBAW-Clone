@@ -1,10 +1,9 @@
 @extends('user.profile')
 
-@section('title', 'Books')
+@section('title', 'userInfo')
 
-@section('information')
+@section('content')
 
-    <div id = "bookpage">
 
         <div class="text">
 
@@ -41,21 +40,19 @@
                     <img src="{{ $orderInformation->getBookContent($orderInformation->getBookProduct($orderInformation->bookid)->bookcontentid)->bookcover }}" width="200" height="250" >
                     <h2> {{ $orderInformation->getBookContent($orderInformation->getBookProduct($orderInformation->bookid)->bookcontentid)->title}} </h2>
                     <p> Quantity: {{ $orderInformation->quantity }}</p>
-                    <p> Status: {{ $orderInformation->orderstatus }} </p>
-                    <form action="/admin/users/{{$orderInformation->orderid}}/{{$orderInformation->bookid}}/updateStatus" method="POST">
+                    <form action="/admin/orders/{{$orderInformation->orderid}}/{{$orderInformation->bookid}}/updateStatus" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('put') }}
                         <input 
                             type="text" 
                             class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
                             name="orderstatus"
-                            style="width: 400px;">
+                            style="width: 400px;"
                             value="{{ $orderInformation->orderstatus }}" style="width: 400px;">
                         <button type="submit" >
                             Save
                         </button>
                     </form>
-                    <a class="button" href="/api/books/viewBook/{{ $orderInformation->bookid }}/addReview"> Add Review </a>
                 </article>
                 @endforeach
                 </div>

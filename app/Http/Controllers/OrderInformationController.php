@@ -40,8 +40,13 @@ class OrderInformationController extends Controller
         
         $bookIds = Cart::where('userid', $id)->get();
 
+        $testForNull = Cart::where('userid', $id)->first();
+        if($testForNull == null)
+            //dd($bookIds);
+            return redirect('/home');
 
         // $this->authorize('show', $order);
+
 
         $orderid = rand(10000000,999999999);
         $userOrder = new UserOrder;
