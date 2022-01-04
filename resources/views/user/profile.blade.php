@@ -1,4 +1,4 @@
-@extends('user.profile')
+@extends('layouts.app')
 
 
 
