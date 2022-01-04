@@ -57,6 +57,10 @@
                     </form>
                     <a class="button" href="/api/books/viewBook/{{ $orderInformation->bookid }}/addReview"> Add Review </a>
                 </article>
+                @endforeach
+                </div>
+            </div>
+            </div>
         @endforeach
 
     </div>
