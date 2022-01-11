@@ -101,7 +101,9 @@ class CategoryController extends Controller
         //dd($belongsToCategory);
 
         //first entry of colletion
-        $belongsToIds = $belongsToCategory[0]->bookid;
+        if($belongsToCategory->isNotEmpty())
+            $belongsToIds = $belongsToCategory[0]->bookid;
+        else return redirect('/home');  //alterar esta pagina
 
 
         //bookContents with requested categories 

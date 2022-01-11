@@ -25,6 +25,8 @@ class SearchBarController extends Controller
         //bookContents with requested titles 
         $bookContent = BookContent::where('title', 'LIKE', '%'.$search.'%')->get();
         //dd($bookContent);
+        if(!$bookContent->isNotEmpty())
+            return redirect('/home');
        
         //ids
         $contentids = $bookContent[0]->bookid;
