@@ -23,6 +23,13 @@
                                 class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
                                 name="title"
                                 value="{{ $book->bookContent()->get('title')[0]->title }}" style="width: 400px;">
+
+                            <h6>Book year</h6>
+                            <input 
+                                type="text" 
+                                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                                name="bookyear"
+                                value="{{ $book->bookContent()->get('bookyear')[0]->bookyear }}" style="width: 400px;">
                             
                             <h6>Author</h6>
                             <input 
@@ -30,6 +37,13 @@
                                 class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
                                 name="author"
                                 value="{{ $book->getAuthor($book->bookContent()->get('authorid')[0]->authorid)->authorname }}" style="width: 400px;">
+                            
+                            <h6>Book cover</h6>
+                            <input 
+                                type="text" 
+                                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                                name="bookcover"
+                                value="{{ $book->bookContent()->get('bookcover')[0]->bookcover }}" style="width: 400px;">
 
                             <h6>Price</h6>
                                 <input 
@@ -59,7 +73,7 @@
                                 name="edition"
                                 value="{{ $book->edition }}" style="width: 400px;">
 
-                            <h6>Book Type</h6>
+                            <h6>Book Type(physical/e-book)</h6>
                             <input 
                                 type="text" 
                                 class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"

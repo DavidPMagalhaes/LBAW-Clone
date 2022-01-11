@@ -121,25 +121,44 @@ class BookProductController extends Controller
     public function update(Request $request, $id)
     {
         $bookProduct = BookProduct::find($id);
+    
+        $bookContent = $bookProduct->bookid($bookProduct->bookcontentid);
 
-        /*
-        //esta bem??
-        $bookContent = $bookProduct->bookContent();
+        $author = Author::where('authorname', '=', $request->input('author'))->first();
+
+        if($author){
+            $bookContent->authorid = $author->authorid;
+            //dd($author);
+        }
+        else{
+            $newAuthor = new Author;
+            $newAuthor->authorname = $bookContent->authorid = $request->input('author');
+            $newAuthor->description = " ";
+            $newAuthor->save();
+
+            $bookContent->authorid = $newAuthor->authorid;
+            //dd($newAuthor);
+        }
         
         if($bookContent) {
             $bookContent->title = $request->input('title');
             $bookContent->bookyear = $request->input('bookyear');
-            $bookContent->authorid = $request->input('authorid');
+            //$bookContent->authorid = $request->input('authorid');
             $bookContent->bookcover = $request->input('bookcover');
+            //dd($bookContent);
             $bookContent->save();
         }
-        */
         
         if($bookProduct) {
             $bookProduct->price = $request->input('price');
-            $bookProduct->stock = $request->input('stock');
+            if($bookProduct->booktype == 'e-book'){
+                $bookProduct->stock = 0;
+            }
+            else $bookProduct->stock = $request->input('stock');
+            
             $bookProduct->publisher = $request->input('publisher');
             $bookProduct->booktype = $request->input('booktype');
+            $bookProduct->bookcontentid = $bookContent->bookid;
             $bookProduct->save();
         }
         return redirect('/home');
