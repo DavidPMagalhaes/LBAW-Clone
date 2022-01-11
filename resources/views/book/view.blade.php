@@ -15,58 +15,78 @@
 
     <div id = "bookpage">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-            <img src="{{$book->bookContent()->get('bookcover')[0]->bookcover}}" 
-                width="400" height="500"> </a>
 
-            <div class="text">
+        <img src="{{$book->bookContent()->get('bookcover')[0]->bookcover}}" 
+            width="400" height="500"> 
+
+        <div class="text">
+
+            <h1> {{ $book->bookContent()->get('title')[0]->title }} 
+            <p style=" padding-left:10px;">  by {{ $book->getAuthor($book->bookContent()->get('authorid')[0]->authorid)->authorname }}</p> </h1>
+            <p>Edition: {{ $book->edition }}</p>
+            <p>Book Type: {{ $book->booktype }}</p>
+            <p>Publisher: {{ $book->publisher }}</p>
+            <div style="font-size: 50px; padding-left:30px; padding-top: 5px;">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star"></span>
+            </div>
+            <h2 style="padding-bottom:0px ;">Synopsis</h2>
+
+            <p>A hug in book form - the number one Sunday Times bestselling author of Reasons to Stay Alive rethinks the self-help book</p>
+
+            <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
+            <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
+            @if (Auth::user()->isadmin == 'True')
+                <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+            @endif
+            
+
+
+            
+        </div>
+        <div id ="price-buttons">
+                <h2>{{ $book->price }}€</h2>
 
                 <div>
-                    <h1> {{ $book->bookContent()->get('title')[0]->title }} </h1>
-                    <p> Written by {{ $book->getAuthor($book->bookContent()->get('authorid')[0]->authorid)->authorname }}</p> 
-                    <p>Edition: {{ $book->edition }}</p>
-                    <p>Book Type: {{ $book->booktype }}</p>
-                    <p>Publisher: {{ $book->publisher }}</p>
-                    <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
-                    <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
-                    @if (Auth::user()->isadmin == 'True')
-                        <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
-                    @endif
-
+                    <form action="{{$book->bookid}}/add-to-cart" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="block">
+                            <input 
+                                type="number" value = 1 min=1
+                                name="quantity">
+                    <button type="submit" class="button">Add to Cart</button>
                 </div>
+                    </form>
 
-                
-                <div id ="price-buttons">
-                    <h2>{{ $book->price }}€</h2>
-
-                    <div>
-                        <form action="{{$book->bookid}}/add-to-cart" method="POST">
+                <div id="wish">
+                        <form action="{{$book->bookid}}/add-to-wishlist" method="POST">
                             @method('PUT')
                             @csrf
-                            <div class="block">
-                                <input 
-                                    type="number" value = 1 min=1
-                                    name="quantity">
-                        <button type="submit" class="button">Add to Cart</button>
-                    </div>
+                            <button type="submit" class="red-button">Add to WishList</button>
                         </form>
-
-                    <div id="wish">
-                            <form action="{{$book->bookid}}/add-to-wishlist" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <button type="submit" class="red-button">Add to WishList</button>
-                            </form>
-                    </div>
-
-
-
                 </div>
+
+
+
             </div>
 
 
+        </div>
 
     </div>
+
+
+
+    <div id = "reviews">
+         @yield('reviews');
+    </div>
+    
 
    
 

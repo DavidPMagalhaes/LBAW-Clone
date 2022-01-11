@@ -271,6 +271,9 @@ INSERT INTO users (name, email, password, isBlocked, isAdmin, profilePicture) VA
 
 
 INSERT INTO book_content ( title, bookyear, average, authorid, bookcover) VALUES
+ ('The Comfort Book',2021, '4.9', 2, 'https://img.bertrand.pt/images/the-comfort-book-matt-haig/NDV8MjQ4Nzk1ODh8MjEwNjUyNjB8MTYyNTUyNjAwMDAwMHx3ZWJw/300x'),
+ ('The Catcher in the Rye' , 1990, '4',4, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1398034300l/5107.jpg'),
+ ('1984', 1889,'3', 5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1532714506l/40961427._SX318_.jpg'),
  ('woman of glory',2010,'1.9',20, 'https://i.ebayimg.com/images/g/yT0AAOSwScBf~elE/s-l500.jpg'),
   ('king of the prison',1989,'2.8',21,'https://images-na.ssl-images-amazon.com/images/I/51ysBE+VPKL.jpg'),
   ('blacksmiths with sins',1970,'3.4',29, 'https://images-na.ssl-images-amazon.com/images/I/415CuPjYppL._SX342_SY445_QL70_ML2_.jpg'),
@@ -390,13 +393,16 @@ INSERT INTO belongs_to_category(bookid, categoryid) VALUES  (1,11),
  
  
 INSERT INTO review ( reviewcomment, rating, timeposted, userid, bookid) VALUES
-('very cool', 4, '2001-01-01 01:01:01',1,2),
-(null, 2, '2011-11-21 22:01:01',2,1),
-('life changing', 5, '2020-11-21 22:01:01',2,1);
+('São livros como este que me relembram o porque de eu amar ler, viciante desde a primeira página. Tem humor, tem emoção, tem tudo. Li este livro porque todos os dias nas redes sociais, alguém falava sobre ele, alguém dizia que era top. E é!', 4, '2001-01-01 01:01:01',1,2),
+('This one took me longer to read that is reasonable for a book of its length or the clear style it is written in. I mean, such a simply written text of 250 pages ought to have finished in no time.', 2, '2011-11-21 22:01:01',2,1),
+('The book has some value, but the title led me to pick it up under the belief that it might help me to understand myself better and learn better ways to navigate my choices. It turned out to be more of a laundry list of examples how businesses try to manipulate us, a list that was nudged into book-length...', 5, '2020-11-21 22:01:01',2,1);
 
 
 
 INSERT INTO book_product (price, stock, publisher, edition, booktype, bookcontentid) VALUES
+('19.99', '20', 'Euismod Est Arcu Ltd', 1,'physical', 1),
+('19.99', '20', 'Euismod Est Arcu Ltd', 1,'physical', 2),
+  ('20.32','789','Sem Semper Institute',3,'e-book',3),
   ('7.59','449','Euismod Est Arcu Ltd',2,'physical',16),
   ('28.08','518','Aenean Eget Incorporated',6,'physical',35),
   ('10.49','661','Aliquet Libero PC',7,'physical',29),

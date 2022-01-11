@@ -8,7 +8,7 @@
 <div id="listing-books">
 
 <div class="text">
-  <h1>New in</h1>
+  <h1 style="padding-left: 300px; padding-bottom : 0px;">New in</h1>
 </div>
 
 <section id="books">

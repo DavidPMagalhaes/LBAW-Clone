@@ -57,7 +57,7 @@ main > div2 {
 }
 
 .general-content {
-  display: flex;
+  display: block;
 }
 
 .block {
@@ -142,8 +142,9 @@ main > div2 {
 
 
 
+
 #contenthome{
-  display: flex;
+  display: block;
   justify-content: start
 }
 
@@ -152,15 +153,14 @@ main > div2 {
 }
 
 
-
 #books {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  box-sizing: border-box;
 }
 
 #books article.book {
-  display: flex;
-  flex-direction: column;
+  display: block;
   padding: 1em;
   margin: 1em;
 }
@@ -170,23 +170,24 @@ main > div2 {
 }
 
 
-
 #books article.book  h2 {
   align-items: center;
   float: inline-start;
-  font-size: 30px;
-  padding-top: 10px;
-  color: #161418;
+  font-size: 25px;
+  padding-top: 340px;
+  padding-bottom: 0%;
+  color: #d6291c;
 }
 
 #books article.book p1 {
-  align-items: center;
   float: left;
-  font-size: 30px;
+  font-size: 20px;
   color: #080808;
+  line-height: 2px;
 }
 #books article.book p{
-  float: left;
+  float: inline-start;
+  line-height: 2px;
 }
 
 
@@ -206,6 +207,8 @@ main > div2 {
   float: right;
   padding: 2em;
   display: inline;
+  width: 40%;
+
 }
 
 #bookpage .text h1{
@@ -216,7 +219,9 @@ main > div2 {
 
 #bookpage .text p{
   font-size: 15px;
-  color:#161418
+  color:#161418;
+  margin-bottom: 0%;
+  padding-left: 25px;
 }
 
 
@@ -256,6 +261,48 @@ main > div2 {
   margin-left: 10% ;
   width: 210px}
 
+
+
+.checked{
+  color: orange;
+}
+
+#reviews{
+  padding-left: 430px;
+  align-items: center;
+}
+
+#comment{
+  border-radius: 15px;
+  background-color: rgb(236, 228, 228);
+  width: 70%;
+  display: flex;
+}
+
+#comment .profile-comment{
+  float: left;
+  width: 20%;
+  padding-top: 5%;
+  padding-left: 4%;
+ 
+}
+
+.profile-comment img{
+  border-radius: 50%;
+}
+
+ #comment .comment-content{
+  float:right;
+  max-width: 75%;
+}
+
+#comment .buttons{
+  display: flex;
+}
+
+#comment .buttons #remove{
+  float:left;
+}
 
   /*cart*/
 
@@ -380,7 +427,7 @@ main > div2 {
     grid-row-end: span 2;
   }
 }
-@media (max-width: 25em) {
+@media (max-width: 100em) {
   body {
     margin: 0;
   }

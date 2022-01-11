@@ -71,7 +71,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::where('bookid', '=', $id)->get();
         $book = BookProduct::find($id);
-        $book = BookContent::find($book->bookcontentid);
+        /*$book = BookContent::find($book->bookcontentid);*/
         return view('review.reviews', ['reviews' => $reviews], ['book' => $book]);
     }
 
