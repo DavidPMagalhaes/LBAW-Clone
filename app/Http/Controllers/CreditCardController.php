@@ -57,7 +57,7 @@ class CreditCardController extends Controller
         
         $creditCard->save();
 
-        return redirect()->back();
+        return redirect()->action([CreditCardController::class, 'show'], ['id' => $id]);
     }
 
     /**
@@ -84,9 +84,11 @@ class CreditCardController extends Controller
      * @param  \App\Models\CreditCard  $creditCard
      * @return \Illuminate\Http\Response
      */
-    public function edit(CreditCard $creditCard)
+    public function edit($id, $creditCardId)
     {
-        //
+        $creditCards = CreditCard::where('userid', '=', $id)->get();
+        $userid = $id;
+        return view('payment_methods.edit_creditCard', ['creditCards' => $creditCards]);
     }
 
     /**
@@ -96,9 +98,18 @@ class CreditCardController extends Controller
      * @param  \App\Models\CreditCard  $creditCard
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CreditCard $creditCard)
+    public function update(Request $request, $id, $creditcardid)
     {
-        //
+        $creditCard = CreditCard::find($creditcardid);
+        $userid = Auth::id(); 
+
+        $creditCard->ownername = $request->input('ownername');
+        $creditCard->cardnumber = $request->input('cardnumber');
+        $creditCard->securitycode = $request->input('securitycode');
+        
+        $creditCard->save();
+
+        return redirect()->action([CreditCardController::class, 'show'], ['id' => $id]);
     }
 
     /**
