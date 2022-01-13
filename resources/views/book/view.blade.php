@@ -36,8 +36,8 @@
                 <span class="fa fa-star"></span>
             </div>
             <h2 style="padding-bottom:0px ;">Synopsis</h2>
+            <p> {{$book->bookContent()->get('description')[0]->description}}</p>
 
-            <p>A hug in book form - the number one Sunday Times bestselling author of Reasons to Stay Alive rethinks the self-help book</p>
 
             <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
             <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>

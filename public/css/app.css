@@ -304,6 +304,9 @@ main > div2 {
   float:left;
 }
 
+.comment-content input{
+  background-color: white;
+}
   /*cart*/
 
 .cart-books {

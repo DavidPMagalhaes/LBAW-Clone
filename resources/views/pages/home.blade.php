@@ -12,21 +12,23 @@
 <div id="content">
 
   <div class="btn-group">
-    <a class="button"  href="/category/Romance"> Romance</a> 
-    <a class="button"  href="/category/Comedy"> Comedy</a> 
-    <a class="button"  href="/category/Biography"> Biography</a> 
-    <a class="button" href="/category/Sport"> Sport</a> 
-    <a class="button" href="/category/Drama"> Drama </a> 
-    <a class="button" href="/category/Sci-fi"> Sci-Fi </a> 
-    <a class="button"  href="/category/Western"> Western</a> 
-    <a class="button"  href="/category/War"> War</a> 
-    <a class="button" href="/category/Adventure"> Adventure</a> 
-    <a class="button" href="/category/Horror"> Horror </a> 
-    <a class="button" href="/category/Fantasy"> Fantasy </a> 
-    <a class="button"  href="/category/Mystery"> Mystery</a> 
-    <a class="button"  href="/category/Crime"> Crime</a> 
-    <a class="button" href="/category/Family"> Family</a> 
-    <a class="button" href="/category/History"> History </a> 
+  <ul>
+    <li><a  href="/category/Romance"> Romance</a> </li>
+    <li><a   href="/category/Comedy"> Comedy</a> </li>
+    <li><a  href="/category/Biography"> Biography</a> </li>
+    <li> <a  href="/category/Sport"> Sport</a> </li>
+    <li><a  href="/category/Drama"> Drama </a> 
+    <li><a href="/category/Sci-fi"> Sci-Fi </a> 
+    <li><a href="/category/Western"> Western</a> </li>
+    <li><a href="/category/War"> War</a> </li>
+    <li><a href="/category/Adventure"> Adventure</a> </li>
+    <li><a href="/category/Horror"> Horror </a> </li>
+    <li><a href="/category/Fantasy"> Fantasy </a> </li>
+    <li><a  href="/category/Mystery"> Mystery</a> </li>
+    <li><a  href="/category/Crime"> Crime</a> </li>
+    <li><a href="/category/Family"> Family</a> </li>
+    <li><a href="/category/History"> History </a> </li>
+  </ul>
   </div>
 
 

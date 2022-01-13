@@ -1,7 +1,7 @@
 <article class="book" data-id="{{ $book->bookid }}">
     <a href="/api/books/viewBook/{{ $book->bookid }}">
     <img src="{{$book->bookContent()->get('bookcover')[0]->bookcover}}" 
-						class="float-right" width="300" height="330"> </a>
+						class="float-left" width="300" height="400"> </a>
 
     
 

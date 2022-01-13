@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/litera/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -28,7 +30,7 @@
         </h1>
         <div1>
         @if (Auth::check())
-          <a href="/users/{{Auth::user()->id}}/notifications" class="button">
+        <a href="/users/{{Auth::user()->id}}/notifications" class="button">
             <span>Notifications</span>
           </a> 
           <a class="button" href="/users/{{Auth::user()->id}}/wishlist"> WishList </a> 
@@ -54,7 +56,6 @@
           <form action="/search/3">
             <input type="text" placeholder="Search.." name="search">
             <button type="submit">Submit</button>
-
           </form>
 
         </div>

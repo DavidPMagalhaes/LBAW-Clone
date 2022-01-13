@@ -2,9 +2,31 @@
 
 @section('reviews')
 
+
 <div class="text">
   <h1> Reviews </h1>
 </div>
+<div id = "comment">
+<div class = "profile-comment">
+
+    </div>
+
+  <div class = "comment-content">
+    <div class="text">
+        <form action="addReview/ReviewController.php" method="POST">
+            @method('PUT')
+            @csrf
+            <label for="rating">Rating:</label>
+            <input type="number" value = 1 min=1 max=5
+                                name="rating" >
+            <label for="comment">Comment:</label>
+            <input type="text"  name="comment">
+            <button type="submit" class="red-button">Add Review</button>
+        </form>
+    </div>
+  </div>
+</div>
+<br>
 @foreach($reviews as $review)
 
 
