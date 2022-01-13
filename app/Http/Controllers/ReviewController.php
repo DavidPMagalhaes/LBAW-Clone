@@ -71,7 +71,6 @@ class ReviewController extends Controller
     {
         $reviews = Review::where('bookid', '=', $id)->get();
         $book = BookProduct::find($id);
-        /*$book = BookContent::find($book->bookcontentid);*/
         return view('review.reviews', ['reviews' => $reviews], ['book' => $book]);
     }
 
@@ -116,7 +115,7 @@ class ReviewController extends Controller
         
         $review->save();
 
-        return redirect()->action([ReviewController::class, 'showUserReviews'], ['id' => $id]);
+        return redirect()->action([BookProductController::class, 'show'], ['id' => $review->bookid]);
     }
 
     /**

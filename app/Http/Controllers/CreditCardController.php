@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CreditCard;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CreditCardController extends Controller
@@ -24,28 +26,17 @@ class CreditCardController extends Controller
      */
     public function create()
     {
-        $creditCard = new CreditCard();
-
-        $this->authorize('create', $creditCard);
-
-        $creditCard->ownername = $request->input('name');
-        $creditCard->cardnumber = $request->input('cardnumber');
-        $creditCard->securitycode = $request->input('securitycode');
-
-        $creditCard->userid = Auth::registered_user()->userid;
-        $creditCard->save();
-
-        return $creditCard;
+        //
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id, $creditcardid)
     {
-      $creditCard = credit_card::find($id);
+        //
+    }
 
-      $this->authorize('delete', $creditCard);
-      $creditCard->delete();
-
-      return $creditCard;
+    public function add($id) {
+        $user = User::find($id);
+        return view('payment_methods.add_creditCard', ['user' => $user]);
     }
 
     /**
@@ -54,9 +45,19 @@ class CreditCardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $creditCard = new CreditCard;
+        $userid = Auth::id(); 
+
+        $creditCard->userid = Auth::user()->id;
+        $creditCard->ownername = $request->input('ownername');
+        $creditCard->cardnumber = $request->input('cardnumber');
+        $creditCard->securitycode = $request->input('securitycode');
+        
+        $creditCard->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -65,18 +66,16 @@ class CreditCardController extends Controller
      * @param  \App\Models\CreditCard  $creditCard
      * @return \Illuminate\Http\Response
      */
-    public function show(CreditCard $creditCard)
+    public function show($id)
     {
-        $this->authorize('show', $creditCard);
-        return view('pages.creditCard', ['creditCard' => $creditCard]);
+        $creditCards = CreditCard::where('userid', '=', $id)->get();
+        $userid = $id;
+        return view('user.payment_methods', ['creditCards' => $creditCards], ['userid' => $userid]);
     }
 
     public function list()
     {
-      if (!Auth::check()) return redirect('/login');
-      $this->authorize('list', CreditCard::class);
-      $creditCard = Auth::registered_user()->creditCards();
-      return view('pages.creditCards', ['creditCards' => $creditCards]);
+        //
     }
 
     /**
@@ -108,8 +107,11 @@ class CreditCardController extends Controller
      * @param  \App\Models\CreditCard  $creditCard
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CreditCard $creditCard)
+    public function destroy($id, $creditcardid)
     {
-        //
+        $creditCard = CreditCard::find($creditcardid);
+        $creditCard->delete();
+  
+        return redirect()->back();
     }
 }

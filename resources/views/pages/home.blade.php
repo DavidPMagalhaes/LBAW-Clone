@@ -4,8 +4,10 @@
 
 @section('content')
 
-@if (Auth::user()->isadmin == 'True')
-  <a class="button" href="/api/books/addBook"> Add Book </a>
+@if (Auth::check())
+  @if (Auth::user()->isadmin == 'True')
+    <a class="button" href="/api/books/addBook"> Add Book </a>
+  @endif
 @endif
 
 

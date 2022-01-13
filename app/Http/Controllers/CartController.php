@@ -48,7 +48,7 @@ class CartController extends Controller
         $cart->bookId = $request->route('id');
         $cart->save();
 
-        dd($cart);
+        //dd($cart);
         return $cart;
     }
 
