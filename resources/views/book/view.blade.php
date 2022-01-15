@@ -1,16 +1,15 @@
-@extends('pages.home')
+@extends('layouts.app')
 
-@section('title', 'Books')
 
-@section('information')
+@section('content')
 
-    <script>
+    <!--<script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
         if(exist){
           alert(msg);
         }
-    </script>
+    </script>-->
  
 
     <div id = "bookpage">
@@ -41,8 +40,10 @@
 
             <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
             <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
-            @if (Auth::user()->isadmin == 'True')
-                <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+            @if (Auth::check())
+                @if (Auth::user()->isadmin == 'True')
+                    <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                @endif
             @endif
             
 

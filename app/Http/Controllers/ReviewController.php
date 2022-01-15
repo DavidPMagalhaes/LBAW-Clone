@@ -58,7 +58,7 @@ class ReviewController extends Controller
         
         $review->save();
 
-        return redirect()->action([BookProductController::class, 'show'], ['id' => $review->bookid]);
+        return redirect()->action([ReviewController::class, 'show'], ['id' => $review->bookid]);
     }
 
     /**
@@ -109,13 +109,12 @@ class ReviewController extends Controller
         $userid = Auth::id(); 
 
         $review->userid = Auth::user()->id;
-        $review->bookid = $id;
         $review->rating = $request->input('rating');
         $review->reviewcomment = $request->input('comment');
         
         $review->save();
 
-        return redirect()->action([BookProductController::class, 'show'], ['id' => $review->bookid]);
+        return redirect()->action([ReviewController::class, 'show'], ['id' => $review->bookid]);
     }
 
     /**

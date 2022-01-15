@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', 'Auth\LoginController@home');
 Route::get('/home', 'HomeController@show');
 
+
 // Search
 //aquele id n esta a fazer nada, dps é para tirar
 Route::get('search/{id}', 'SearchBarController@show');
@@ -54,7 +55,7 @@ Route::put('/admin/orders/{orderid}/{bookid}/updateStatus', 'AdminController@upd
 
 
 // Review
-Route::get('api/books/viewBook/{id}/reviews', 'ReviewController@show');
+Route::get('api/books/viewBook/{id}', 'ReviewController@show');
 Route::get('api/books/viewBook/{id}/addReview', 'ReviewController@addReviewForm');
 Route::put('api/books/viewBook/{id}/addReview/add-to-reviews', 'ReviewController@store');
 Route::delete('user/{id}/review-history/{reviewid}/delete', 'ReviewController@destroy');

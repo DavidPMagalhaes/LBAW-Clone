@@ -11,10 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/litera/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -25,41 +24,89 @@
   <body>
     <main>
       <header>
-        <h1><a href="{{ url('/home') }}">RedWood</a>         
-        <img src= "https://www.nicepng.com/png/full/41-412236_red-evergreen-tree-clip-art-pine-tree-silhouette.png" width="50" height="70"> 
-        </h1>
-        <div1>
-        @if (Auth::check())
-        <a href="/users/{{Auth::user()->id}}/notifications" class="button">
-            <span>Notifications</span>
-          </a> 
-          <a class="button" href="/users/{{Auth::user()->id}}/wishlist"> WishList </a> 
-          <a class="button" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
-          <a class="button" href="/user/{{Auth::user()->id}}"> Account </a> 
-          <a class="button" href="{{ url('/logout') }}"> Logout </a>
-          <span>{{ Auth::user()->name }}</span>
-        @else 
-          <a class="button" href="{{ url('/logout') }}"> Log in </a> 
-          <a class="button" href="{{ route('register') }}"> Sign Up</a> 
-        @endif
-        </div1>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url('/home') }}">      
+            <img src= "/images/logo.png" width="200" height="100"> </a>
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="{{ url('/home') }}">Home
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/contact') }}">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/faq') }}">FAQ</a>
+                </li>
+                @if (Auth::check())
+                  @if (Auth::user()->isadmin == "True")
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Options</a>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="/api/books/addBook"> Add Book </a> 
+                        <a class="dropdown-item" href="/admin/users"> Check Accounts </a>                        
+                    </div>
+                  </li>
+                  @endif
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="/user/{{Auth::user()->id}}"> Account </a> 
+                        <a class="dropdown-item" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
+                        <a class="dropdown-item"  href="/users/{{Auth::user()->id}}/wishlist"> WishList </a>                   
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ url('/logout') }}"> Logout </a>                          
+                    </div>
+                  </li>
+                @else
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/logout') }}">Log in</a>
+                  </li>
+
+                @endif
+              </ul>
+              
+              <form class="d-flex" action="/search/3" style="padding-left: 20px;">
+                <input class="form-control me-sm-2" type="text" placeholder="Search.." name="search">
+                <button class="btn btn-secondary my-2 my-sm-0" style="background-color:darkred;" type="submit">Search</button>
+              </form>
+              <div class="nav-item dropdown" >
+                  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"style="background-color:darkred; height:47px;" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Browse Categories</button>
+                  <div class="dropdown-content">
+                    <a class="dropdown-item" href="/category/Romance"> Romance</a> 
+                    <a  class="dropdown-item"  href="/category/Comedy"> Comedy</a> 
+                    <a class="dropdown-item" href="/category/Biography"> Biography</a> 
+                    <a class="dropdown-item" href="/category/Sport"> Sport</a> 
+                    <a class="dropdown-item" href="/category/Drama"> Drama </a> 
+                    <a class="dropdown-item" href="/category/Sci-fi"> Sci-Fi </a> 
+                    <a class="dropdown-item" href="/category/Western"> Western</a>
+                    <a class="dropdown-item" href="/category/War"> War</a> 
+                    <a class="dropdown-item" href="/category/Adventure"> Adventure</a> 
+                    <a class="dropdown-item" href="/category/Horror"> Horror </a> 
+                    <a class="dropdown-item" href="/category/Fantasy"> Fantasy </a> 
+                    <a class="dropdown-item" href="/category/Mystery"> Mystery</a>
+                    <a class="dropdown-item" href="/category/Crime"> Crime</a> 
+                    <a class="dropdown-item" href="/category/Family"> Family</a> 
+                    <a class="dropdown-item" href="/category/History"> History </a> 
+                  </div>
+              </div>
+
+              </div>
+            </div>
+          </div>
+        </nav>
       </header>
-      <div class="topnav">
-        <div>
-        <a class="button" href="{{ url('/home') }}">Home</a>
-        <a class="button" href="{{ url('/about') }}">About</a>
-        <a class="button" href="{{ url('/contact') }}">Contact</a>
-        <a class="button" href="{{ url('/faq') }}">FAQ</a>
-      </div>
 
-        <div class="search-container">
-          <form action="/search/3">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Submit</button>
-          </form>
-
-        </div>
-      </div> 
     
       <section id="content">
     

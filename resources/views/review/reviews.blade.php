@@ -12,8 +12,7 @@
     </div>
 
   <div class = "comment-content">
-    <div class="text">
-        <form action="addReview/ReviewController.php" method="POST">
+        <form action="{{ $book->bookid}}/addReview/add-to-reviews" method="POST">
             @method('PUT')
             @csrf
             <label for="rating">Rating:</label>
@@ -23,11 +22,10 @@
             <input type="text"  name="comment">
             <button type="submit" class="red-button">Add Review</button>
         </form>
-    </div>
   </div>
 </div>
 <br>
-@foreach($reviews as $review)
+@foreach($reviews->sortByDesc('timeposted') as $review)
 
 
   <div id = "comment">
@@ -66,7 +64,6 @@
 </div>
     
 
-    <!--<p> Rating: {{ $review->rating }} </p>-->
       
   </div>
   <br>
