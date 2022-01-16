@@ -1,19 +1,16 @@
-@extends('home.books_home')
+@extends('home.best_rated')
 
 
-@section('bestRated')
+@section('orderedPrice')
 
+    <br>
     <div>
-        <h3>Public favorites
-        <a type="button" class="btn btn-secondary" href="{{ url('/books-rating') }}">See more</a></h3>
+        <h3>Best Deals
+        <a type="button"  class="btn btn-secondary" href="{{ url('/books-rating') }}">See more</a></h3>
     </div>
     <section id="books">
 
-        @foreach($books->sortByDesc(function ($book) {
-                    $bookContent = $book->bookid($book->bookcontentid);
-
-                    return $bookContent->average;
-                }); as $book)
+        @foreach($books->sortBy('price') as $book)
             <article class="book" data-id="{{ $book->bookid }}">
                 @if($loop->index == 6)
                     @break
@@ -37,7 +34,6 @@
 
 
     </section>
-
-    @yield('orderedPrice')
+    <br>
 
 @endsection

@@ -16,7 +16,19 @@ class HomeController extends Controller
     public function show()
     {
         $books = BookProduct::all();
-        return view('home.best_rated')->with('books', $books);
+        return view('home.best_price')->with('books', $books);
+    }
+
+    public function listById()
+    {
+        $books = BookProduct::all();
+        return view('pages.listing_id')->with('books', $books);
+    }
+
+    public function listByRating()
+    {
+        $books = BookProduct::all();
+        return view('pages.listing_rating')->with('books', $books);
     }
      
 }

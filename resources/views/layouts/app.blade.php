@@ -108,7 +108,8 @@
       </header>
 
     
-      <section id="content">
+      <section id="container-fluid" style="margin-left: 12%;
+  max-width: 80%;">
     
         @yield('content')
       </section>

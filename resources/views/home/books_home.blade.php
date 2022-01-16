@@ -4,9 +4,11 @@
 @section('listingNormal')
 
 <div id="listing-books">
-<h3>New in</h3>
-
-
+    <div>
+        <h3>New in
+        <a type="button"class="btn btn-secondary" href="{{ url('/books-id') }}">See more</a></h3>
+    </div>
+    
     <section id="books">
 
     @foreach($books as $book)

@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+	<br>
 	<div class="text">
 		<h1>Cart</h1>
 	</div>
 
-	<div id = "checkout">
-		<a class="button" href="cart/checkout">checkout</a>
-	</div>
 	
 
 
@@ -28,19 +27,25 @@
 				<p1>Quantity: {{ $book->quantity }}</p1>
 
 			</div>
-
+			<br>
 			<div id = "remove">
 				<form action="cart/{{ $book->bookid }}/delete" method="POST">
 					@method('delete')
 					@csrf
 					<div>
-						<button type="submit" class="button">Remove</button>
+						<button type="submit" class="btn btn-secondary">Remove</button>
 					</div>
 				</form>
 			</div>	
 		</article>
 		@endforeach
 	</div>
+
+	<br>
+	<div id = "checkout">
+		<a class="btn btn-primary" style = "size:100px;"href="cart/checkout">checkout</a>
+	</div>
+	
 
 
 

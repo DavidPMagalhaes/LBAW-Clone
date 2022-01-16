@@ -62,30 +62,25 @@ body {
   padding-right: 25px;
 }
 
-.btn-group{
+.btn-group-vertical{
   width: 15%;
   float: left;
 }
 
-.btn-group a.button{
+.btn-group-vertical .btn{
   font-size: 15px;
   cursor: pointer; 
   height: 70px;
   width: 95%; 
   display: block; 
-  background-color: #d6291c;
-  border-color: #d6291c;
-  color:rgb(255, 255, 255);
+  background-color: #ebe2e1;
+  border-color: #f0e7e7;
+  color:rgb(90, 10, 10);
   display: inline-flex;
   align-items: center;
 
 }
 
-.btn-group a.button:hover{
-  background-color: #ffffff;
-  color: #333030;
-  border-color: #c4aeae;
-}
 
 
 .profile-info{
@@ -95,7 +90,7 @@ body {
 }
 
 .block h1{
-  color: #d6291c;
+  color: #860b05;
   padding-top: 25px;
   padding-left: 25px;
 
@@ -129,7 +124,7 @@ body {
 .information p2{
   padding-left: 25px;
   font-size: 25px;
-  color :#d6291c;
+  color :#860b05;
 }
 
 
@@ -140,11 +135,14 @@ body {
   justify-content: start;
 }
 
-#listing-books{
-  display: right;
-  margin-left: 15%;
-  max-width: 50%;
+
+#listing-books .btn{
+  left: 1550px;
+  background-color: #860b05;
+  position: absolute;
+  width: 100px;
 }
+
 
 
 #books {
@@ -160,6 +158,8 @@ body {
   display: block;
   padding: 1em;
   margin: 1em;
+    height: min-content;
+
 }
 #books article.book img {
   float: inline-start;
@@ -169,7 +169,6 @@ body {
 
 #books article.book  h3 {
   align-items: center;
-  float: inline-start;
   font-size: 20px;
   padding-bottom: 0%;
 }
@@ -179,16 +178,14 @@ body {
   color: #080808;
 }
 #books article.book p{
-  float: inline-start;
   line-height: 15px;
-  overflow: hidden;
-  inline-size: max-content;
 }
 
 #books #book-information{
   position: absolute;
   bottom : 0;
 }
+
 
 /*book page*/
 
@@ -231,8 +228,8 @@ body {
 #price-buttons h2{
   padding-top: 2em;
   text-align: center;
-  color: #d6291c;
   font-size: 50px;
+  color: #860b05;
 }
 
 #price-buttons .block{
@@ -248,17 +245,29 @@ body {
 }
 #price-buttons .block button{
   float: right;
+  width:150px;
 }
 
 #price-buttons button{
-  background-color: #d6291c;
-  border-color: #d6291c;
-  color:rgb(255, 255, 255);
+  border-radius: 1%;
 }
 
 #wish button{
   margin-left: 10% ;
-  width: 210px}
+  width: 210px;
+}
+
+.btn-primary{
+  background-color: #860b05;
+  border-color: #860b05;
+  color:rgb(255, 255, 255);
+}
+
+.btn-primary:hover{
+  background-color: #85413e;
+  border-color: #9e312b;
+  color:rgb(255, 255, 255);
+}
 
 
 
@@ -342,7 +351,6 @@ body {
 
 }
 .cart-books article.book button {
-  background-color: #d6291c;
   margin-left: 20%;
 
 }
@@ -495,9 +503,10 @@ a{
 a:hover{
   color: #860b05;
 }
-h2{
-  color: #550a05;
-  font-size: 60px;
+h3{
+  color: #861109;
+  font-size: 30px;
+  font-family: "Perpetua Titling MT", serif;
 }
 .text h1{
   color: #550a05;

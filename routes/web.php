@@ -19,6 +19,12 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', 'Auth\LoginController@home');
 Route::get('/home', 'HomeController@show');
 
+//Listing books
+Route::get('/books-id', 'HomeController@listById');
+Route::get('/books-rating', 'HomeController@listByRating');
+
+
+
 
 // Search
 //aquele id n esta a fazer nada, dps é para tirar

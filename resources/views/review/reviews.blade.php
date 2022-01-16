@@ -6,24 +6,34 @@
 <div class="text">
   <h1> Reviews </h1>
 </div>
-<div id = "comment">
-<div class = "profile-comment">
+@if(Auth::check())
 
-    </div>
+  <div id = "comment">
+  <div class = "profile-comment">
+            <div class = "profile-comment">
+              <img src = {{ Auth::getUser()->profilepicture}} width="100" border-radious = "50%" >
+              <p>  {{ Auth::getUser()->name}} </p>
+            </div>
+      </div>
+      <div class = "comment-content">
+        <br>
 
-  <div class = "comment-content">
-        <form action="{{ $book->bookid}}/addReview/add-to-reviews" method="POST">
-            @method('PUT')
-            @csrf
-            <label for="rating">Rating:</label>
-            <input type="number" value = 1 min=1 max=5
-                                name="rating" >
-            <label for="comment">Comment:</label>
-            <input type="text"  name="comment">
-            <button type="submit" class="red-button">Add Review</button>
-        </form>
+          <form action="{{ $book->bookid}}/addReview/add-to-reviews" method="POST">
+              @method('PUT')
+              @csrf
+              <label for="rating">Rating:</label>
+              <input type="number" value = 1 min=1 max=5
+                                  name="rating" >
+                                  <br><br>
+
+              <input type="text"  name="comment" style = "height:80px; width: 400px;">
+              <button type="submit" class="btn btn-primary" >Post</button>
+          </form>
+      </div>
+      <br>
   </div>
-</div>
+@endif
+
 <br>
 @foreach($reviews->sortByDesc('timeposted') as $review)
 
@@ -46,20 +56,21 @@
       </div>
       <p> {{ $review->reviewcomment }}</p>
       @if (Auth::check() && $review->userid === Auth::id())
-      <div class= "buttons">
-        <div id = "remove">
-          <form action="/user/{{ $review->userid }}/review-history/{{ $review->reviewid }}/delete" method="POST">
-            @method('delete')
-            @csrf
-            <div>
-              <button type="submit" class="red-button">Remove</button>
-            </div>
-          </form>
-        </div>	
+      <div>
+        <form action="/user/{{ $review->userid }}/review-history/{{ $review->reviewid }}/delete" method="POST">
+          @method('delete')
+          @csrf
+          <div>
+            <button  style = " display: inline-block; float:left;"type="submit" class="btn btn-primary">Remove</button>
+          </div>
+        </form>
 
-        <a href="/user/{{ $review->userid }}/review-history/{{ $review->reviewid }}/edit" class="button">Editar</a>
+        <a style="display: inline-block;"
+          href="/user/{{ $review->userid }}/review-history/{{ $review->reviewid }}/edit" class="btn btn-primary">Edit</a>
       </div>
+
       @endif
+      <br>
 
 </div>
     

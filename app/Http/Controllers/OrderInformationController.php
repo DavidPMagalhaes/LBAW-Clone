@@ -79,7 +79,7 @@ class OrderInformationController extends Controller
             $cart->destroy($id, $cart->bookid);
         }
 
-        return redirect()->back();
+        return redirect('/home');
 
 
     }

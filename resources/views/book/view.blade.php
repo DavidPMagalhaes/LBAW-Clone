@@ -37,14 +37,6 @@
             <h2 style="padding-bottom:0px ;">Synopsis</h2>
             <p> {{$book->bookContent()->get('description')[0]->description}}</p>
 
-
-            <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
-            <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
-            @if (Auth::check())
-                @if (Auth::user()->isadmin == 'True')
-                    <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
-                @endif
-            @endif
             
 
 
@@ -54,6 +46,7 @@
                 <h2>{{ $book->price }}€</h2>
 
                 <div>
+                    
                     <form action="{{$book->bookid}}/add-to-cart" method="POST">
                         @method('PUT')
                         @csrf
@@ -61,21 +54,28 @@
                             <input 
                                 type="number" value = 1 min=1
                                 name="quantity">
-                    <button type="submit" class="button">Add to Cart</button>
+                    <button type="submit"  class="btn btn-primary" >Add to Cart</button>
                 </div>
                     </form>
-
+                <br>
                 <div id="wish">
                         <form action="{{$book->bookid}}/add-to-wishlist" method="POST">
                             @method('PUT')
                             @csrf
-                            <button type="submit" class="red-button">Add to WishList</button>
+                            <button type="submit"  class="btn btn-primary" >Add to WishList</button>
                         </form>
                 </div>
 
 
 
             </div>
+            <br>
+
+            @if (Auth::check())
+                        @if (Auth::user()->isadmin == 'True')
+                        <button style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                        @endif
+                    @endif
 
 
         </div>
