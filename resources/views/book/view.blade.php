@@ -28,11 +28,12 @@
             <p>Book Type: {{ $book->booktype }}</p>
             <p>Publisher: {{ $book->publisher }}</p>
             <div style="font-size: 50px; padding-left:30px; padding-top: 5px;">
+            @for($i = 0 ; $i < $book->bookContent->average; $i++)
                 <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star "></span>
+            @endfor
+            @for( $i = 0.5 ; $i < 5 - $book->bookContent->average; $i++)
                 <span class="fa fa-star"></span>
+            @endfor
             </div>
             <h2 style="padding-bottom:0px ;">Synopsis</h2>
             <p> {{$book->bookContent()->get('description')[0]->description}}</p>

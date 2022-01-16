@@ -35,7 +35,7 @@
 @endif
 
 <br>
-@foreach($reviews->sortByDesc('timeposted') as $review)
+@foreach($reviews->sortByDesc('orderid') as $review)
 
 
   <div id = "comment">
@@ -48,11 +48,12 @@
 
     <div class = "comment-content">
       <div style="font-size: 30px; padding-top: 5px;">
+      @for($i = 0 ; $i<$review->rating; $i++)
         <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star "></span>
+      @endfor
+      @for( $i = 0 ; $i < 5 - $review->rating; $i++)
         <span class="fa fa-star"></span>
+      @endfor
       </div>
       <p> {{ $review->reviewcomment }}</p>
       @if (Auth::check() && $review->userid === Auth::id())
