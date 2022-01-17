@@ -66,6 +66,12 @@
                                 type="text" 
                                 class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
                                 name="booktype">
+                            
+                            <h6>Category</h6>
+                            <input 
+                                type="text" 
+                                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                                name="category">
 
                             <button type="submit" >
                                 Save

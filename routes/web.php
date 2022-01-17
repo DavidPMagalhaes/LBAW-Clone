@@ -63,7 +63,7 @@ Route::put('/admin/user/{id}/update', 'AdminController@updateUser');
 
 
 // Review
-Route::get('api/books/viewBook/{id}', 'ReviewController@show');
+//Route::get('api/books/viewBook/{id}', 'ReviewController@show');
 Route::get('api/books/viewBook/{id}/addReview', 'ReviewController@addReviewForm');
 Route::put('api/books/viewBook/{id}/addReview/add-to-reviews', 'ReviewController@store');
 Route::delete('user/{id}/review-history/{reviewid}/delete', 'ReviewController@destroy');
