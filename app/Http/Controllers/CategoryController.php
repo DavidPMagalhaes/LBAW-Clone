@@ -155,9 +155,7 @@ class CategoryController extends Controller
 
     public function list()
     {
-      $this->authorize('list', Category::class);
-      $category = Auth::category()->books();
-      return view('pages.category', ['category' => $category]);
+
     }
 
     /**

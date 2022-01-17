@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\BelongsToCategory;
 use App\Models\BookProduct;
 use App\Models\BookContent;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Review;
+
 
 class BookProductController extends Controller
 {
@@ -76,7 +80,11 @@ class BookProductController extends Controller
         $bookProduct->bookcontentid = $bookContent->bookid;
         $bookProduct->save();
 
-
+        $category = Category::where('label', '=', $request->input('category'))->first();
+        $belongsToCategory = new BelongsToCategory;
+        $belongsToCategory->bookid = $bookContent->bookid;
+        $belongsToCategory->categoryid = $category->categoryid;
+        $belongsToCategory->save();
 
         $url = '/api/books/viewBook/' . (string)$bookProduct->bookid;
         return redirect( $url);
@@ -91,8 +99,22 @@ class BookProductController extends Controller
      */
     public function show($id)
     {
+        $reviews = Review::where('bookid', '=', $id)->get();
         $book = BookProduct::find($id);
-        return view('book.view')->with('book', $book);
+
+        $bookContentId = $book->bookContent()->get('bookid')[0]->bookid;
+        //dd($bookContentId);
+        $belongsCategory = BelongsToCategory::where('bookid', '=', $bookContentId)->get();
+        //dd($belongsCategory);
+        $categories = [];
+        foreach($belongsCategory as $belongsCategory){ 
+            $category = Category::where('categoryid', '=', $belongsCategory->categoryid)->first();
+
+            array_push($categories, $category->label);
+        }
+        //$categories = Category::where('categoryid', '=', $belongsCategory->categoryid)->get();
+        //dd($categories);
+        return view('review.reviews', ['reviews' => $reviews], ['book' => $book])->with('categories', $categories);
     }
 
     public function list()
@@ -109,7 +131,19 @@ class BookProductController extends Controller
     public function edit($id)
     {
         $book = BookProduct::find($id);
-        return view('book.edit')->with('book', $book);
+
+        $bookContentId = $book->bookContent()->get('bookid')[0]->bookid;
+        //dd($bookContentId);
+        $belongsCategory = BelongsToCategory::where('bookid', '=', $bookContentId)->get();
+        //dd($belongsCategory);
+        $categories = [];
+        foreach($belongsCategory as $belongsCategory){ 
+            $category = Category::where('categoryid', '=', $belongsCategory->categoryid)->first();
+
+            array_push($categories, $category->label);
+        }
+
+        return view('book.edit')->with('book', $book)->with('categories', $categories);
     }
 
     /**
@@ -162,6 +196,55 @@ class BookProductController extends Controller
             $bookProduct->bookcontentid = $bookContent->bookid;
             $bookProduct->save();
         }
+
+
+
+        $belongsCategory = BelongsToCategory::where('bookid', '=', $bookProduct->bookid)->get();
+        //dd($belongsCategory);
+        $categories = [];
+        $categoryIds = [];
+        foreach($belongsCategory as $belongsCategory){ 
+            $category = Category::where('categoryid', '=', $belongsCategory->categoryid)->first();
+            array_push($categoryIds, $category->categoryid);
+            array_push($categories, $category->label);
+        }
+        //categories has now the original number of categories
+
+        $newCategories = [];
+        for($i=0; $i<count($categories); $i++){
+            $name = 'category' . (string)$i;
+            //dd($name);
+            $newCategory = $request->input($name);
+            //dd($newCategory);
+            $categoryObject = Category::where('label', '=', $newCategory)->first();
+            //dd($categoryObject);
+            //if inserted category exists
+            if($categoryObject){
+                $belongsToCategory = BelongsToCategory::where('bookid', '=', $bookContent->bookid)
+                ->where('categoryid', '=', $categoryIds[$i])->first();
+                //dd($belongsToCategory);
+                
+
+                $newCategoryObject = Category::where('label', '=', $newCategory)->first();
+                $belongsToCategory->categoryid = $newCategoryObject->categoryid;
+                $belongsToCategory->save();
+            }
+        }
+
+        // $category = Category::where('label', '=', $request->input('category'))->first();
+        // if($category) {
+        //     $belongsToCategory = BelongsToCategory::where('bookid', '=', $bookContent->bookid)->first();
+        //     //$belongsToCategory->bookid = $bookContent->bookid;
+        //     //dd($belongsToCategory);
+        //     $belongsToCategory->categoryid = $category->categoryid;
+        //     //dd($belongsToCategory);
+        //     $belongsToCategory->save();
+        // }
+
+
+
+
+
         $url = '/api/books/viewBook/' . (string)$bookProduct->bookid;
         return redirect( $url);
     }
