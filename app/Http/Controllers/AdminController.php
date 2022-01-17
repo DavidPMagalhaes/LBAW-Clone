@@ -46,6 +46,7 @@ class AdminController extends Controller
         $notification->bookid = $orderInformation->bookid;
 
         $notification->save();
+        
         return redirect('/home');
 
     }
