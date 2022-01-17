@@ -9,12 +9,11 @@
     @if ($notification->orderid != null)
     <p> {{ $notification->notificationmessage }} on ordered Book "{{ $notification->getBookContent($notification->getBookProduct($notification->bookid)->bookcontentid)->title }}"</p>
     <p> Time: {{ $notification->notificationtime }} </p>
-    <p> ------------------------------------------------------- </p>
     @else
     <p> {{ $notification->notificationmessage }} </p>
     <p> Time: {{ $notification->notificationtime }} </p>
-    <p> ------------------------------------------------------- </p>
     @endif
+    <p> ------------------------------------------------------- </p>
   </div>
 @endforeach
 
