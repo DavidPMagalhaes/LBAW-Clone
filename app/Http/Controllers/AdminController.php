@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderInformation;
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\UserOrder;
 use Illuminate\Http\Request;
@@ -36,6 +37,15 @@ class AdminController extends Controller
             $orderInformation->orderstatus = $request->input('orderstatus');
             $orderInformation->save();
         }
+        // send notification
+        $user_order = UserOrder::find($orderid);
+        $notification = new Notification;
+        $notification->notificationmessage = 'Status changed';
+        $notification->userid = $user_order->userid;
+        $notification->orderid = $orderInformation->orderid;
+        $notification->bookid = $orderInformation->bookid;
+
+        $notification->save();
         return redirect('/home');
 
     }

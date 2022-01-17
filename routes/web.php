@@ -44,8 +44,8 @@ Route::get('user/{id}/payment-methods', 'CreditCardController@show');
 Route::get('user/{id}/payment-methods/add', 'CreditCardController@add');
 Route::put('user/{id}/payment-methods/add/add-to-payment-methods', 'CreditCardController@store');
 Route::delete('user/{id}/payment-methods/{creditcardid}/delete', 'CreditCardController@destroy');
-//Route::get('user/{id}/review-history/{reviewid}/edit', 'ReviewController@edit');
-//Route::put('user/{id}/review-history/{reviewid}/edit/update', 'ReviewController@update');
+Route::get('user/{id}/payment-methods/{creditcardid}/edit', 'CreditCardController@edit');
+Route::put('user/{id}/payment-methods/{creditcardid}/edit/update', 'CreditCardController@update');
 
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');

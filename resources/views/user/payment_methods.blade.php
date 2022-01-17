@@ -20,7 +20,7 @@
       </form>
     </div>	
 
-    <a href="" class="button">Edit</a>
+    <a href="/user/{{$creditCard->userid}}/payment-methods/{{$creditCard->cardid}}/edit" class="button">Edit</a>
     <p> ------------------------------------------------------- </p>
   </div>
 @endforeach

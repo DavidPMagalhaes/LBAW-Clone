@@ -157,8 +157,12 @@ CREATE TABLE notification(
     notificationMessage text not null,
     notificationTime time WITH TIME ZONE not null  default CURRENT_TIMESTAMP,
     userid int not null,
-    orderid int not null,
-    bookid int not null,
+    orderid int,
+    bookid int,
+    creditCardid int,
+    FOREIGN KEY (creditCardid) references credit_card(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
     FOREIGN KEY (userid) references users(id)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
@@ -532,10 +536,11 @@ INSERT INTO wishlist(bookid, userid) VALUES
 (4,1),(5,1),(3,2),(4,2),(2,2),(1,4);    
 
 
-INSERT INTO notification( notificationMessage, notificationTime, userid, orderid, bookid ) VALUES
-('Status changed', '2021-01-01 21:42:01', 1,1,3 ),
-('Status changed', '2021-01-10 22:12:01', 3,1,2 ),
-('Status changed', '2021-01-04 11:34:01', 4, 1,4);
+INSERT INTO notification( notificationMessage, notificationTime, userid, orderid, bookid, creditCardid ) VALUES
+('Payment Method Approved', '2021-01-01 21:42:01', 1, null, null, 1),
+('Status changed', '2021-01-01 21:42:01', 1, 1, 3, null),
+('Status changed', '2021-01-10 22:12:01', 3, 1, 2, null),
+('Status changed', '2021-01-04 11:34:01', 4, 1, 4, null);
 
 
 INSERT INTO report ( description, isHandeled, userid, adminid) VALUES
