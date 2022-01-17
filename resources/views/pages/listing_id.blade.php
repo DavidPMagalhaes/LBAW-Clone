@@ -4,7 +4,7 @@
 
 <section id="listing-books">
   <br><br>
-  <h3>{{ $category->label}}</h3>
+  <h3>See all</h3>
   <section id="books">
 
       @each('partials.book', $books, 'book')

@@ -32,11 +32,12 @@
 <div class="text"> 
         <p2>Credit Card:     {{$creditCard->cardnumber}}</p2>    
 </div>        
+
 <div id = "checkout">
         <form action="checkout/confirmed" method="POST">
             {{ csrf_field() }}
             {{ method_field('put') }}
-            <button  type="submit" class="button">Confirm</button>
+            <button  type="submit" class="btn btn-primary">Confirm</button>
 </form>
 </div>
 

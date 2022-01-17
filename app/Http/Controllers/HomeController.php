@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+ 
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +16,20 @@ class HomeController extends Controller
     public function show()
     {
         $books = BookProduct::all();
-        return view('pages.books_home')->with('books', $books);
+        return view('home.best_price')->with('books', $books);
     }
+
+    public function listById()
+    {
+        $books = BookProduct::all();
+        return view('pages.listing_id')->with('books', $books);
+    }
+
+    public function listByRating()
+    {
+        $books = BookProduct::all();
+        return view('pages.listing_rating')->with('books', $books);
+    }
+     
 }
+

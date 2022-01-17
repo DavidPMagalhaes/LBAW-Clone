@@ -44,7 +44,8 @@ CREATE TABLE book_content (
     authorid int NOT NULL REFERENCES author(authorid)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    	bookcover TEXT 
+    	bookcover TEXT ,
+      description TEXT
 ) ;
 
 
@@ -270,53 +271,96 @@ INSERT INTO users (name, email, password, isBlocked, isAdmin, profilePicture) VA
 ('Maria Pinto', '2428193713', 311,2);
 
 
-INSERT INTO book_content ( title, bookyear, average, authorid, bookcover) VALUES
- ('The Comfort Book',2021, '4.9', 2, 'https://img.bertrand.pt/images/the-comfort-book-matt-haig/NDV8MjQ4Nzk1ODh8MjEwNjUyNjB8MTYyNTUyNjAwMDAwMHx3ZWJw/300x'),
- ('The Catcher in the Rye' , 1990, '4',4, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1398034300l/5107.jpg'),
- ('1984', 1889,'3', 5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1532714506l/40961427._SX318_.jpg'),
- ('woman of glory',2010,'1.9',20, 'https://i.ebayimg.com/images/g/yT0AAOSwScBf~elE/s-l500.jpg'),
-  ('king of the prison',1989,'2.8',21,'https://images-na.ssl-images-amazon.com/images/I/51ysBE+VPKL.jpg'),
-  ('blacksmiths with sins',1970,'3.4',29, 'https://images-na.ssl-images-amazon.com/images/I/415CuPjYppL._SX342_SY445_QL70_ML2_.jpg'),
-  ('robots without faith',2003,'2.0',9, 'https://images-na.ssl-images-amazon.com/images/I/51xie+PczKL._SY344_BO1,204,203,200_.jpg'),
-  ('bandits and knights',1988,'2.7',26,'https://images-na.ssl-images-amazon.com/images/I/51lnGa8RUQS._SX311_BO1,204,203,200_.jpg'),
-  ('traitors and robots',2016,'3.2',29, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1420944735l/22929546.jpg'),
-  ('ruins without desire',1982,'2.6',29, 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Ruins_Smith.jpg/220px-Ruins_Smith.jpg'),
-  ('inception without sin',1999,'2.9',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628213328l/58710332._SY475_.jpg'),
-  ('clinging to the immortals',1993,'2.3',6, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443023859l/25746707.jpg'),
-  ('escape my futuretraitor of gold',1994,'3.8',9, 'https://images-na.ssl-images-amazon.com/images/I/71ODoJm2YuL.jpg'),
-  ('tortoise of next year',1979,'1.3',19, 'https://m.media-amazon.com/images/I/51JsJKXkkqL.jpg'),
-  ('Adam Lindsay',1998,'1.9',2, 'https://images-na.ssl-images-amazon.com/images/I/31DW6gKFg-L._SX313_BO1,204,203,200_.jpg'),
-  ('guardians of hope',1971,'2.3',29, 'https://images-na.ssl-images-amazon.com/images/I/41aVMHg4%2BTL._AC_UL600_SR384,600_.jpg'),
-  ('traitors of joy',1972,'3.2',13, 'https://m.media-amazon.com/images/I/41CtM8+im0L.jpg'),
-  ('rats and hunters',1994,'2.7',27, 'https://images-na.ssl-images-amazon.com/images/I/41GKCBQK15L._SX302_BO1,204,203,200_.jpg'),
-  ('witches and friends',1991,'3.2',29, 'https://images-na.ssl-images-amazon.com/images/I/81Ql7Oy80EL.jpg'),
-  ('history of the nation',1983,'2.4',14, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347621762l/13723762.jpg'),
-  ('Odessa Copeland',1982,'2.5',19, 'https://images-na.ssl-images-amazon.com/images/I/31-YytYMtPL._SX342_SY445_QL70_ML2_.jpg'),
-  ('birth of the river',1984,'1.8',29, 'https://m.media-amazon.com/images/I/41dAaKGzykL._SS500_.jpg'),
-  ('whispers in the west',1980,'3.7',24 , 'https://images-na.ssl-images-amazon.com/images/I/71PCHuzIcnL.jpg'),
-  ('robot of the solstice',1995,'2.1',4, 'https://images-na.ssl-images-amazon.com/images/I/719HYP216HS.jpg'),
-  ('hiding the end',1994,'4.0',21, 'https://kbimages1-a.akamaihd.net/36756681-cef7-4797-82b9-aea3e6443207/353/569/90/False/after-the-world-ends-hide-book-2.jpg'),
-  ('defender of secrets',1992,'3.0',18, 'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/19577/OCT110586._SX360_QL80_TTD_.jpg'),
-  ('Ciara Compton',1996,'3.7',21, 'https://images-na.ssl-images-amazon.com/images/I/81cpnlo5FeS.jpg'),
-  ('Genevieve Moon',1998,'3.3',9, 'https://images-na.ssl-images-amazon.com/images/I/81jjm5C9tKL.jpg'),
-  ('excellent imagination',1973,'2.6',23, 'http://www.amreading.com/wp-content/uploads/my-grandmother-asked-me-to-tell-you-shes-sorry-9781501115066_hr-600x901.jpg'),
-  ('love of nature',1998,'2.9',15, 'https://images-na.ssl-images-amazon.com/images/I/41bJ7Urlg6L._SX331_BO1,204,203,200_.jpg'),
-  ('clans of the swamp',1982,'3.0',5, 'https://images-na.ssl-images-amazon.com/images/I/817-Al99HUL.jpg'),
-  ('paintings per realm',2001,'2.4',25, 'http://www.psupress.org/images/covers/294wide/978-0-271-07103-9md_294.jpg'),
-  ('pests and ancients',2007,'1.8',25,'https://m.media-amazon.com/images/I/41fA8shHWCL.jpg'),
-  ('insects and moons',1981,'5.0',19, 'https://www.moonstoystore.com/wp-content/uploads/2020/05/2456INSB.jpg'),
-  ('angels per continent',1979,'2.5',10, 'https://images-na.ssl-images-amazon.com/images/I/816u9mlA0DL.jpg'),
-  ('deafened by the worldspiders of tomorrow',1971,'3.2',23, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1547966857l/43422483.jpg'),
-  ('pirates and priests',2012,'3.6',23, 'https://m.media-amazon.com/images/I/412CrRpC-yL.jpg'),
-  ('figures of a painting',2000,'3.1',29, 'https://images-na.ssl-images-amazon.com/images/I/5153B177FYL.jpg'),
-  ('defenders of outer space',1999,'2.3',15, 'https://images-na.ssl-images-amazon.com/images/I/513fgAb3C0L._SX324_BO1,204,203,200_.jpg'),
-  ('gangster of the void',1973,'3.3',2, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1481203033l/30039018.jpg'),
-  ('vampires and fish',2017,'2.7',5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348094753l/7634106.jpg'),
-  ('owls of destruction',1999,'3.2',17, 'https://images-na.ssl-images-amazon.com/images/I/71yv6CGxbcL.jpg'),
-  ('Buckminster Shepherd',2011,'4.6',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348263390l/574916.jpg');
+INSERT INTO book_content ( title, bookyear, average, authorid, bookcover, description) VALUES
+ ('The Comfort Book',2021, 4.9, 2, 'https://img.bertrand.pt/images/the-comfort-book-matt-haig/NDV8MjQ4Nzk1ODh8MjEwNjUyNjB8MTYyNTUyNjAwMDAwMHx3ZWJw/300x', 'A hug in book form - the number one Sunday Times bestselling author of Reasons to Stay Alive rethinks the self-help book'),
+ ('The Catcher in the Rye' , 1990, 4,4, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1398034300l/5107.jpg','The hero-narrator of The Catcher in the Rye is an ancient child of sixteen, a native New Yorker named Holden Caulfield. Through circumstances that tend to preclude adult, secondhand description, he leaves his prep school in Pennsylvania and goes underground in New York City for three days. The boy himself is at once too simple and too complex for us to make any final comment about him or his story. Perhaps the safest thing we can say about Holden is that he was born in the world not just strongly attracted to beauty but, almost, hopelessly impaled on it. '),
+ ('1984', 1889,3, 5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1532714506l/40961427._SX318_.jpg', 'Among the seminal texts of the 20th century, Nineteen Eighty-Four is a rare work that grows more haunting as its futuristic purgatory becomes more real. Published in 1949, the book offers political satirist George Orwells nightmarish vision of a totalitarian, bureaucratic world and one poor stiffs attempt to find individuality. The brilliance of the novel is Orwells prescience of modern life—the ubiquity of television, the distortion of the language—and his ability to construct such a thorough version of hell. Required reading for students since it was published, it ranks among the most terrifying novels ever written.'),
+ ('woman of glory',2010,1.9,20, 'https://i.ebayimg.com/images/g/yT0AAOSwScBf~elE/s-l500.jpg', 'A very interesting book.'),
+ ('The Great Gatsby', 1920, 3.2, 2, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1490528560l/4671._SY475_.jpg',
+ 'The Great Gatsby, F. Scott Fitzgeralds third book, stands as the supreme achievement of his career. This exemplary novel of the Jazz Age has been acclaimed by generations of readers.
+  The story is of the fabulously wealthy Jay Gatsby and his new love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted "gin was the national drink and sex the national obsession, it is an exquisitely crafted tale of America in the 1920s.'),
+('To Kill a Mockingbird', 1930, 4.6, 5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1553383690l/2657.jpg','The unforgettable novel of a childhood in a sleepy Southern town and the crisis of conscience that rocked it. "To Kill A Mockingbird" became both an instant bestseller and a critical success when it was first published in 1960. It went on to win the Pulitzer Prize in 1961 and was later made into an Academy Award-winning film, also a classic.'),
+  ('Norwegian Wood',1992, 4.2, 10, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1630460042l/11297._SY475_.jpg','Toru, a quiet and preternaturally serious young college student in Tokyo, is devoted to Naoko, a beautiful and introspective young woman, but their mutual passion is marked by the tragic death of their best friend years before. Toru begins to adapt to campus life and the loneliness and isolation he faces there, but Naoko finds the pressures and responsibilities of life unbearable. As she retreats further into her own world, Toru finds himself reaching out to others and drawn to a fiercely independent and sexually liberated young woman.'),
+  ('king of the prison',1989,2.8,21,'https://images-na.ssl-images-amazon.com/images/I/51ysBE+VPKL.jpg', 'A book about adventure, love and self growth. New York Times bestseller.'),
+  ('blacksmiths with sins',1970,3.4,29, 'https://images-na.ssl-images-amazon.com/images/I/415CuPjYppL._SX342_SY445_QL70_ML2_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('robots without faith',2003,2.0,9, 'https://images-na.ssl-images-amazon.com/images/I/51xie+PczKL._SY344_BO1,204,203,200_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('bandits and knights',1988,2.7,26,'https://images-na.ssl-images-amazon.com/images/I/51lnGa8RUQS._SX311_BO1,204,203,200_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('traitors and robots',2016,3.2,29, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1420944735l/22929546.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('ruins without desire',1982,2.6,29, 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Ruins_Smith.jpg/220px-Ruins_Smith.jpg', 'A book about adventure, love and self growth. New York Times bestseller.'),
+  ('inception without sin',1999,2.9,24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1628213328l/58710332._SY475_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('clinging to the immortals',1993,2.3,6, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1443023859l/25746707.jpg', 'A book about adventure, love and self growth. New York Times bestseller.'),
+  ('tortoise of next year',1979,1.3,19, 'https://m.media-amazon.com/images/I/51JsJKXkkqL.jpg', 'A book about adventure, love and self growth. New York Times bestseller.'),
+  ('Adam Lindsay',1998,'1.9',2, 'https://images-na.ssl-images-amazon.com/images/I/31DW6gKFg-L._SX313_BO1,204,203,200_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('guardians of hope',1971,'2.3',29, 'https://images-na.ssl-images-amazon.com/images/I/41aVMHg4%2BTL._AC_UL600_SR384,600_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('traitors of joy',1972,'3.2',13, 'https://m.media-amazon.com/images/I/41CtM8+im0L.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('rats and hunters',1994,'2.7',27, 'https://images-na.ssl-images-amazon.com/images/I/41GKCBQK15L._SX302_BO1,204,203,200_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('witches and friends',1991,'3.2',29, 'https://images-na.ssl-images-amazon.com/images/I/81Ql7Oy80EL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('history of the nation',1983,'2.4',14, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347621762l/13723762.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('Odessa Copeland',1982,'2.5',19, 'https://images-na.ssl-images-amazon.com/images/I/31-YytYMtPL._SX342_SY445_QL70_ML2_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('birth of the river',1984,'1.8',29, 'https://m.media-amazon.com/images/I/41dAaKGzykL._SS500_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('whispers in the west',1980,'3.7',24 , 'https://images-na.ssl-images-amazon.com/images/I/71PCHuzIcnL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('robot of the solstice',1995,'2.1',4, 'https://images-na.ssl-images-amazon.com/images/I/719HYP216HS.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('hiding the end',1994,'4.0',21, 'https://kbimages1-a.akamaihd.net/36756681-cef7-4797-82b9-aea3e6443207/353/569/90/False/after-the-world-ends-hide-book-2.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('defender of secrets',1992,'3.0',18, 'https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/19577/OCT110586._SX360_QL80_TTD_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('Ciara Compton',1996,'3.7',21, 'https://images-na.ssl-images-amazon.com/images/I/81cpnlo5FeS.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('Genevieve Moon',1998,'3.3',9, 'https://images-na.ssl-images-amazon.com/images/I/81jjm5C9tKL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('excellent imagination',1973,'2.6',23, 'http://www.amreading.com/wp-content/uploads/my-grandmother-asked-me-to-tell-you-shes-sorry-9781501115066_hr-600x901.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('love of nature',1998,'2.9',15, 'https://images-na.ssl-images-amazon.com/images/I/41bJ7Urlg6L._SX331_BO1,204,203,200_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('clans of the swamp',1982,'3.0',5, 'https://images-na.ssl-images-amazon.com/images/I/817-Al99HUL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('paintings per realm',2001,'2.4',25, 'http://www.psupress.org/images/covers/294wide/978-0-271-07103-9md_294.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('pests and ancients',2007,'1.8',25,'https://m.media-amazon.com/images/I/41fA8shHWCL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('insects and moons',1981,'5.0',19, 'https://www.moonstoystore.com/wp-content/uploads/2020/05/2456INSB.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('angels per continent',1979,'2.5',10, 'https://images-na.ssl-images-amazon.com/images/I/816u9mlA0DL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('deafened by the worldspiders of tomorrow',1971,'3.2',23, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1547966857l/43422483.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('pirates and priests',2012,'3.6',23, 'https://m.media-amazon.com/images/I/412CrRpC-yL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('figures of a painting',2000,'3.1',29, 'https://images-na.ssl-images-amazon.com/images/I/5153B177FYL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('defenders of outer space',1999,'2.3',15, 'https://images-na.ssl-images-amazon.com/images/I/513fgAb3C0L._SX324_BO1,204,203,200_.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('gangster of the void',1973,'3.3',2, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1481203033l/30039018.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('vampires and fish',2017,'2.7',5, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348094753l/7634106.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('owls of destruction',1999,'3.2',17, 'https://images-na.ssl-images-amazon.com/images/I/71yv6CGxbcL.jpg','A book about adventure, love and self growth. New York Times bestseller.'),
+  ('Buckminster Shepherd',2011,'4.6',24, 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348263390l/574916.jpg','A book about adventure, love and self growth. New York Times bestseller.');
  
  
- 
+  INSERT INTO review ( reviewcomment, rating, timeposted, userid, bookid) VALUES
+('São livros como este que me relembram o porque de eu amar ler, viciante desde a primeira página. Tem humor, tem emoção, tem tudo. Li este livro porque todos os dias nas redes sociais, alguém falava sobre ele, alguém dizia que era top. E é!', 4, '2001-01-01 01:01:01',1,2),
+('This one took me longer to read that is reasonable for a book of its length or the clear style it is written in. I mean, such a simply written text of 250 pages ought to have finished in no time.', 2, '2011-11-21 22:01:01',2,1),
+('The book has some value, but the title led me to pick it up under the belief that it might help me to understand myself better and learn better ways to navigate my choices. It turned out to be more of a laundry list of examples how businesses try to manipulate us, a list that was nudged into book-length...', 5, '2020-11-21 22:01:01',2,1),
+('Big Brother is the personification of the state of Oceania. The book explains that the existence of Big Brother is necessary because it is easier to love a person than an organisation, and that the name "Big Brother" was selected because it plays on family loyalty.', 3,'2020-11-21 22:01:01',3, 4),
+('This book is far from perfect. Its characters lack depth, its rhetoric is sometimes didactic, its plot (well, half of it anyway) was lifted from Zumyatin’s We, and the lengthy Goldstein treatise shoved into the middle is a flaw which alters the structure of the novel like a scar disfigures a face.
+But in the long run, all that does not matter, because George Orwell got it right.', 5,'2021-01-01 01:01:01' , 6, 3),
+('1984 is not a particularly good novel, but it is a very good essay. On the novel front, the characters are bland and you only care about them because of the awful things they live through. As a novel all the political exposition is heavyhanded, and the message completely overrides any sense of storytelling.',
+3, '2021-03-04 12:24:42', 7,3),
+('my favourite part was when winston was reading the book to julia and she fell asleep
+', 1, '2020-02-02 21:22:03', 10, 3),
+('Social media is a cage full of starved rats and all of us have our heads stuck in there now, like it or not.', 5, '2021-02-03 10:12:45', 15, 3),
+('Why is it when I pick up To Kill A Mockingbird , I am instantly visited by a sensory memory: 
+I’m walking home, leaves litter the ground, crunching under my feet. I smell the smoke of fireplaces and think about hot cider and the wind catches and my breath is taken from me and I bundle my coat tighter against me and lift my head to the sky, no clouds, just a stunning blue that hurts my eyes, another deep breath
+ and I have this feeling that all is okay.', 5, '2020-02-02 21:22:03', 13, 6),
+ ('Such a good book, life changing!', 5,'2020-02-02 21:22:03', 12, 1),
+  ('Such a good book, life changing!', 5,'2020-02-02 21:22:03', 2, 2),
+  ('Such a good book, life changing!', 5,'2020-02-02 21:22:03', 10, 10),
+  ('So... I dont really know what to say.
+I think I loved this book, but for a reason beyond my understanding, it never hooked me, and it took me AGES to finish it! Some chapters (especially at the beginning) were tedious and hard for me to get through them... but then there were some chapters that I devoured (the whole Tom Robinson trial and the last ones).',
+3, '2020-02-02 21:22:03', 10,6),
+  ('Such a good book, life changing!', 5,'2020-02-02 21:22:03', 10, 6),
+    ('Such a good book, life changing!', 5,'2020-02-02 21:22:03', 10, 5),
+('Very boring', 2,'2020-02-02 21:22:03', 12, 5),
+('A short, important, and powerful classic that deserved all its fame.', 4, '2020-02-02 21:22:03',12, 4),
+('A short, important, and powerful classic that deserved all its fame.', 4, '2020-02-02 21:22:03',15, 5),
+('A short, important, and powerful classic that deserved all its fame.', 4, '2020-02-02 21:22:03',10, 6),
+('A short, important, and powerful classic that deserved all its fame.', 4, '2020-02-02 21:22:03',7, 1),
+('A short, important, and powerful classic that deserved all its fame.', 4, '2020-02-02 21:22:03',10, 3),
+('Im not going to do my usual thing where Id try to explain what I liked about this book. Normally, I would try to convince you why you should read it. I would speak about how important this book is and what message it could impart to its readers around the world. I would even say how it affected me personally. Today Im not going to do that.'
+,3,'2020-02-02 21:22:03', 14,6);
+
+
+
+
+
+
+
+
+
  
  
 INSERT INTO category ( label) VALUES
@@ -392,17 +436,16 @@ INSERT INTO belongs_to_category(bookid, categoryid) VALUES  (1,11),
   (40,1);
  
  
-INSERT INTO review ( reviewcomment, rating, timeposted, userid, bookid) VALUES
-('São livros como este que me relembram o porque de eu amar ler, viciante desde a primeira página. Tem humor, tem emoção, tem tudo. Li este livro porque todos os dias nas redes sociais, alguém falava sobre ele, alguém dizia que era top. E é!', 4, '2001-01-01 01:01:01',1,2),
-('This one took me longer to read that is reasonable for a book of its length or the clear style it is written in. I mean, such a simply written text of 250 pages ought to have finished in no time.', 2, '2011-11-21 22:01:01',2,1),
-('The book has some value, but the title led me to pick it up under the belief that it might help me to understand myself better and learn better ways to navigate my choices. It turned out to be more of a laundry list of examples how businesses try to manipulate us, a list that was nudged into book-length...', 5, '2020-11-21 22:01:01',2,1);
 
 
 
 INSERT INTO book_product (price, stock, publisher, edition, booktype, bookcontentid) VALUES
 ('19.99', '20', 'Euismod Est Arcu Ltd', 1,'physical', 1),
 ('19.99', '20', 'Euismod Est Arcu Ltd', 1,'physical', 2),
-  ('20.32','789','Sem Semper Institute',3,'e-book',3),
+('20.32','789','Sem Semper Institute',3,'e-book',3),
+('20.32','789','Sem Semper Institute',3,'e-book',4),
+('20.32','789','Sem Semper Institute',3,'e-book',5),
+('20.32','789','Sem Semper Institute',3,'e-book',6),
   ('7.59','449','Euismod Est Arcu Ltd',2,'physical',16),
   ('28.08','518','Aenean Eget Incorporated',6,'physical',35),
   ('10.49','661','Aliquet Libero PC',7,'physical',29),
@@ -441,10 +484,8 @@ INSERT INTO book_product (price, stock, publisher, edition, booktype, bookconten
   ('11.42','535','In Institute',5,'e-book',24),
   ('19.01','599','Proin Nisl Associates',7,'physical',16),
   ('26.36','339','Amet Metus Associates',6,'e-book',27),
-  ('10.00','260','Auctor Mauris Vel LLP',5,'e-book',7),
   ('24.31','329','Cras Dictum Ultricies Limited',8,'e-book',24),
   ('16.57','371','Adipiscing Corporation',7,'e-book',27),
-  ('14.41','381','Facilisis Consulting',1,'physical',1),
   ('25.74','471','Gravida Praesent Eu LLC',5,'e-book',17),
   ('14.12','723','Egestas Fusce Inc.',9,'e-book',4),
   ('16.51','799','Dapibus Foundation',1,'e-book',8),
@@ -454,7 +495,6 @@ INSERT INTO book_product (price, stock, publisher, edition, booktype, bookconten
   ('29.06','535','Tincidunt PC',10,'e-book',27),
   ('25.30','536','Vitae Semper Consulting',6,'e-book',5),
   ('15.00','550','Ridiculus Mus LLP',2,'e-book',2),
-  ('8.56','373','Velit Cras Lorem Corp.',5,'physical',7),
   ('26.75','551','Quam Vel Institute',8,'e-book',35),
   ('24.49','37','Aliquam Institute',5,'e-book',32),
   ('24.30','319','Morbi Neque Tellus Foundation',4,'physical',20),

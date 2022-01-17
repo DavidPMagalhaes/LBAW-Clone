@@ -8,11 +8,11 @@
     <form action="addReview/add-to-reviews" method="POST">
         @method('PUT')
         @csrf
-        <label for="rating">Rating:</label><br>
+        <label for="rating">Rating:</label>
         <input type="text"  name="rating"><br>
-        <label for="comment">Description:</label><br>
+        <label for="comment">Description:</label>
         <input type="text"  name="comment">
-        <button type="submit" class="red-button">Add Review</button>
+        <button type="submit" class="button">Add Review</button>
     </form>
 </div>
 

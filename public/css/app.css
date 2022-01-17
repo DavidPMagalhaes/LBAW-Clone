@@ -1,30 +1,22 @@
 body {
   background-color: #ffffff;
   color: #161418;
-}
-main > header {
-  grid-template-columns: 1fr auto auto;
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-  max-width:100%;
-}
-main > header h1 {
-  float: left;
-  margin: 0;
-  font-size: 50px;
-  color: #d6291c;
-}
-main > header div1 {
-  float: right;
-}
-main > header span {
-  margin: 1em;
-}
-main > div2 {
-  display: right;
-  width: 100%;
+  font-family: "Perpetua Titling MT", serif;
 
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 
@@ -70,30 +62,25 @@ main > div2 {
   padding-right: 25px;
 }
 
-.btn-group{
+.btn-group-vertical{
   width: 15%;
   float: left;
 }
 
-.btn-group a.button{
+.btn-group-vertical .btn{
   font-size: 15px;
   cursor: pointer; 
   height: 70px;
   width: 95%; 
   display: block; 
-  background-color: #d6291c;
-  border-color: #d6291c;
-  color:rgb(255, 255, 255);
+  background-color: #ebe2e1;
+  border-color: #f0e7e7;
+  color:rgb(90, 10, 10);
   display: inline-flex;
   align-items: center;
 
 }
 
-.btn-group a.button:hover{
-  background-color: #ffffff;
-  color: #333030;
-  border-color: #c4aeae;
-}
 
 
 .profile-info{
@@ -103,7 +90,7 @@ main > div2 {
 }
 
 .block h1{
-  color: #d6291c;
+  color: #860b05;
   padding-top: 25px;
   padding-left: 25px;
 
@@ -137,7 +124,7 @@ main > div2 {
 .information p2{
   padding-left: 25px;
   font-size: 25px;
-  color :#d6291c;
+  color :#860b05;
 }
 
 
@@ -145,24 +132,34 @@ main > div2 {
 
 #contenthome{
   display: block;
-  justify-content: start
+  justify-content: start;
 }
 
-#listing-books{
-  display: right;
+
+#listing-books .btn{
+  left: 1550px;
+  background-color: #860b05;
+  position: absolute;
+  width: 100px;
 }
+
 
 
 #books {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   box-sizing: border-box;
+  position: relative;
+  height: 400px;
+
 }
 
 #books article.book {
   display: block;
   padding: 1em;
   margin: 1em;
+    height: min-content;
+
 }
 #books article.book img {
   float: inline-start;
@@ -170,24 +167,23 @@ main > div2 {
 }
 
 
-#books article.book  h2 {
+#books article.book  h3 {
   align-items: center;
-  float: inline-start;
-  font-size: 25px;
-  padding-top: 340px;
+  font-size: 20px;
   padding-bottom: 0%;
-  color: #d6291c;
 }
 
 #books article.book p1 {
-  float: left;
   font-size: 20px;
   color: #080808;
-  line-height: 2px;
 }
 #books article.book p{
-  float: inline-start;
-  line-height: 2px;
+  line-height: 15px;
+}
+
+#books #book-information{
+  position: absolute;
+  bottom : 0;
 }
 
 
@@ -232,8 +228,8 @@ main > div2 {
 #price-buttons h2{
   padding-top: 2em;
   text-align: center;
-  color: #d6291c;
   font-size: 50px;
+  color: #860b05;
 }
 
 #price-buttons .block{
@@ -249,17 +245,29 @@ main > div2 {
 }
 #price-buttons .block button{
   float: right;
+  width:150px;
 }
 
 #price-buttons button{
-  background-color: #d6291c;
-  border-color: #d6291c;
-  color:rgb(255, 255, 255);
+  border-radius: 1%;
 }
 
 #wish button{
   margin-left: 10% ;
-  width: 210px}
+  width: 210px;
+}
+
+.btn-primary{
+  background-color: #860b05;
+  border-color: #860b05;
+  color:rgb(255, 255, 255);
+}
+
+.btn-primary:hover{
+  background-color: #85413e;
+  border-color: #9e312b;
+  color:rgb(255, 255, 255);
+}
 
 
 
@@ -304,6 +312,9 @@ main > div2 {
   float:left;
 }
 
+.comment-content input{
+  background-color: white;
+}
   /*cart*/
 
 .cart-books {
@@ -340,7 +351,6 @@ main > div2 {
 
 }
 .cart-books article.book button {
-  background-color: #d6291c;
   margin-left: 20%;
 
 }
@@ -486,11 +496,20 @@ input[type=password]:focus {
 }
 
 a{
-  color:#d6291c;
+  color:#5c0904;
+  text-decoration:initial;
 }
 
+a:hover{
+  color: #860b05;
+}
+h3{
+  color: #861109;
+  font-size: 30px;
+  font-family: "Perpetua Titling MT", serif;
+}
 .text h1{
-  color: #d6291c;
+  color: #550a05;
   padding: 5mm;
 }
 

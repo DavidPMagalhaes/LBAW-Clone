@@ -1,16 +1,15 @@
-@extends('pages.home')
+@extends('layouts.app')
 
-@section('title', 'Books')
 
-@section('information')
+@section('content')
 
-    <script>
+    <!--<script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
         if(exist){
           alert(msg);
         }
-    </script>
+    </script>-->
  
 
     <div id = "bookpage">
@@ -29,21 +28,16 @@
             <p>Book Type: {{ $book->booktype }}</p>
             <p>Publisher: {{ $book->publisher }}</p>
             <div style="font-size: 50px; padding-left:30px; padding-top: 5px;">
+            @for($i = 0 ; $i < $book->bookContent->average; $i++)
                 <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star "></span>
+            @endfor
+            @for( $i = 0.5 ; $i < 5 - $book->bookContent->average; $i++)
                 <span class="fa fa-star"></span>
+            @endfor
             </div>
             <h2 style="padding-bottom:0px ;">Synopsis</h2>
+            <p> {{$book->bookContent()->get('description')[0]->description}}</p>
 
-            <p>A hug in book form - the number one Sunday Times bestselling author of Reasons to Stay Alive rethinks the self-help book</p>
-
-            <a class="button" href="/api/books/viewBook/{{$book->bookid}}/reviews"> Reviews </a>
-            <a class="button" href="/api/books/viewBook/{{$book->bookid}}/addReview"> Add Review </a>
-            @if (Auth::user()->isadmin == 'True')
-                <a class="button" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
-            @endif
             
 
 
@@ -53,6 +47,7 @@
                 <h2>{{ $book->price }}€</h2>
 
                 <div>
+                    
                     <form action="{{$book->bookid}}/add-to-cart" method="POST">
                         @method('PUT')
                         @csrf
@@ -60,21 +55,28 @@
                             <input 
                                 type="number" value = 1 min=1
                                 name="quantity">
-                    <button type="submit" class="button">Add to Cart</button>
+                    <button type="submit"  class="btn btn-primary" >Add to Cart</button>
                 </div>
                     </form>
-
+                <br>
                 <div id="wish">
                         <form action="{{$book->bookid}}/add-to-wishlist" method="POST">
                             @method('PUT')
                             @csrf
-                            <button type="submit" class="red-button">Add to WishList</button>
+                            <button type="submit"  class="btn btn-primary" >Add to WishList</button>
                         </form>
                 </div>
 
 
 
             </div>
+            <br>
+
+            @if (Auth::check())
+                        @if (Auth::user()->isadmin == 'True')
+                        <a style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                        @endif
+                    @endif
 
 
         </div>

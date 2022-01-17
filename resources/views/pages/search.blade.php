@@ -1,10 +1,16 @@
-@extends('pages.home')
+@extends('layouts.app')
 
-@section('information')
+@section('content')
 
+<section id="listing-books">
+  <br><br>
+  <h3>Results</h3>
+  <section id="books">
 
-<section id="books">
       @each('partials.book', $books, 'book')
-    </section>
+
+  </section>
+
+</section>
 
 @endsection

@@ -12,11 +12,42 @@
             </div>
             <div>
                 <h2>User details</h2>
-                <p>id: {{$user->id}}</p>
-                <p>name: {{$user->name}}</p>
-                <p>email: {{$user->email}}</p>
-                <p>Blocked?: {{$user->isBlocked}}</p>
-                <p>Admin?: {{$user->isAdmin}}</p>
+                <p>Id: {{$user->id}}</p>
+                <p>Name: {{$user->name}}</p>
+                <p>Email: {{$user->email}}</p>
+
+                <form action="/admin/user/{{$user->id}}/update" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('put') }}
+                    <p>Blocked(True/False):</p>  
+                    <input 
+                        type="text" 
+                        class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                        name="blocked"
+                        style="width: 400px;"
+                        @if ($user->isblocked == 'True')
+                        value="True"
+                        @else
+                        value="False" 
+                        @endif
+                        style="width: 400px;">
+                    <p>Admin(True/False):</p>  
+                    <input 
+                        type="text" 
+                        class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                        name="admin"
+                        style="width: 400px;"
+                        @if ($user->isadmin == 'True')
+                        value="True"
+                        @else
+                        value="False" 
+                        @endif
+                        style="width: 400px;">
+                    <br>
+                    <button type="submit" >
+                        Save
+                    </button>
+                </form>        
             </div>
         </div>
         <br>
