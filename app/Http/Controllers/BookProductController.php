@@ -78,7 +78,8 @@ class BookProductController extends Controller
 
 
 
-        return redirect('/home');
+        $url = '/api/books/viewBook/' . (string)$bookProduct->bookid;
+        return redirect( $url);
         
     }
 
@@ -161,7 +162,8 @@ class BookProductController extends Controller
             $bookProduct->bookcontentid = $bookContent->bookid;
             $bookProduct->save();
         }
-        return redirect('/home');
+        $url = '/api/books/viewBook/' . (string)$bookProduct->bookid;
+        return redirect( $url);
     }
 
     /**

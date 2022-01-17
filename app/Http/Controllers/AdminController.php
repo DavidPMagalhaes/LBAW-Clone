@@ -40,4 +40,17 @@ class AdminController extends Controller
 
     }
 
+    public function updateUser(Request $request, $id){
+        $user = User::find($id);
+
+        if($user) {
+            $user->isadmin = $request->input('admin');
+            $user->isblocked = $request->input('blocked');
+            $user->save();
+        }
+        $url = '/admin/users/' . (string)$user->id;
+        return redirect($url);
+
+    }
+
 }

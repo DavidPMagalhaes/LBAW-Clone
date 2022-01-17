@@ -74,7 +74,7 @@
 
             @if (Auth::check())
                         @if (Auth::user()->isadmin == 'True')
-                        <button style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                        <a style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
                         @endif
                     @endif
 

@@ -1,8 +1,8 @@
-@extends('pages.home')
+@extends('layouts.app')
 
 @section('title', 'Books')
 
-@section('information')
+@section('content')
 
     <div id = "bookpage">
 
