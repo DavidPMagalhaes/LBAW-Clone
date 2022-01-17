@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CreditCard;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -57,6 +58,15 @@ class CreditCardController extends Controller
         
         $creditCard->save();
 
+        // send notification
+        $notification = new Notification;
+        $notification->notificationmessage = 'Payment Method Approved';
+        $notification->userid = Auth::user()->id;
+        $notification->orderid = null;
+        $notification->bookid = null;
+
+        $notification->save();
+        
         return redirect()->action([CreditCardController::class, 'show'], ['id' => $id]);
     }
 

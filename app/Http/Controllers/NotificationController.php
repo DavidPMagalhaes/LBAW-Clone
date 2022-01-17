@@ -14,7 +14,7 @@ class NotificationController extends Controller
      */
     public function index($id)
     {
-        $notifications = Notification::where('userid', $id)->get();
+        $notifications = Notification::where('userid', $id)->orderBy('notificationtime')->get();
         return view('pages.notification', ['notifications' => $notifications]); 
     }
 
