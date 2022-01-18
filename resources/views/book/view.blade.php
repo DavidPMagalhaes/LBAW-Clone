@@ -35,7 +35,7 @@
             @for($i = 0 ; $i < $book->bookContent->average; $i++)
                 <span class="fa fa-star checked"></span>
             @endfor
-            @for( $i = 0.5 ; $i < 5 - $book->bookContent->average; $i++)
+            @for( $i = 1 ; $i < 6 - $book->bookContent->average; $i++)
                 <span class="fa fa-star"></span>
             @endfor
             </div>
