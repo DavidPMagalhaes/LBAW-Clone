@@ -19,7 +19,7 @@ class OrderInformationController extends Controller
     {
 
         //default credit card that user has saved
-        $creditCard = CreditCard::where('userid', $id)->first();
+        $creditCard = CreditCard::where('userid', $id)->get();
         
         $bookIds = Cart::where('userid', $id)->get();
         
@@ -79,7 +79,9 @@ class OrderInformationController extends Controller
             $cart->destroy($id, $cart->bookid);
         }
 
-        return redirect('/home');
+        $url = '/user/'. $userOrder->userid.'/purchase-history';
+
+        return redirect($url);
 
 
     }
