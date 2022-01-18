@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\BelongsToCategory;
 use App\Models\BookProduct;
+use App\Models\Notification;
+use App\Models\Cart;
 use App\Models\BookContent;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -195,6 +197,18 @@ class BookProductController extends Controller
             $bookProduct->booktype = $request->input('booktype');
             $bookProduct->bookcontentid = $bookContent->bookid;
             $bookProduct->save();
+
+            // send notification
+            $users_cart = Cart::where('bookid', '=', $id)->get();
+            foreach($users_cart as $cart) {
+                $notification = new Notification;
+                $notification->notificationmessage = 'Price of Book on Cart changed';
+                $notification->userid = $cart->userid;
+                $notification->orderid = null;
+                $notification->bookid = $id;
+
+                $notification->save();
+            }
         }
 
 
