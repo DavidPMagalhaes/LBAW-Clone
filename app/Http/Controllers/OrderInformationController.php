@@ -36,7 +36,9 @@ class OrderInformationController extends Controller
 
 
         //default credit card that user has saved
-        $creditCard = CreditCard::where('userid', $id)->first();
+        $creditCard = CreditCard::where('userid', $id)
+        ->where('cardnumber', $request->input('cardNumber'))
+        ->first();
         
         $bookIds = Cart::where('userid', $id)->get();
 
