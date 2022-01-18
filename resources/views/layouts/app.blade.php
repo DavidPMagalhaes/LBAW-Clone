@@ -61,9 +61,11 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                     <div class="dropdown-content">
-                        <a class="dropdown-item" href="/user/{{Auth::user()->id}}"> Account </a> 
+                        <a class="dropdown-item" href="/user/{{Auth::user()->id}}"> Account </a>
+                        <a class="dropdown-item"  href="/users/{{Auth::user()->id}}/notifications"> Notifications </a> 
                         <a class="dropdown-item" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
-                        <a class="dropdown-item"  href="/users/{{Auth::user()->id}}/wishlist"> WishList </a>                   
+                        <a class="dropdown-item"  href="/users/{{Auth::user()->id}}/wishlist"> WishList </a>
+                                          
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('/logout') }}"> Logout </a>                          
                     </div>

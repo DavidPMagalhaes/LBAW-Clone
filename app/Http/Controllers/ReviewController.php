@@ -7,6 +7,9 @@ use App\Models\BookContent;
 use App\Models\BookProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\BelongsToCategory;
+use App\Models\Category;
+
 
 class ReviewController extends Controller
 {
@@ -71,7 +74,14 @@ class ReviewController extends Controller
     {
         $reviews = Review::where('bookid', '=', $id)->get();
         $book = BookProduct::find($id);
-        return view('review.reviews', ['reviews' => $reviews], ['book' => $book]);
+
+        $bookContentId = $book->bookContent()->get('bookid')[0]->bookid;
+        //dd($bookContentId);
+        $belongsCategory = BelongsToCategory::where('bookid', '=', $bookContentId)->first();
+        $category = Category::where('categoryid', '=', $belongsCategory->categoryid)->first();
+        //dd($category);
+
+        return view('review.reviews', ['reviews' => $reviews], ['book' => $book])->with('category', $category);
     }
 
     public function showUserReviews($id)

@@ -44,8 +44,8 @@ Route::get('user/{id}/payment-methods', 'CreditCardController@show');
 Route::get('user/{id}/payment-methods/add', 'CreditCardController@add');
 Route::put('user/{id}/payment-methods/add/add-to-payment-methods', 'CreditCardController@store');
 Route::delete('user/{id}/payment-methods/{creditcardid}/delete', 'CreditCardController@destroy');
-//Route::get('user/{id}/review-history/{reviewid}/edit', 'ReviewController@edit');
-//Route::put('user/{id}/review-history/{reviewid}/edit/update', 'ReviewController@update');
+Route::get('user/{id}/payment-methods/{creditcardid}/edit', 'CreditCardController@edit');
+Route::put('user/{id}/payment-methods/{creditcardid}/edit/update', 'CreditCardController@update');
 
 // Books
 Route::get('api/books/viewBook/{id}', 'BookProductController@show');
@@ -58,10 +58,12 @@ Route::put('/api/books/addBook/confirmed', 'BookProductController@store');
 Route::get('/admin/users', 'AdminController@users');
 Route::get('/admin/users/{id}', 'AdminController@userDetails');
 Route::put('/admin/orders/{orderid}/{bookid}/updateStatus', 'AdminController@updateStatus');
+Route::put('/admin/user/{id}/update', 'AdminController@updateUser');
+
 
 
 // Review
-Route::get('api/books/viewBook/{id}', 'ReviewController@show');
+//Route::get('api/books/viewBook/{id}', 'ReviewController@show');
 Route::get('api/books/viewBook/{id}/addReview', 'ReviewController@addReviewForm');
 Route::put('api/books/viewBook/{id}/addReview/add-to-reviews', 'ReviewController@store');
 Route::delete('user/{id}/review-history/{reviewid}/delete', 'ReviewController@destroy');

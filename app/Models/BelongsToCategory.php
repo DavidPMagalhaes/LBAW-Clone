@@ -13,6 +13,11 @@ class BelongsToCategory extends Model
     public $timestamps  = false;
 
     protected $table = 'belongs_to_category';
+    protected $primaryKey = 'bookid';
+
+    protected $fillable = [
+        'bookid', 'categoryid'
+    ];
 
     public function book()
     {

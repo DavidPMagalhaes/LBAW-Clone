@@ -27,6 +27,10 @@
             <p>Edition: {{ $book->edition }}</p>
             <p>Book Type: {{ $book->booktype }}</p>
             <p>Publisher: {{ $book->publisher }}</p>
+            <p>Categories: </p>
+            @foreach($categories as $category)
+            <p> - {{$category}} </p>
+            @endforeach
             <div style="font-size: 50px; padding-left:30px; padding-top: 5px;">
             @for($i = 0 ; $i < $book->bookContent->average; $i++)
                 <span class="fa fa-star checked"></span>
@@ -74,7 +78,7 @@
 
             @if (Auth::check())
                         @if (Auth::user()->isadmin == 'True')
-                        <button style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                        <a style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
                         @endif
                     @endif
 

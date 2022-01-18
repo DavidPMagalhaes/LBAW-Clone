@@ -1,8 +1,8 @@
-@extends('pages.home')
+@extends('layouts.app')
 
 @section('title', 'Books')
 
-@section('information')
+@section('content')
 
     <div id = "bookpage">
 
@@ -79,6 +79,15 @@
                                 class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
                                 name="booktype"
                                 value="{{ $book->booktype }}" style="width: 400px;">
+
+                            <h6>Category</h6>
+                            @for($i=0; $i<count($categories); $i++)
+                            <input 
+                                type="text" 
+                                class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+                                name="category{{$i}}"
+                                value = "{{$categories[$i]}}" style="width: 400px;">
+                            @endfor
 
                             <button type="submit" >
                                 Save
