@@ -78,6 +78,12 @@ class CreditCardController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user() == null){
+            return redirect('/home');
+        }
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
+
         $creditCards = CreditCard::where('userid', '=', $id)->get();
         $userid = $id;
         return view('user.payment_methods', ['creditCards' => $creditCards], ['userid' => $userid]);
@@ -96,6 +102,12 @@ class CreditCardController extends Controller
      */
     public function edit($id, $creditCardId)
     {
+        if(Auth::user() == null){
+            return redirect('/home');
+        }
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
+
         $creditCards = CreditCard::where('userid', '=', $id)->get();
         $userid = $id;
         return view('payment_methods.edit_creditCard', ['creditCards' => $creditCards]);

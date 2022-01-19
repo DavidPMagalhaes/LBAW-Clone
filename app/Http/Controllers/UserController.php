@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -51,7 +52,14 @@ class UserController extends Controller
         //
         $user = User::find($id);
         //dd($user);
-        return view('user.profile_info')->with('user', $user);
+        if(Auth::user() != null){
+            if(Auth::user()->id != $id)
+                return redirect('/home');
+
+            else return view('user.profile_info')->with('user', $user);
+        }
+        else return redirect('/home');
+
     }
 
     /**
@@ -64,7 +72,13 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        return view('user.edit')->with('user', $user);
+        if(Auth::user() != null){
+            if(Auth::user()->id != $id)
+                return redirect('/home');
+
+            else return view('user.edit')->with('user', $user);
+        }
+        else return redirect('/home');
     }
 
     /**

@@ -86,6 +86,12 @@ class ReviewController extends Controller
 
     public function showUserReviews($id)
     {
+        if(Auth::user() == null){
+            return redirect('/home');
+        }
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
+            
         $reviews = Review::where('userid', '=', $id)->get();
         return view('user.review_history', ['reviews' => $reviews]);
     }
@@ -102,6 +108,12 @@ class ReviewController extends Controller
      */
     public function edit($id, $reviewid)
     {
+        if(Auth::user() == null){
+            return redirect('/home');
+        }
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
+
         $review = Review::find($reviewid);
         return view('review.edit_review', ['review' => $review]);
     }
