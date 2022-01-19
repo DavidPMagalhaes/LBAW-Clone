@@ -64,6 +64,7 @@ class CreditCardController extends Controller
         $notification->userid = Auth::user()->id;
         $notification->orderid = null;
         $notification->bookid = null;
+        $notification->creditcardid = $creditCard->cardid;
 
         $notification->save();
         
