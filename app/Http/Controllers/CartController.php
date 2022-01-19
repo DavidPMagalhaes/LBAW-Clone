@@ -16,19 +16,15 @@ class CartController extends Controller
      */
     public function index($id)
     {
-        /*
-        $cart = []; 
-        foreach(session('products') as $session){
-            $tempCart=Cart::find($session->id);
-            $cart[] = $tempCart;
+        if(Auth::user() == null){
+            return redirect('/home');
         }
-        return view('pages.checkout')->with('products ',$products);
-        */
-        //supostamente devolve todos as rows com aquele user id
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
+
+
         $bookIds = Cart::where('userid', $id)->get();
         //dd($bookIds);
-
-        //return view('cart.index')->with('bookIds', $bookIds);
         return view('cart.index',['bookIds' => $bookIds]);
     }
 

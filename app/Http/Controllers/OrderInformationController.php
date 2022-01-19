@@ -17,6 +17,11 @@ class OrderInformationController extends Controller
 
     public function checkout($id)
     {
+        if(Auth::user() == null){
+            return redirect('/home');
+        }
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
 
         //default credit card that user has saved
         $creditCard = CreditCard::where('userid', $id)->get();
