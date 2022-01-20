@@ -35,10 +35,11 @@ Route::get('category/{key}', 'CategoryController@show');
 Route::get('user/{id}', 'UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
 Route::put('user/{id}/edit/update', 'UserController@update');
-//Route::post('user/{id}/edit', 'UserController@update');
 Route::get('user/{id}/purchase-history', 'PurchaseHistoryController@index');
 Route::get('user/{id}/review-history', 'ReviewController@showUserReviews');
 Route::get('user/{id}/payment-methods', 'CreditCardController@show');
+Route::get('user/{id}/confirm-delete', 'UserController@confirmDelete');
+Route::delete('user/{id}/delete/confirmed', 'UserController@destroy');
 
 // Payment Methods
 Route::get('user/{id}/payment-methods/add', 'CreditCardController@add');
