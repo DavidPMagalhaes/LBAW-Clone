@@ -24,7 +24,6 @@ class CartController extends Controller
 
 
         $bookIds = Cart::where('userid', $id)->get();
-        //dd($bookIds);
         return view('cart.index',['bookIds' => $bookIds]);
     }
 
@@ -37,14 +36,10 @@ class CartController extends Controller
     {
         $cart = new Cart();
 
-        //$this->authorize('create', $cart);
-
         $cart->name = $request->input('quantity');
-        //$cart->userid = Auth::user()->id;
         $cart->bookId = $request->route('id');
         $cart->save();
 
-        //dd($cart);
         return $cart;
     }
 
@@ -57,40 +52,32 @@ class CartController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $errors = [];
+
         $cart = new Cart;
         $userid = Auth::id(); 
         
         $uniqueBook = Cart::where('bookid', '=', $id)
         ->where('userid', '=', $userid)   
         ->first();
-        /*
-        $uniqueBook = Cart::where(['bookid', '=', '$id'],
-        ['userid', '==', '1'])->first();
-        */
+
         if ($uniqueBook === null) {
             
                     $cart->quantity = $request->input('quantity');
                     $cart->userid = Auth::user()->id;
-                    //$cart->userid = 1; //so para testar
-                    //$cart->bookid = $request->route('id');
                     $cart->bookid = $id;
             
                     $cart->save();
             
-            
                     return redirect('/home');
-        // User does not exist
         } 
-        return redirect()->back()->with('book alredy in cart');
+        array_push($errors, 'Error: Book alredy in cart');
+        return redirect()->back()->with('errors', $errors);
         
 
-        //$this->authorize('create', $cart);
     }
 
-    public function delete(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -105,36 +92,6 @@ class CartController extends Controller
         return view('cart.index', ['cart' => $cart]); 
     }
 
-    public function list()
-    {
-      //if (!Auth::check()) return redirect('/login');
-      //$this->authorize('list', Cart::class);
-      //$carts = Auth::registered_user()->carts()->orderBy('id')->get();
-      //return view('pages.carts', ['carts' => $carts]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

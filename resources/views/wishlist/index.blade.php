@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
+		@foreach($errors as $error)
+		<div class="col-12">
+			<div class = "alert alert-danger">
+				<i class="fa fa-times"></i>
+				{{$error}}
+			</div>
+		</div>
+		@endforeach
+
 		<div class="text">
 			<h1>Wishlist</h1>
 		</div>

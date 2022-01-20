@@ -56,6 +56,8 @@ class WishlistController extends Controller
      */
     public function store($id)
     {
+        $errors = [];
+
         $wishlist = new Wishlist;
         $userid = Auth::id(); 
         
@@ -74,8 +76,8 @@ class WishlistController extends Controller
     
             return redirect('/home');
         } 
-        // User does not exist
-        return redirect()->back()->with('book alredy in wishlist');
+        array_push($errors, 'Error: Book alredy in wishlist');
+        return redirect()->back()->with('errors', $errors);
         
     }
 
@@ -99,17 +101,6 @@ class WishlistController extends Controller
       return view('pages.books', ['books' => $books]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Wishlist  $wishlist
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Wishlist $wishlist)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

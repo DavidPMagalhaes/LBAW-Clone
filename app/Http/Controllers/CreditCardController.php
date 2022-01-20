@@ -10,30 +10,6 @@ use Illuminate\Http\Request;
 
 class CreditCardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    public function delete($id, $creditcardid)
-    {
-        //
-    }
 
     public function add($id) {
         $user = User::find($id);
@@ -90,10 +66,6 @@ class CreditCardController extends Controller
         return view('user.payment_methods', ['creditCards' => $creditCards], ['userid' => $userid]);
     }
 
-    public function list()
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

@@ -94,61 +94,41 @@ class CategoryController extends Controller
 
         $categoryid = Category::where('label', '=', $category)->first();
 
-        //dd($categoryid);
         //collection with id of bookContents of chosen category and id of category 
         $belongsToCategory = BelongsToCategory::where('categoryid', '=', $categoryid->categoryid)->get();
-
-        //dd($belongsToCategory);
 
         //first entry of colletion
         if($belongsToCategory->isNotEmpty())
             $belongsToIds = $belongsToCategory[0]->bookid;
-        else return redirect('/home');  //alterar esta pagina
-
+        //else return redirect('/home');  //alterar esta pagina
+        else return view('pages.empty');
 
         //bookContents with requested categories 
         $bookContent = BookContent::where('bookid', '=', $belongsToIds)->get();
-        //dd($bookContent);
        
         $counter = -1;
         foreach($belongsToCategory as $belongstocategory){   
-            //$counter++;
             if ($counter++ == 0) continue;
 
-            //dd($bookcontent->bookid);
             $belongsToIds = $belongstocategory->bookid;
-
             $tempBook = BookProduct::where('bookcontentid', '=', $belongsToIds)->get();
-
             $bookContent = $bookContent->merge($tempBook);
-            //dd($books);
         }
         
-        
-        
-        //dd($bookContent);
 
         //ids
         $contentids = $bookContent[0]->bookid;
-        //dd($contentids);
 
         $books = BookProduct::where('bookcontentid', '=', $contentids)->get();
 
-        //dd($bookContent[2]->bookid);
         $counter = -1;
         foreach($bookContent as $bookcontent){   
-            //$counter++;
             if ($counter++ == 0) continue;
 
-            //dd($bookcontent->bookid);
             $contentids = $bookcontent->bookid;
             $tempBook = BookProduct::where('bookcontentid', '=', $contentids)->get();
-            //$books->push(BookProduct::where('bookcontentid', '=', $contentids)->get());
             $books = $books->merge($tempBook);
-            //dd($books);
         }
-        //dd($books);
-        //$book = BookProduct::find($id);
 
         return view('pages.search', ['books' => $books]);
     }
@@ -158,37 +138,4 @@ class CategoryController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Category $category)
-    {
-        //
-    }
 }

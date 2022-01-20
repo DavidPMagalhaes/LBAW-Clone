@@ -3,13 +3,16 @@
 
 @section('content')
 
-    <!--<script>
-        var msg = '{{Session::get('alert')}}';
-        var exist = '{{Session::has('alert')}}';
-        if(exist){
-          alert(msg);
-        }
-    </script>-->
+
+    
+    @foreach($errors as $error)
+    <div class="col-12">
+        <div class = "alert alert-danger">
+            <i class="fa fa-times"></i>
+            {{$error}}
+        </div>
+    </div>
+    @endforeach
  
 
     <div id = "bookpage">
