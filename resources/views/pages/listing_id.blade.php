@@ -4,7 +4,7 @@
 
 <section id="listing-books">
   <br><br>
-  <h3>See all</h3>
+  <h1>See all</h1>
   <section id="books">
 
       @each('partials.book', $books, 'book')

@@ -137,9 +137,8 @@ body {
 
 
 #listing-books .btn{
-  left: 1550px;
   background-color: #860b05;
-  position: absolute;
+  position: relative;
   width: 100px;
 }
 
@@ -150,7 +149,6 @@ body {
   grid-template-columns: repeat(6, 1fr);
   box-sizing: border-box;
   position: relative;
-  height: 400px;
 
 }
 
@@ -158,27 +156,11 @@ body {
   display: block;
   padding: 1em;
   margin: 1em;
-    height: min-content;
-
+  height: min-content;
 }
 #books article.book img {
   float: inline-start;
   align-items: center;
-}
-
-
-#books article.book  h3 {
-  align-items: center;
-  font-size: 20px;
-  padding-bottom: 0%;
-}
-
-#books article.book p1 {
-  font-size: 20px;
-  color: #080808;
-}
-#books article.book p{
-  line-height: 15px;
 }
 
 #books #book-information{
@@ -448,10 +430,53 @@ body {
   main > header span {
     margin: 0;
   }
-  #content form {
+  #content-fluid form {
     margin: 0;
     max-width: 25em;
   }
+  #content-fluid form {
+    margin: 0;
+    max-width: 25em;
+  }
+  #books{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+  }
+  #books article.book{
+    width: min-content;
+
+  }
+  #books article.book img {
+    height: 20vw ;
+    width: 15vw;
+  }
+  #books article.book {
+    display: block;
+    padding: 0em;
+    margin: 0em;
+    height: min-content;
+  }
+  p{
+    font-size: 2vw;
+  }
+  p1{
+    font-size: 2.5vw;
+  }
+  h3{
+    font-size: 2.5vw;
+  }
+  h1{
+    font-size: 5vw;
+  }
+  .btn{
+    height: 4vw;
+    width: 0.5vw;
+    font-size: 2vw;
+    padding: 0;
+
+  }
+
 
 }
 
@@ -505,11 +530,11 @@ a:hover{
 }
 h3{
   color: #861109;
-  font-size: 30px;
   font-family: "Perpetua Titling MT", serif;
 }
-.text h1{
-  color: #550a05;
+
+h1{
+  color: #861109;
   padding: 5mm;
 }
 

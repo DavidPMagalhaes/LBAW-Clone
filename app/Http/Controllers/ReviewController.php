@@ -61,7 +61,7 @@ class ReviewController extends Controller
         
         $review->save();
 
-        return redirect()->action([ReviewController::class, 'show'], ['id' => $review->bookid]);
+        return redirect()->action([BookProductController::class, 'show'], ['id' => $review->bookid]);
     }
 
     /**

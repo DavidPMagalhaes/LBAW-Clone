@@ -4,7 +4,7 @@
 
 <section id="listing-books">
   <br><br>
-  <h3>Public Favorites</h3>
+  <h1>Public Favorites</h1>
   <section id="books">
 
       @each('partials.book', $books->sortByDesc(function ($book) {

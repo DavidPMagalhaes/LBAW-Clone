@@ -5,53 +5,62 @@
 @section('content')
 
 
-        <div class="text">
 
-            <div class="float-right">
-                <img src="{{$user->profilePicture}}" width="300" height="auto">
-            </div>
-            <div>
-                <h2>User details</h2>
-                <p>Id: {{$user->id}}</p>
-                <p>Name: {{$user->name}}</p>
-                <p>Email: {{$user->email}}</p>
+<h1> Profile</h1>
+<br>
+<div class= "profile-info" >
+    <div class= "photo-name">
+        <img src = {{ $user->profilepicture }} width="260" >
+        <figcaption>{{ $user->name }} </figcaption>
+    </div>
+    <div class="space"></div>
+    <div class= "information">
+        <h1> Account Details: </h1><hr>
+        <p2>  Username:</p2> <p3>  {{ $user->name }} </p3><hr>
+        <p2>  Email: </p2> <p3>  {{ $user->email }}</p3><hr>
 
-                <form action="/admin/user/{{$user->id}}/update" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('put') }}
-                    <p>Blocked(True/False):</p>  
-                    <input 
-                        type="text" 
-                        class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                        name="blocked"
-                        style="width: 400px;"
-                        @if ($user->isblocked == 'True')
-                        value="True"
-                        @else
-                        value="False" 
-                        @endif
-                        style="width: 400px;">
-                    <p>Admin(True/False):</p>  
-                    <input 
-                        type="text" 
-                        class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                        name="admin"
-                        style="width: 400px;"
-                        @if ($user->isadmin == 'True')
-                        value="True"
-                        @else
-                        value="False" 
-                        @endif
-                        style="width: 400px;">
-                    <br>
-                    <button type="submit" >
-                        Save
-                    </button>
-                </form>        
-            </div>
-        </div>
-        <br>
-        <hr>
+        <form id = "update-profile" action="/admin/user/{{$user->id}}/update" method="POST">
+        {{ csrf_field() }}
+                {{ method_field('put') }}
+            <label for="exampleSelect1" class="form-label mt-4" form = "update-profile"  ><p2>Account status </p2></label>
+                <select class="form-select" id="exampleSelect1" style =" width : 200px;">
+                    @if ($user->isblocked == 'True')
+
+                        <option value ="False">Normal</option>
+                        <option value = "True" selected = "selected">Blocked</option>
+                    @else
+
+                        <option value ="False" selected = "selected">Normal</option>
+                        <option value = "True" >Blocked</option>
+                    @endif
+            
+                </select>
+                <hr>
+                <label for="exampleSelect1" class="form-label mt-4"><p2>User type</p2></label>
+                <select class="form-select" id="exampleSelect1" style =" width : 200px;">
+                    @if ($user->isadmin == 'True')
+                            <option selected = "selected" value = "True">Admin</option>
+                            <option value = "False" >Regular</option>
+                    @else
+                            <option  value = "True">Admin</option>
+                            <option selected = "selected" value ="False" >Regular</option>
+                    @endif
+                
+                </select>
+                <br><br>
+            <button class = "btn btn-primary" type="submit" style = "width: 200px;" >
+                    Save
+            </button>
+            </form> 
+    </div>
+
+
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br>
+    
+    <div>
+
         @foreach($orders as $order)
             <div class="order"> 
             <div> <p1 style="padding-top: 30px;"> Order date:  </p1><p style="padding-top: 30px;">   {{ $order->orderdate }}</p></div>  

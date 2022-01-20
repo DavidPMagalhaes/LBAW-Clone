@@ -2,21 +2,49 @@
 
 @section('content')
 
+<br>
+<h1> Listing of users</h1>
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">User Type</th>
+      <th scope="col">User Status</th>
+      <th scope="col">See more</th>
 
-    <div class="cart-books">
+    </tr>
+  </thead>
+  <tbody>
+  @foreach($users as $user)
 
-        @foreach($users as $user)
-            <article class="">
-            <div>User Name</div>
-            <div>{{$user->name}}</div>
-            <div>User email</div>
-            <div>{{$user->email}}</div>
-            <h2><a class="button" href="/admin/users/{{$user->id}}">See details</a></h2>
+    <tr >
 
-            <br>
-            <hr>
-            </article>
-		@endforeach
+      <th scope="row">{{$user->id}}</th>
+            <td>{{$user->name}}</td>
+            <td>{{$user->email}}</td>
+            <td> @if ($user->isadmin == "True")
+                    ADMIN
+                @else
+                    USR
+                @endif
+            </td>
+            <td> @if ($user->isblocked == "True")
+                    BLOCKED
+                @else
+                    NORMAL
+                @endif
+            </td>
+            <td> <a class="btn btn-secondary" href="/admin/users/{{$user->id}}">+</a></td>
+    </tr>
+    @endforeach
+
+  </tbody>
+</table>
+
+ 
 
 
 @endsection

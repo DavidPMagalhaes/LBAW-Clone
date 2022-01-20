@@ -4,8 +4,8 @@
 @section('bestRated')
 
     <div>
-        <h3>Public favorites
-        <a type="button" class="btn btn-secondary" href="{{ url('/books-rating') }}">See more</a></h3>
+        <h1>Public favorites
+        <a type="button" class="btn btn-secondary" href="{{ url('/books-rating') }}">See more</a></h1>
     </div>
     <section id="books">
 

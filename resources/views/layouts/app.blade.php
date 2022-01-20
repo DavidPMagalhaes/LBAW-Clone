@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -62,14 +62,21 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                     <div class="dropdown-content">
                         <a class="dropdown-item" href="/user/{{Auth::user()->id}}"> Account </a>
-                        <a class="dropdown-item"  href="/users/{{Auth::user()->id}}/notifications"> Notifications </a> 
-                        <a class="dropdown-item" href="/users/{{Auth::user()->id}}/cart"> Cart </a> 
-                        <a class="dropdown-item"  href="/users/{{Auth::user()->id}}/wishlist"> WishList </a>
-                                          
+                                  
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ url('/logout') }}"> Logout </a>                          
                     </div>
                   </li>
+                  <li class="nav-item">
+                  <a class="nav-link" id = "notification" href="/users/{{Auth::user()->id}}/notifications"> <img src= "http://cdn.onlinewebfonts.com/svg/img_489991.png" width="20" height="20"> </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link"  href="/users/{{Auth::user()->id}}/wishlist"> <img src= "https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" width="20" height="20"> </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/users/{{Auth::user()->id}}/cart"> <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" width="20" height="20"> </a> 
+                  </li>
+              
                 @else
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url('/logout') }}">Log in</a>

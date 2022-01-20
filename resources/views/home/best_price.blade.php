@@ -5,8 +5,8 @@
 
     <br>
     <div>
-        <h3>Best Deals
-        <a type="button"  class="btn btn-secondary" href="{{ url('/books-rating') }}">See more</a></h3>
+        <h1>Best Deals
+        <a type="button"  class="btn btn-secondary" href="{{ url('/books-rating') }}">See more</a></h1>
     </div>
     <section id="books">
 
