@@ -15,15 +15,6 @@ use App\Models\Review;
 
 class BookProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($id)
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -63,7 +54,6 @@ class BookProductController extends Controller
             $newAuthor->save();
 
             $bookContent->authorid = $newAuthor->authorid;
-            //dd($newAuthor);
         }
  
         $bookContent->title = $request->input('title');
@@ -105,24 +95,17 @@ class BookProductController extends Controller
         $book = BookProduct::find($id);
 
         $bookContentId = $book->bookContent()->get('bookid')[0]->bookid;
-        //dd($bookContentId);
         $belongsCategory = BelongsToCategory::where('bookid', '=', $bookContentId)->get();
-        //dd($belongsCategory);
         $categories = [];
         foreach($belongsCategory as $belongsCategory){ 
             $category = Category::where('categoryid', '=', $belongsCategory->categoryid)->first();
 
             array_push($categories, $category->label);
         }
-        //$categories = Category::where('categoryid', '=', $belongsCategory->categoryid)->get();
-        //dd($categories);
+
         return view('review.reviews', ['reviews' => $reviews], ['book' => $book])->with('categories', $categories);
     }
 
-    public function list()
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -135,9 +118,7 @@ class BookProductController extends Controller
         $book = BookProduct::find($id);
 
         $bookContentId = $book->bookContent()->get('bookid')[0]->bookid;
-        //dd($bookContentId);
         $belongsCategory = BelongsToCategory::where('bookid', '=', $bookContentId)->get();
-        //dd($belongsCategory);
         $categories = [];
         foreach($belongsCategory as $belongsCategory){ 
             $category = Category::where('categoryid', '=', $belongsCategory->categoryid)->first();
@@ -165,7 +146,6 @@ class BookProductController extends Controller
 
         if($author){
             $bookContent->authorid = $author->authorid;
-            //dd($author);
         }
         else{
             $newAuthor = new Author;
@@ -174,15 +154,12 @@ class BookProductController extends Controller
             $newAuthor->save();
 
             $bookContent->authorid = $newAuthor->authorid;
-            //dd($newAuthor);
         }
         
         if($bookContent) {
             $bookContent->title = $request->input('title');
             $bookContent->bookyear = $request->input('bookyear');
-            //$bookContent->authorid = $request->input('authorid');
             $bookContent->bookcover = $request->input('bookcover');
-            //dd($bookContent);
             $bookContent->save();
         }
         
@@ -214,7 +191,6 @@ class BookProductController extends Controller
 
 
         $belongsCategory = BelongsToCategory::where('bookid', '=', $bookProduct->bookid)->get();
-        //dd($belongsCategory);
         $categories = [];
         $categoryIds = [];
         foreach($belongsCategory as $belongsCategory){ 
@@ -227,16 +203,12 @@ class BookProductController extends Controller
         $newCategories = [];
         for($i=0; $i<count($categories); $i++){
             $name = 'category' . (string)$i;
-            //dd($name);
             $newCategory = $request->input($name);
-            //dd($newCategory);
             $categoryObject = Category::where('label', '=', $newCategory)->first();
-            //dd($categoryObject);
             //if inserted category exists
             if($categoryObject){
                 $belongsToCategory = BelongsToCategory::where('bookid', '=', $bookContent->bookid)
                 ->where('categoryid', '=', $categoryIds[$i])->first();
-                //dd($belongsToCategory);
                 
 
                 $newCategoryObject = Category::where('label', '=', $newCategory)->first();
@@ -245,32 +217,8 @@ class BookProductController extends Controller
             }
         }
 
-        // $category = Category::where('label', '=', $request->input('category'))->first();
-        // if($category) {
-        //     $belongsToCategory = BelongsToCategory::where('bookid', '=', $bookContent->bookid)->first();
-        //     //$belongsToCategory->bookid = $bookContent->bookid;
-        //     //dd($belongsToCategory);
-        //     $belongsToCategory->categoryid = $category->categoryid;
-        //     //dd($belongsToCategory);
-        //     $belongsToCategory->save();
-        // }
-
-
-
-
-
         $url = '/api/books/viewBook/' . (string)$bookProduct->bookid;
         return redirect( $url);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BookProduct  $bookProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(BookProduct $bookProduct)
-    {
-        //
-    }
 }
