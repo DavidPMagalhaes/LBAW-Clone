@@ -115,8 +115,13 @@ class CreditCardController extends Controller
      */
     public function destroy($id, $creditcardid)
     {
+        $notification = Notification::where('creditcardid', '=', $creditcardid);
+        $notification->delete();
+        
         $creditCard = CreditCard::find($creditcardid);
         $creditCard->delete();
+
+        
   
         return redirect()->back();
     }
