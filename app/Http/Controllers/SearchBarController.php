@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BookContent;
 use App\Models\BookProduct;
+use App\Models\Author;
 use Illuminate\Http\Request;
 
 class SearchBarController extends Controller
@@ -15,6 +16,12 @@ class SearchBarController extends Controller
 
         //bookContents with requested titles 
         $bookContent = BookContent::where('title', 'LIKE', '%'.$search.'%')->get();
+        $authors = Author::where('authorname', 'LIKE', '%'.$search.'%')->get();
+
+        foreach ($authors as $author) {
+            $bookContent = $bookContent->merge(BookContent::where('authorid', '=', $author->authorid)->get());
+        }
+
         if(!$bookContent->isNotEmpty())
             return view('pages.empty');
        
