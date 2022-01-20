@@ -414,7 +414,7 @@ INSERT INTO belongs_to_category(bookid, categoryid) VALUES  (1,11),
   (37,5),
   (38,9),
   (39,10),
-  (40,6),
+  (40,6);
  
  
 
