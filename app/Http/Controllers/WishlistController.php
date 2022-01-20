@@ -15,6 +15,12 @@ class WishlistController extends Controller
      */
     public function index($id)
     {
+        if(Auth::user() == null){
+            return redirect('/home');
+        }
+        else if(Auth::user() != null && Auth::user()->id != $id)
+            return redirect('/home');
+
         $bookIds = Wishlist::where('userid', $id)->get();
         return view('wishlist.index',['bookIds' => $bookIds]);
 

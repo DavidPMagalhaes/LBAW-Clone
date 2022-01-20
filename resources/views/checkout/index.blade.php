@@ -29,14 +29,26 @@
 		@endforeach
 </div>
 
-<div class="text"> 
-        <p2>Credit Card:     {{$creditCard->cardnumber}}</p2>    
+<div> 
+        <p>Credit Card(s): <p>
+		@foreach($creditCard as $creditCard)
+		<p>Name: {{$creditCard->ownername}}</p>
+		<p>Number: {{$creditCard->cardnumber}}</p>
+		<p>Security code: {{$creditCard->securitycode}}</p>
+		<br>
+		@endforeach
 </div>        
 
 <div id = "checkout">
         <form action="checkout/confirmed" method="POST">
             {{ csrf_field() }}
             {{ method_field('put') }}
+			<label>Select card</label>
+			<input 
+			type="text" 
+			class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
+			name="cardNumber"
+			style="width: 400px;">
             <button  type="submit" class="btn btn-primary">Confirm</button>
 </form>
 </div>
