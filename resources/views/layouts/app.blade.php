@@ -96,7 +96,7 @@
                     <a class="dropdown-item" href="/category/Biography"> Biography</a> 
                     <a class="dropdown-item" href="/category/Sport"> Sport</a> 
                     <a class="dropdown-item" href="/category/Drama"> Drama </a> 
-                    <a class="dropdown-item" href="/category/Sci-fi"> Sci-Fi </a> 
+                    <a class="dropdown-item" href="/category/Sci-Fi"> Sci-Fi </a> 
                     <a class="dropdown-item" href="/category/Western"> Western</a>
                     <a class="dropdown-item" href="/category/War"> War</a> 
                     <a class="dropdown-item" href="/category/Adventure"> Adventure</a> 
