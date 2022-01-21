@@ -44,5 +44,9 @@ class UserOrder extends Model
             $creditCard = CreditCard::find($id);
             return $creditCard; 
         }
+        public function getUser($id) {
+            $user = User::where('id', $id)->get();
+            return $user; 
+        }
 
 }

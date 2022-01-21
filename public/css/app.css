@@ -368,7 +368,6 @@ body {
 /*purchase history*/
 .order{
   border-radius: 1.5%;
-  background-color: rgb(236, 228, 228);
   font-size: 20px;
   display: inline-flexbox;
 }

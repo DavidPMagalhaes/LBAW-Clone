@@ -8,7 +8,8 @@
 
 @foreach($orders as $order)
   <div class="order"> 
-   <div> <p1 style="padding-top: 30px;"> Order date:  </p1><p style="padding-top: 30px;">   {{ $order->orderdate }}</p></div>  
+   <div> <p1 style="padding-top: 30px;"> Order date:  </p1><p style="padding-top: 30px;"> {{date('d-m-Y', strtotime($order->date))}}
+</p></div>  
 
     <div><p1> OwnerName:  </p1> <p>{{ $order->getCreditCard($order->creditcardid)->ownername }}</p1></div> 
     <div><p1> 

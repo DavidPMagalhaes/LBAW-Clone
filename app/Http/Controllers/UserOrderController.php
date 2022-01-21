@@ -28,5 +28,15 @@ class UserOrderController extends Controller
         $order->save();
         
     }
+    
+    public function show($id){
+        $order = UserOrder::find($id);
+
+        return view('pages.order', ['order' => $order]);
+
+    }
+
+
+
 
 }
