@@ -61,7 +61,7 @@
                                 <option value = "Biography">  Biography</option>
                                 <option value = "Sport">  Sport</option>
                                 <option value = "Drama">  Drama</option>
-                                <option value = "Sci-fi">  Sci-fi"</option>
+                                <option value = "Sci-Fi">  Sci-Fi</option>
                                 <option value = "Western">  Western</option>
                                 <option value = "War">  War</option>
                                 <option value = "Adventure">  Adventure</option>
