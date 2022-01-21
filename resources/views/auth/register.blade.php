@@ -8,7 +8,7 @@
     {{ csrf_field() }}
     <div class="form-group">
     <label class="col-form-label mt-4" for="inputDefault">Name</label>
-    <input type="text" class="form-control" placeholder="Default input" name = "name"  value="{{ old('name') }}" id="inputDefault" required autofocus style = "width: 60%;">
+    <input type="text" class="form-control" placeholder="Name" name = "name"  value="{{ old('name') }}" id="inputDefault" required autofocus style = "width: 60%;">
   </div>
 
     @if ($errors->has('name'))
