@@ -12,7 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug

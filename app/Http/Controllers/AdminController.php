@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
 
     public function users(){
-        $users = User::all();
+        $users = User::paginate(15);
         if (Auth::user()->isadmin == 'True'){
             return view('admin.users')->with('users', $users);
         }
