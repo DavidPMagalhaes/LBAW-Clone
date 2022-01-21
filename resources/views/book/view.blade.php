@@ -70,7 +70,7 @@
                         <form action="{{$book->bookid}}/add-to-wishlist" method="POST">
                             @method('PUT')
                             @csrf
-                            <button type="submit"  class="btn btn-primary" >Add to WishList</button>
+                            <button  type="submit"  class="btn btn-primary" >Add to WishList</button>
                         </form>
                 </div>
 
@@ -81,7 +81,7 @@
 
             @if (Auth::check())
                         @if (Auth::user()->isadmin == 'True')
-                        <a style ="margin-left: 10% ; width: 210px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
+                        <a style ="margin-left: 86px ; width: 150px;" class="btn btn-primary" href="/api/books/viewBook/{{$book->bookid}}/edit"> Edit Book </a>
                         @endif
                     @endif
 

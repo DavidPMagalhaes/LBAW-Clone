@@ -8,7 +8,7 @@
 <h1> Order information</h1>
 <div class = "order"> 
             <div>
-                <p1 style="padding-top: 30px;"> Order date:  </p1><p style="padding-top: 30px;">   {{ date('d-m-Y', strtotime($order->date)) }}</p></div>  
+                <p1 style="padding-top: 30px;"> Order date:  </p1><p style="padding-top: 30px;">   {{ date('d-m-Y', strtotime($order->orderdate)) }}</p></div>  
 
                 <div><p1> Name associated with payment:  </p1> <p>{{ $order->getCreditCard($order->creditcardid)->ownername }}</p></div> 
                

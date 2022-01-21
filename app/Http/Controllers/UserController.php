@@ -77,7 +77,7 @@ class UserController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email');
             if($request->filled('password')) {
-                $user->email = $request->input('password');
+                $user->password = $request->input('password');
             }
             $user->save();
         }

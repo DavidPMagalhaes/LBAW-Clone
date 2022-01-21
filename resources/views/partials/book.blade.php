@@ -9,6 +9,6 @@
         
     <div >
         <p> Written by {{ $book->getAuthor($book->bookContent()->get('authorid')[0]->authorid)->authorname }}</p> 
-        <p1>{{ $book->price }}€</p1>
+        <p1 style = "color :#860b05;">{{ $book->price }}€</p1>
     </div>
 </article>

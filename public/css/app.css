@@ -62,21 +62,7 @@ body {
   padding-right: 25px;
 }
 
-.btn-group-vertical{
-  float: left;
-}
 
-.btn-group-vertical .btn{
-  cursor: pointer; 
-
-  display: block; 
-  background-color: #ebe2e1;
-  border-color: #f0e7e7;
-  color:rgb(90, 10, 10);
-  display: inline-flex;
-  align-items: center;
-
-}
 
 
 
@@ -115,7 +101,6 @@ body {
   border-radius: 25px;
   padding-left: 18px;
   margin-left: 30%;
-  height: 350px;
 }
 
 .information p2{
@@ -226,14 +211,16 @@ body {
   width:150px;
 }
 
-#price-buttons button{
-  border-radius: 1%;
+#price-buttons #wish {
+  padding-left: 86px;
+}
+#price-buttons #wish button{
+  width: 150px;
 }
 
-#wish button{
-  margin-left: 10% ;
-  width: 210px;
-}
+
+
+
 
 .btn-primary{
   background-color: #860b05;
@@ -254,7 +241,7 @@ body {
 }
 
 #reviews{
-  padding-left: 430px;
+  padding-left: 5%;
   align-items: center;
 }
 
@@ -280,6 +267,7 @@ body {
  #comment .comment-content{
   float:right;
   max-width: 75%;
+  overflow: hidden;
 }
 
 #comment .buttons{
@@ -348,11 +336,8 @@ body {
 
 
 #checkout button{
-  background-color: #e4d5d4;
   width: 350px;
-    background-color: #d6291c;
-  border-color: #d6291c;
-  color:rgb(255, 255, 255);
+
 }
 
 #checkout a.button:hover{
@@ -499,7 +484,6 @@ body {
     width: 90%;
     display: inline-table;
     margin-left: 0%;
-    height: 350px;
   }
   
   .information p2{
@@ -507,7 +491,7 @@ body {
     color :#860b05;
   }
   .information p3{
-    font-size: 3vw;
+    font-size: vw;
   }
 
 

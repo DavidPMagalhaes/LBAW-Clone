@@ -20,14 +20,14 @@
             </a>
             </li>
                 <li class="nav-item">
-                <a class="nav-link" href=" {{ $user->id }}/edit">Edit Profile</a>
+                <a class="nav-link" href=" /user/{{ $user->id }}/edit">Edit Profile</a>
             </li>
             </li>
                 <li class="nav-item">
-                <a class="nav-link" href=" {{ $user->id }}/payment-methods">Payment methods</a>
+                <a class="nav-link" href=" /user/{{ $user->id }}/payment-methods">Payment methods</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=" {{ $user->id }}/review-history"> Review history</a>
+                <a class="nav-link" href=" /user/{{ $user->id }}/review-history"> Review history</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href=" /user/{{ $user->id }}/purchase-history"> Purchase history</a>

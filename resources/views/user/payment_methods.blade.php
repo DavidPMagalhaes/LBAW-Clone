@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
-<h1 class="text"> Payment Methods </h1>
-
+<br>
+<h1 >Payment Methods </h1>
+<br>
 @foreach($creditCards as $creditCard)
-  <div class="text"> 
-    <p> OwnerName: {{ $creditCard->ownername }}</p>
+<div class="information" style = "margin-left:5%; padding-left:5%"> 
+    <br>
+    <p> Name: {{ $creditCard->ownername }}</p>
     <p> Card Number: {{ $creditCard->cardnumber }} </p>
     <p> Security Code: {{ $creditCard->securitycode }} </p>
-
-    <div id = "remove">
+    <br>
       <form action="/user/{{$creditCard->userid}}/payment-methods/{{$creditCard->cardid}}/delete" method="POST">
         @method('delete')
         @csrf
@@ -18,11 +18,11 @@
           <button type="submit" class="btn btn-primary" >Remove</button>
         </div>
       </form>
-    </div>	
 
     <a href="/user/{{$creditCard->userid}}/payment-methods/{{$creditCard->cardid}}/edit" class="btn btn-primary" >Edit</a>
-    <p> ------------------------------------------------------- </p>
-  </div>
+ <br> <br>
+</div>
+  <br>
 @endforeach
-<a href="/user/{{$userid}}/payment-methods/add" class="btn btn-primary" >Add Payment Method</a>
+<a style = "margin-left:10%;"href="/user/{{$userid}}/payment-methods/add" class="btn btn-primary" >Add Payment Method</a>
 @endsection

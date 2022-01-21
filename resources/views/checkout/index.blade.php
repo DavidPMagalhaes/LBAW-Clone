@@ -39,17 +39,22 @@
 		@endforeach
 </div>
 
-<div> 
-        <p>Credit Card(s): <p>
+<div>
+       <h2>Credit Card(s): </h2>
 		@foreach($creditCard as $card)
+		<br>
+		<div class="information" style = "margin-left:1%; padding-left:5%"> 
+
 		<p>Name: {{$card->ownername}}</p>
 		<p>Number: {{$card->cardnumber}}</p>
 		<p>Security code: {{$card->securitycode}}</p>
-		<br>
+		<br><br>
+</div>
+<br>
 		@endforeach
 </div>        
 <a href="/user/{{$user->id}}/payment-methods/add" class="btn btn-primary" >Add Payment Method</a>
-
+<br>
 <div id = "checkout">
         <form action="checkout/confirmed" method="POST">
             {{ csrf_field() }}
@@ -63,7 +68,13 @@
 			<br>
 			<br>
             <button  type="submit" class="btn btn-primary">Confirm</button>
+			<br>
 		</form>
+		<br>
+		<br>
+		<br>
+
+
 </div>
 
 @endsection

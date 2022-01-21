@@ -10,24 +10,20 @@
             {{ csrf_field() }}
             {{ method_field('put') }}
             <div id="edit-formula">
-                <h6>Name</h6>
-                <input 
-                    type="text" 
-                    class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                    name="name"
-                    value="{{ $user->name }}" style="width: 400px;">
-                <h6>Email</h6>
-                <input 
-                    type="text" 
-                    class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                    name="email"
-                    value="{{ $user->email }}" style="width: 400px;">
-                <h6>Password</h6>
-                <input 
-                    type="text" 
-                    class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-                    name="password"
-                     style="width: 400px;">
+            <div class="form-group">
+                 <label class="col-form-label mt-4" for="inputDefault">Name</label>
+                 <input type="text" class="form-control" placeholder="name" name = "name" value = {{$user->name}} id="inputDefault" style = "width: 40%;">
+            </div>
+            <div class="form-group">
+                 <label class="col-form-label mt-4" for="inputDefault">Email</label>
+                 <input type="text" class="form-control" placeholder="email" name = "email" style = "width: 40%;" value = {{ $user->email}} >
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name = "password" style = "width: 40%;" placeholder="Password">
+            </div>
+
+                <br><br>
                 <button type="submit" class = "btn btn-primary" >
                     Save
                 </button>

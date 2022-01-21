@@ -67,7 +67,7 @@
                     </div>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link" id = "notification" href="/users/{{Auth::user()->id}}/notifications"> <img src= "http://cdn.onlinewebfonts.com/svg/img_489991.png" width="20" height="20"> </a>
+                  <a class="nav-link" id = "notification" href="/users/{{Auth::user()->id}}/notifications"> <img src = "https://uxwing.com/wp-content/themes/uxwing/download/37-communication-chat-call/notification-bell.png" width="20" height="20"> </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link"  href="/users/{{Auth::user()->id}}/wishlist"> <img src= "https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" width="20" height="20"> </a>

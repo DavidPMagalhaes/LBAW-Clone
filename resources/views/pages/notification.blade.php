@@ -2,10 +2,12 @@
 
 @section('content')
 
+<br>
 <h1 > Notifications </h1>
-
+<br>
 @foreach($notifications as $notification)
-  <div class="text"> 
+  <div class="information" style = "margin-left:5%;"> 
+    <br>
     @if ($notification->orderid != null)
     <p> {{ $notification->notificationmessage }} on ordered Book "{{ $notification->getBookContent($notification->getBookProduct($notification->bookid)->bookcontentid)->title }}"</p>
     <p> Time: {{ date('d-m-Y    g:i a', strtotime($notification->notificationtime)) }} </p>
@@ -23,8 +25,9 @@
     <p> Time: {{ date('d-m-Y    g:i a', strtotime($notification->notificationtime)) }} </p>
     <a class="btn btn-primary" href=" /api/books/viewBook/{{ $notification->bookid }}"> View Book </a> 
     @endif
-    <p> ------------------------------------------------------- </p>
+    <br><br>
   </div>
+  <br>
 @endforeach
 
 @endsection

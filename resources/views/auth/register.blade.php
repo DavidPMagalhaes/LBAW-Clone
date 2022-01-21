@@ -1,39 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
+<br><br>
+<div class="information" style = "padding-left: 10%; margin-left: 1%; 
+">
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
+    <div class="form-group">
+    <label class="col-form-label mt-4" for="inputDefault">Name</label>
+    <input type="text" class="form-control" placeholder="Default input" name = "name"  value="{{ old('name') }}" id="inputDefault" required autofocus style = "width: 60%;">
+  </div>
 
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
     @if ($errors->has('name'))
       <span class="error">
           {{ $errors->first('name') }}
       </span>
     @endif
+    <br>
 
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-    @if ($errors->has('email'))
-      <span class="error">
+    <div class="form-group" >
+      <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" name = "email" value="{{ old('email') }}" aria-describedby="emailHelp" placeholder="Enter email" style = "width: 60%;">
+      @if ($errors->has('email'))
+        <span class="error">
           {{ $errors->first('email') }}
-      </span>
+        </span>
     @endif
-
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-      <span class="error">
-          {{ $errors->first('password') }}
-      </span>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group" >
+      <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required style = "width: 60%;">
+      @if ($errors->has('password'))
+        <span class="error">
+            {{ $errors->first('password') }}
+        </span>
     @endif
+    </div>
+    <br>
+    <div class="form-group" >
+      <label for="exampleInputPassword1" class="form-label mt-4"> Confirm Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password_confirmation" required style = "width: 60%;">
 
-    <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation" required>
-
+  <br>
     <button type="submit" class ="btn btn-primary" >
       Register
     </button>
     <a class="btn btn-primary"  href="{{ route('login') }}">Login</a>
-</form>
+<br></form>
+<br>
 @endsection
