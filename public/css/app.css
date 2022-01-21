@@ -63,15 +63,12 @@ body {
 }
 
 .btn-group-vertical{
-  width: 15%;
   float: left;
 }
 
 .btn-group-vertical .btn{
-  font-size: 15px;
   cursor: pointer; 
-  height: 70px;
-  width: 95%; 
+
   display: block; 
   background-color: #ebe2e1;
   border-color: #f0e7e7;
@@ -123,7 +120,6 @@ body {
 
 .information p2{
   padding-left: 25px;
-  font-size: 25px;
   color :#860b05;
 }
 
@@ -365,6 +361,14 @@ body {
   border-color: #c4aeae;
 }
 
+.page-item.active .page-link {
+  background-color: #861109;
+  border-color: #8f170c;
+}
+.page-link {
+  color: #860b05;
+}
+
 /*purchase history*/
 .order{
   border-radius: 1.5%;
@@ -468,13 +472,7 @@ body {
   h1{
     font-size: 5vw;
   }
-  .btn{
-    height: 4vw;
-    width: 0.5vw;
-    font-size: 2vw;
-    padding: 0;
 
-  }
 
 
 }

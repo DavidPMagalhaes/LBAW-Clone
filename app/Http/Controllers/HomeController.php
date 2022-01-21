@@ -21,14 +21,19 @@ class HomeController extends Controller
 
     public function listById()
     {
-        $books = BookProduct::all();
+        $books = BookProduct::paginate( 18 );
         return view('pages.listing_id')->with('books', $books);
     }
 
     public function listByRating()
     {
-        $books = BookProduct::all();
+        $books = BookProduct::paginate( 18 );
         return view('pages.listing_rating')->with('books', $books);
+    }
+    public function listbyPrice()
+    {
+        $books = BookProduct::paginate( 18 );
+        return view('pages.listing_price')->with('books', $books);
     }
      
 }

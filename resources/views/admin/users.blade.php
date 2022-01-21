@@ -42,6 +42,9 @@
     @endforeach
 
   </tbody>
+  <br><br>
+  {{ $users->links() }}
+  <br><br>
 </table>
 
  

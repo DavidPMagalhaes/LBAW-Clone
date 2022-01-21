@@ -4,10 +4,10 @@
 
 <section id="listing-books">
   <br><br>
-  <h1>See all</h1>
+  <h1>Best Deals</h1>
   <section id="books">
 
-      @each('partials.book', $books, 'book')
+      @each('partials.book', $books->sortby('price'), 'book')
 
   </section>
 
@@ -15,6 +15,7 @@
   {{ $books->links() }}
   <br><br>
 
+</section>
 </section>
 
 @endsection

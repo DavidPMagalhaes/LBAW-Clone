@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@show');
 //Listing books
 Route::get('/books-id', 'HomeController@listById');
 Route::get('/books-rating', 'HomeController@listByRating');
+Route::get('/books-price', 'HomeController@listByPrice');
+
 
 
 
