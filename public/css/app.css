@@ -97,7 +97,7 @@ body {
   float: left;
   margin-left: 1%;
   width: 25%;
-  background-color: #ffffff;
+  background-color: rgb(238, 235, 235);
   text-align: center;
   border-radius: 25px;
   height: 350px;
@@ -110,12 +110,12 @@ body {
 
 
 .information{
-  background-color: #ffffff;
+  background-color: rgb(238, 235, 235);
   width: 65%;
   border-radius: 25px;
   padding-left: 18px;
   margin-left: 30%;
-
+  height: 350px;
 }
 
 .information p2{
@@ -471,6 +471,43 @@ body {
   }
   h1{
     font-size: 5vw;
+  }
+  .photo-name{
+    margin-left: 1%;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    border-radius: 25px;
+    height:min-content;
+    width: min-content;
+    padding-left: 10vw;
+    padding-bottom: 10vw;;
+
+
+  }
+  
+  .photo-name img {
+    border-radius: 50%;
+    margin-top: 10%;
+    width: 30vw;
+    align-items: center;
+    
+  }
+  
+  
+  .information{
+    background-color: rgb(238, 235, 235);
+    width: 90%;
+    display: inline-table;
+    margin-left: 0%;
+    height: 350px;
+  }
+  
+  .information p2{
+    font-size: 4vw;
+    color :#860b05;
+  }
+  .information p3{
+    font-size: 3vw;
   }
 
 

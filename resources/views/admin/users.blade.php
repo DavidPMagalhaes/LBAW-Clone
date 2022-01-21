@@ -42,12 +42,12 @@
     @endforeach
 
   </tbody>
-  <br><br>
-  {{ $users->links() }}
-  <br><br>
+
 </table>
 
- 
+<br><br>
+{{ $users->links() }}
 
+<br><br>
 
 @endsection
