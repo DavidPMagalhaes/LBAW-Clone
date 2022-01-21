@@ -18,7 +18,7 @@
         @method('delete')
         @csrf
         <div>
-          <button type="submit" class="red-button">Cancel Order</button>
+          <button type="submit" class="btn btn-primary" >Cancel Order</button>
         </div>
       </form>
       </div>
@@ -36,7 +36,7 @@
         <h2> {{ $orderInformation->getBookContent($orderInformation->getBookProduct($orderInformation->bookid)->bookcontentid)->title}} </h2>
         <p> Quantity: {{ $orderInformation->quantity }}</p>
         <p> Status: {{ $orderInformation->orderstatus }} </p>
-        <a class="button" href="/api/books/viewBook/{{ $orderInformation->bookid }}/addReview"> Add Review </a>
+        <a class="btn btn-primary"  href="/api/books/viewBook/{{ $orderInformation->bookid }}/addReview"> Add Review </a>
       </article>
       @endforeach
 

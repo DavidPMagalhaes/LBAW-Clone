@@ -28,7 +28,7 @@
                     class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
                     name="password"
                      style="width: 400px;">
-                <button type="submit" >
+                <button type="submit" class = "btn btn-primary" >
                     Save
                 </button>
 

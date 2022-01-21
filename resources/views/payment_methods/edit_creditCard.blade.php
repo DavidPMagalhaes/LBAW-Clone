@@ -14,7 +14,7 @@
         <input type="text"  name="cardnumber">
         <label for="securitycode">Security Code:</label><br>
         <input type="text"  name="securitycode">
-        <button type="submit" class="red-button">Add</button>
+        <button type="submit" class="btn btn-primary" >Add</button>
     </form>
 </div>
 

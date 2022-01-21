@@ -15,14 +15,14 @@
         @method('delete')
         @csrf
         <div>
-          <button type="submit" class="red-button">Remove</button>
+          <button type="submit" class="btn btn-primary" >Remove</button>
         </div>
       </form>
     </div>	
 
-    <a href="/user/{{$creditCard->userid}}/payment-methods/{{$creditCard->cardid}}/edit" class="button">Edit</a>
+    <a href="/user/{{$creditCard->userid}}/payment-methods/{{$creditCard->cardid}}/edit" class="btn btn-primary" >Edit</a>
     <p> ------------------------------------------------------- </p>
   </div>
 @endforeach
-<a href="/user/{{$userid}}/payment-methods/add" class="button">Add Payment Method</a>
+<a href="/user/{{$userid}}/payment-methods/add" class="btn btn-primary" >Add Payment Method</a>
 @endsection

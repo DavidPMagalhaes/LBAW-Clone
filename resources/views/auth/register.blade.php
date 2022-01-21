@@ -31,9 +31,9 @@
     <label for="password-confirm">Confirm Password</label>
     <input id="password-confirm" type="password" name="password_confirmation" required>
 
-    <button type="submit">
+    <button type="submit" class ="btn btn-primary" >
       Register
     </button>
-    <a class="button button-outline" href="{{ route('login') }}">Login</a>
+    <a class="btn btn-primary"  href="{{ route('login') }}">Login</a>
 </form>
 @endsection
