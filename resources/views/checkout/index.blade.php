@@ -41,26 +41,29 @@
 
 <div> 
         <p>Credit Card(s): <p>
-		@foreach($creditCard as $creditCard)
-		<p>Name: {{$creditCard->ownername}}</p>
-		<p>Number: {{$creditCard->cardnumber}}</p>
-		<p>Security code: {{$creditCard->securitycode}}</p>
+		@foreach($creditCard as $card)
+		<p>Name: {{$card->ownername}}</p>
+		<p>Number: {{$card->cardnumber}}</p>
+		<p>Security code: {{$card->securitycode}}</p>
 		<br>
 		@endforeach
 </div>        
+<a href="/user/{{$user->id}}/payment-methods/add" class="btn btn-primary" >Add Payment Method</a>
 
 <div id = "checkout">
         <form action="checkout/confirmed" method="POST">
             {{ csrf_field() }}
             {{ method_field('put') }}
 			<label>Select card</label>
-			<input 
-			type="text" 
-			class="block shadow-5xl mb-10 p-2 w-80 placeholder-gray-400"
-			name="cardNumber"
-			style="width: 400px;">
+			<select class="form-select w-50" name="cardNumber">
+				@foreach($creditCard as $card)
+				<option value="{{$card->cardnumber}}">{{$card->cardnumber}}</option>
+				@endforeach
+			</select>
+			<br>
+			<br>
             <button  type="submit" class="btn btn-primary">Confirm</button>
-</form>
+		</form>
 </div>
 
 @endsection

@@ -7,6 +7,7 @@ use App\Models\UserOrder;
 use App\Models\Cart;
 use App\Models\BookProduct;
 use App\Models\CreditCard;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -25,10 +26,12 @@ class OrderInformationController extends Controller
 
         //default credit card that user has saved
         $creditCard = CreditCard::where('userid', $id)->get();
+
+        $user = User::find($id);
         
         $bookIds = Cart::where('userid', $id)->get();
 
-        return view('checkout.index', ['bookIds' => $bookIds])->with('creditCard', $creditCard); 
+        return view('checkout.index', ['bookIds' => $bookIds])->with('creditCard', $creditCard)->with('user', $user); 
     }
 
 
@@ -41,7 +44,6 @@ class OrderInformationController extends Controller
         $creditCard = CreditCard::where('userid', $id)
         ->where('cardnumber', $request->input('cardNumber'))
         ->first();
-
         if(!$creditCard){
             array_push($errors, 'Error: Invalid Credit Card');
             $creditCard = CreditCard::where('userid', $id)->get();
